@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+	<!-- BAG -->
+	<node pkg="rosbag" type="play" name="rosbag_sensor" args="-l $(find tricat_251)/fix.bag"/> 
+
+	
+    <!-- Convert data: /position_ned, psi -->
+    <node pkg="tricat_251" type="gnss_converter.py" name="gnss_converter" respawn="true" output="screen"/>
+	<node pkg="tricat_251" type="psi_converter.py" name="psi_converter" respawn="true"/>
+	<!-- /sensor_total -->
+	<node pkg="tricat_251" type="hopping_test_sensor_total.py" name="sensor_total" args="Sensor_total" respawn="true"/>
+	<!-- /pose -->
+	<node pkg="tricat_251" type="navigation.py" name="navigation"/>
+	<!-- WP(x,y) -->
+    <node pkg="tricat_251" type="guidance.py" name="guidance" output="screen"/>
+    <node pkg="tricat_251" type="hopping_test_actuator.py" name="actuator"/>
+	<node name="Hopping_25" pkg="tricat_251" type="hopping_test.py" output="screen" />
+	<!-- Arduino -->
+	<!-- <node pkg="tricat_251" type="serial_node.py" name="ARDUINO" args="/dev/ttyACM0" respawn="true"/> -->
+	<!-- Visual -->
+	<!-- <node pkg="tricat_251" type="visual_hopping.py" name="visualization"/> -->
+	<!-- Parameters -->
+	<rosparam command="load" file="$(find tricat_251)/params/251_params.yaml"/>
+</launch>

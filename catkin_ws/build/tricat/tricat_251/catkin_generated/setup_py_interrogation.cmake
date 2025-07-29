@@ -1,0 +1,7 @@
+set(tricat_251_SETUP_PY_SETUP_MODULE "setuptools")
+set(tricat_251_SETUP_PY_VERSION "0.0.0")
+set(tricat_251_SETUP_PY_SCRIPTS "")
+set(tricat_251_SETUP_PY_PACKAGES "guidance;actuator;sensor;ship;docking;navigation;visual;test;control")
+set(tricat_251_SETUP_PY_PACKAGE_DIRS "src/guidance;src/actuator;src/sensor;src/ship;src/docking;src/navigation;src/visual;src/test;src/control")
+set(tricat_251_SETUP_PY_MODULES "")
+set(tricat_251_SETUP_PY_MODULE_DIRS "")

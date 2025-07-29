@@ -1,0 +1,8 @@
+prefix=/home/i-tricat241/catkin_ws/install
+
+Name: tricat_actuator
+Description: Description of tricat_actuator
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
