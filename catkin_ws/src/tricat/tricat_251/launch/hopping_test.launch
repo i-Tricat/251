@@ -2,7 +2,7 @@
 
 <launch>
 	<!-- BAG -->
-	<node pkg="rosbag" type="play" name="rosbag_sensor" args="-l $(find tricat_251)/fix.bag"/> 
+	<!-- <node pkg="rosbag" type="play" name="rosbag_sensor" args="-l $(find tricat_251)/fix.bag"/>  -->
 
 	
     <!-- Convert data: /position_ned, psi -->
@@ -17,7 +17,7 @@
     <node pkg="tricat_251" type="hopping_test_actuator.py" name="actuator"/>
 	<node name="Hopping_25" pkg="tricat_251" type="hopping_test.py" output="screen" />
 	<!-- Arduino -->
-	<!-- <node pkg="tricat_251" type="serial_node.py" name="ARDUINO" args="/dev/ttyACM0" respawn="true"/> -->
+	<node pkg="tricat_251" type="serial_node.py" name="ARDUINO" args="/dev/ttyACM1" respawn="true"/>
 	<!-- Visual -->
 	<!-- <node pkg="tricat_251" type="visual_hopping.py" name="visualization"/> -->
 	<!-- Parameters -->

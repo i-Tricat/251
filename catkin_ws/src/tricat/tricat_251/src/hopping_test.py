@@ -120,12 +120,12 @@ class HoppingTestNode:
         self.control_angle_deg = control_angle_deg
 
         if abs(control_angle_deg) > self.controlangle:
-            Re_diff = 50
-            if control_angle_deg > 0:
-                self.thruster_p = 1500 - Re_diff # 아두이노 코드 ㅄ
-                self.thruster_s = 1500 - Re_diff
-            else:
+            Re_diff = 150
+            if 180 >control_angle_deg >= 0:
                 self.thruster_p = 1500 + Re_diff # 아두이노 코드 ㅄ
+                self.thruster_s = 1500 - Re_diff
+            elif -180 < control_angle_deg < 0:
+                self.thruster_p = 1500 - Re_diff # 아두이노 코드 ㅄ
                 self.thruster_s = 1500 + Re_diff
         else:
             cp_thrust = self.kp_thruster * control_angle_deg
@@ -136,7 +136,7 @@ class HoppingTestNode:
 
             base_thrust = self.base_thrust
             left_thrust = base_thrust + thrust_diff
-            right_thrust =base_thrust + thrust_diff
+            right_thrust =base_thrust - thrust_diff
 
             self.thruster_p = max(min(left_thrust, self.thrust_range[1]), self.thrust_range[0])
             self.thruster_s = max(min(right_thrust, self.thrust_range[1]), self.thrust_range[0])

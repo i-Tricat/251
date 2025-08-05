@@ -1,0 +1,40 @@
+#version: '3'
+
+services:
+  ros_container:
+    container_name: 251_dev
+    image: ghcr.io/i-tricat/251-dev:docker
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    privileged: true
+    tty: true
+    volumes:
+      - /dev:/dev
+      - /etc/udev/rules.d:/etc/udev/rules.d
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/docker:/data
+      - ../catkin_ws/src:/root/catkin_ws/src
+    environment:
+      - DISPLAY=$DISPLAY
+      - QT_X11_NO_MITSHM=1
+    ipc: host
+    network_mode: "host"
+
+# services:
+#   ros_container:
+#     container_name: 241_dev
+#     image: ghcr.io/i-tricat/241:release
+#     privileged: true
+#     tty: true
+#     volumes:
+#       - /dev:/dev
+#       - /etc/udev/rules.d:/etc/udev/rules.d
+#       - /tmp/.X11-unix:/tmp/.X11-unix
+#       - ~/docker:/data
+#       - ../catkin_ws/src:/root/catkin_ws/src
+#     environment:
+#       - DISPLAY=$DISPLAY
+#       - QT_X11_NO_MITSHM=1
+#     ipc: host
+#     network_mode: "host"
