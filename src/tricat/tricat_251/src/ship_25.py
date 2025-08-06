@@ -234,6 +234,9 @@ class SHIP:
         # 모든 벡터가 교차하면 중앙 각도 강제 추가
         if not non_cross_vector:
             rospy.logwarn("❗ 모든 벡터가 교차합니다.")
+            self.vector_blocked = True  # 🔴 상태 저장
+        else:
+            self.vector_blocked = False  # 🟢 정상
 
         self.non_cross_vector_len = len(non_cross_vector)
         return non_cross_vector
@@ -267,28 +270,45 @@ class SHIP:
 
     # Step4. Thrust-based PID control
     def Avoidance_control(self, psi_ned, x_ned, y_ned):
-        psi_desire = self.vector_choose(self.delete_vector_inside_obstacle(self.make_detecting_vector(psi_ned), psi_ned, x_ned, y_ned), x_ned, y_ned)
-        control_angle = (psi_desire - psi_ned + 180) % 360 - 180
+        non_cross_vector = self.delete_vector_inside_obstacle(self.make_detecting_vector(psi_ned), psi_ned, x_ned, y_ned)
+
+        if getattr(self, 'vector_blocked', False):  # 🔴 모든 벡터가 막힌 경우
+            rospy.logwarn("🛑 모든 경로 차단됨. 역추진 실행!")
+
+            self.control_angle = degrees(self.target_angle)
+            self.psi_desire = self.target_heading
+            B_diff = 70
+            if -180 < self.control_angle <= 0:
+                self.thruster_p = 1450
+                self.thruster_s = 1450 - B_diff
+            elif 0 < self.control_angle < 180:
+            # 역추진 설정 (1500이 중립, 1300 또는 1200 정도로 후진)
+                self.thruster_p = 1450 - B_diff
+                self.thruster_s = 1450
+            return self.thruster_p, self.thruster_s
+
+        # 🔵 벡터 선택 및 각도 계산
+        psi_desire = self.vector_choose(non_cross_vector, x_ned, y_ned)
+        control_angle = (psi_desire - degrees(psi_ned) + 180) % 360 - 180
 
         if control_angle >= 180:
             control_angle = -180 + abs(control_angle) % 180
         elif control_angle <= -180:
             control_angle = 180 - abs(control_angle) % 180
-        
+
         self.control_angle = control_angle 
         self.psi_desire = psi_desire
+
+        # PID 제어기
         cp_thrust = self.kp_thruster * control_angle
-        yaw_rate = degrees(self.r_ned)
+        yaw_rate = self.r_ned
         cd_thrust = self.kd_thruster * (-yaw_rate)
 
-        thrust_diff = cp_thrust + cd_thrust  # 좌우 추진기 차등 추력 계산
-
-        # 기본 추력 설정
-        base_thrust = self.base_thrust  # 기본 전진 추력
+        thrust_diff = cp_thrust + cd_thrust
+        base_thrust = self.base_thrust
         left_thrust = base_thrust + thrust_diff
         right_thrust = base_thrust - thrust_diff
 
-        # 추력 범위 제한
         self.thruster_p = max(min(left_thrust, self.thrust_range[1]), self.thrust_range[0])
         self.thruster_s = max(min(right_thrust, self.thrust_range[1]), self.thrust_range[0])
 
@@ -302,7 +322,7 @@ class SHIP:
         self.psi_desire = psi_desire
         self.control_angle_deg = control_angle_deg
         
-        if abs(control_angle_deg) > self.yaw_range:
+        if abs(control_angle_deg) > self.yaw_range/2:
             Re_diff = 150
             if 180 >control_angle_deg >= 0:
                 self.thruster_p = 1500 + Re_diff # 아두이노 코드 ㅄ
@@ -506,7 +526,7 @@ class SHIP:
 
         # 제어 상태
         print(colored("⚙️ 제어 상태:", "yellow", attrs=["bold"]))
-        print(f"  🚀 {colored('추진 출력', 'red')}: 좌측 = {self.thruster_p}, 우측 = {self.thruster_s}")
+        print(f"  🚀 {colored('추진 출력', 'red')}: 좌측 = {int(self.thruster_p)}, 우측 = {int(self.thruster_s)}")
 
         # 추가 정보
         print(f"🛡️ {colored('도달 가능한 벡터 수', 'cyan')}: {self.non_cross_vector}")

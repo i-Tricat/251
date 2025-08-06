@@ -94,7 +94,7 @@ class HoppingTestNode:
         # if vector_desired is None and psi_desire:
         #     self.thruster_p 
         #     self.thruster_s 
-        if abs(control_angle_deg) > self.yaw_range:
+        if abs(control_angle_deg) > self.yaw_range/2:
             Re_diff = 150
             if 180 >control_angle_deg >= 0:
                 self.thruster_p = 1500 - Re_diff # 아두이노 코드 ㅄ
