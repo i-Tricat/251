@@ -1,0 +1,2 @@
+myahrs_driver:obstacle_detector:rplidar_ros:tricat/tricat:tricat/tricat_251:tricat/tricat_actuator:tricat/tricat_msgs:tricat/tricat_sensor:ublox/ublox:ublox/ublox_gps:ublox/ublox_msg_filters:ublox/ublox_msgs:ublox/ublox_serialization
+-DCATKIN_DEVEL_PREFIX=/home/i-tricat241/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/i-tricat241/catkin_ws/install -G Unix Makefiles

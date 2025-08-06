@@ -1,0 +1,10 @@
+(cl:defpackage tricat_msgs-srv
+  (:use )
+  (:export
+   "WAYPOINTSERVICE"
+   "<WAYPOINTSERVICE-REQUEST>"
+   "WAYPOINTSERVICE-REQUEST"
+   "<WAYPOINTSERVICE-RESPONSE>"
+   "WAYPOINTSERVICE-RESPONSE"
+  ))
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+	<!-- BAG -->
+	<!-- <node pkg="rosbag" type="play" name="rosbag_sensor" args="-l $(find tricat_251)/sensor.bag"/>  -->
+	<!-- LiDAR -->
+	<!-- <node pkg="obstacle_detector" type="obstacle_detector" name="obstacle_detector" output="screen">
+		<param name="world_frame"     type="string" value="map"/>
+		<param name="scanner_frame"   type="string" value="scanner"/>
+	
+		<param name="use_scan"            type="bool" value="true"/>
+		<param name="use_pcl"             type="bool" value="false"/>
+		<param name="transform_to_world"  type="bool" value="false"/>
+		<param name="use_split_and_merge" type="bool" value="false"/>
+
+		<param name="min_group_points"    value="3"/>
+		<param name="max_group_distance"  value="0.100"/>
+		<param name="distance_proportion" value="0.006136"/>
+		<param name="max_split_distance"  value="0.100"/>
+
+		<param name="max_merge_separation" value="0.200"/>
+		<param name="max_merge_spread"     value="0.070"/>
+		<param name="max_circle_radius"    value="0.300"/>
+		<param name="radius_enlargement"   value="0.050"/>
+
+		<param name="max_scanner_range"    value="5.0"/>
+		<param name="max_x_range"          value="2.0"/>
+		<param name="min_x_range"          value="-2.0"/>
+		<param name="max_y_range"          value="1.0"/>
+		<param name="min_y_range"          value="-1.0"/>
+  	</node>
+    
+    <node pkg="obstacle_detector" type="obstacle_visualizer" name="obstacle_visualizer" output="screen"/> -->
+	<!--IMU-->
+	<!-- <node pkg="myahrs_driver" type="myahrs_driver" name="myahrs_driver">
+		<param name="port" value="/dev/ttyIMU" />
+		<param name="baud_rate" value="115200" />
+    </node> -->
+
+	<!-- GPS date -->
+    <!-- Convert data: /position_ned -->
+    <node pkg="tricat_251" type="gnss_converter.py" name="gnss_converter" respawn="true" output="screen"/>
+
+    <!-- Nodes -->
+	<node pkg="tricat_251" type="psi_converter.py" name="psi_converter" respawn="true"/>
+	<node pkg="tricat_251" type="hopping_test_sensor_total.py" name="sensor_total" args="Sensor_total" respawn="true"/>
+	<node pkg="tricat_251" type="navigation.py" name="navigation"/>
+    <node pkg="tricat_251" type="guidance.py" name="guidance" output="screen"/>
+    <node pkg="tricat_251" type="hopping_test_actuator.py" name="actuator"/>
+	<node name="hopping_test_node" pkg="tricat_251" type="hopping_test.py" output="screen" />
+	<!-- <node pkg="tricat_251" type="Straight_Cotroller_Test.py" name="Total" output="screen"/> -->
+    <!-- <node pkg="tricat_251" type="serial_node.py" name="ARDUINO" args="/dev/ttyARDUINO" respawn="true"/> -->
+	
+	<!-- Parameters -->
+	<rosparam command="load" file="$(find tricat_251)/params/251_params.yaml"/>
+</launch>
