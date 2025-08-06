@@ -1,8 +1,0 @@
-prefix=/home/i-tricat241/catkin_ws/install
-
-Name: obstacle_detector
-Description: Description of obstacle_detector
-Version: 1.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib -lobstacle_detector
-Requires: roscpp std_msgs geometry_msgs sensor_msgs visualization_msgs tf message_runtime
