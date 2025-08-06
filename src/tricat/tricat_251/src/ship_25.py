@@ -65,6 +65,8 @@ class SHIP:
         self.vector_begin = np.zeros((self.angle_num + 1, 2))  # ✅ 초기화
         self.vector_end = np.zeros((self.angle_num + 1, 2)) 
         self.non_cross_vector_len = 0
+        self.vector_blocked = False
+        self.last_vector_desired = None
         # self.vector_choose(self.delete_vector_inside_obstacle(self.make_detecting_vector(self.psi_ned),self.psi_ned, self.x_ned, self.y_ned), self.x_ned, self.y_ned)
         # self.servo_pid_controller(self.psi_ned, self.x_ned, self.y_ned)
 
@@ -266,7 +268,38 @@ class SHIP:
 
         return vector_desired
 
+    # def vector_choose(self, non_cross_vector, x_ned, y_ned):
+    #     if len(self.WP_k) < 2:
+    #         rospy.logwarn("웨이포인트가 부족합니다.")
+    #         return 0
 
+    #     target_angle = degrees(self.target_heading)
+    #     self.target_angle = (target_angle - degrees(self.psi_ned) + 180) % 360 - 180
+
+    #     min_diff = float('inf')
+    #     vector_desired = 0
+
+    #     for vec in non_cross_vector:
+    #         diff = abs(vec - target_angle)
+    #         if diff > 180:
+    #             diff = 360 - diff
+
+    #         # 이전에 선택한 방향과 같은 방향이면 패널티 부여
+    #         if self.last_vector_desired is not None:
+    #             direction_change = vec - self.last_vector_desired
+    #             if direction_change > 180:
+    #                 direction_change -= 360
+    #             elif direction_change < -180:
+    #                 direction_change += 360
+    #             if abs(direction_change) < 15:  # 같은 쪽 회전이라 판단
+    #                 diff += 10  # 일부러 다른 방향을 유도
+
+    #         if diff < min_diff:
+    #             min_diff = diff
+    #             vector_desired = vec
+
+    #     self.last_vector_desired = vector_desired
+    #     return vector_desired
 
     # Step4. Thrust-based PID control
     def Avoidance_control(self, psi_ned, x_ned, y_ned):
@@ -529,16 +562,16 @@ class SHIP:
         print(f"  🚀 {colored('추진 출력', 'red')}: 좌측 = {int(self.thruster_p)}, 우측 = {int(self.thruster_s)}")
 
         # 추가 정보
-        print(f"🛡️ {colored('도달 가능한 벡터 수', 'cyan')}: {self.non_cross_vector}")
-        # print(f"🛡️ {colored('벡터 내용', 'cyan')}: {self.detecting_points}")
-        # print(f"🛡️ {colored('Qorl', 'cyan')}: {self.psi_desire - self.psi_ned}")
-        print(f"🧭 {colored('제어각도[control_angle]', 'yellow')}: {self.control_angle:.4f}°")
-        print(f"🧭 {colored('최적벡터[psi_desire]', 'blue')}: {self.psi_desire:.2f}°")
+        if getattr(self, 'vector_blocked', False):
+            print(colored("🛑 모든 벡터가 막혀 있습니다! 역추진 중입니다.", "red", attrs=["bold"]))
+        else:
+            print(f"🛡️ {colored('도달 가능한 벡터 수', 'cyan')}: {self.non_cross_vector_len}")
+            print(f"🧭 {colored('제어각도[control_angle]', 'yellow')}: {self.control_angle:.4f}°")
+            print(f"🧭 {colored('최적벡터[psi_desire]', 'blue')}: {self.psi_desire:.2f}°")
 
-        # 선택된 최적 벡터
-        direction = "◀ 좌회전" if self.control_angle < 0 else "▶ 우회전"
-        print(colored(f"✅ 선택된 벡터: {self.vector_desired:.2f}° {direction}", "green"))
-
+            # 선택된 최적 벡터
+            direction = "◀ 좌회전" if self.control_angle < 0 else "▶ 우회전"
+            print(colored(f"✅ 선택된 벡터: {self.vector_desired:.2f}° {direction}", "green"))
 
         print(colored(separator, "cyan"))
 
