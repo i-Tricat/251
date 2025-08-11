@@ -35,7 +35,7 @@
     
 	<!-- GPS date -->
     <!-- Convert data: /position_ned -->
-    <node pkg="tricat_251" type="gnss_converter.py" name="gnss_converter" respawn="true"/>
+    <node pkg="tricat_251" type="gnss_converter.py" name="gnss_converter" respawn="true" output="screen"/>
 	<node pkg="tricat_251" type="psi_converter.py" name="psi_converter" respawn="true"/>
 	<!-- rosbag/test_static_23.py play -->
     <!-- <node pkg="rosbag" type="play" name="rosbag_sensor" args="-l $(find tricat_251)/sensor.bag"/> -->
@@ -46,7 +46,7 @@
 	<node pkg="tricat_251" type="navigation.py" name="navigation"/>
     <node pkg="tricat_251" type="guidance.py" name="guidance" output="screen"/>
     <node pkg="tricat_251" type="actuator.py" name="actuator"/>
-    <!-- <node pkg="tricat_251" type="serial_node.py" name="ARDUINO" args="/dev/ttyARDUINO" respawn="true"/> -->
+    <node pkg="tricat_251" type="serial_node.py" name="ARDUINO" args="/dev/ttyARDUINO" respawn="true"/>
 	
 	<!-- Parameters -->
 	<rosparam command="load" file="$(find tricat_251)/params/251_params.yaml"/>

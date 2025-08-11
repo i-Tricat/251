@@ -1472,22 +1472,6 @@ string
 sstream
 -
 
-/home/i-tricat241/catkin_ws/src/ublox/ublox_gps/src/raw_data_pa.cpp
-ublox_gps/raw_data_pa.h
-/home/i-tricat241/catkin_ws/src/ublox/ublox_gps/src/ublox_gps/raw_data_pa.h
-cmath
--
-string
--
-sstream
--
-sys/types.h
--
-sys/stat.h
--
-time.h
--
-
 /home/i-tricat241/catkin_ws/src/ublox/ublox_msgs/include/ublox/serialization/ublox_msgs.h
 ros/console.h
 -

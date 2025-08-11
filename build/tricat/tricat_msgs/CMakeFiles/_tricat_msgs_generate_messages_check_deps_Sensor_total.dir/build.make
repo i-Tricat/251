@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/i-tricat241/catkin_ws/build
 include tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_Sensor_total.dir/progress.make
 
 tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_Sensor_total:
-	cd /home/i-tricat241/catkin_ws/build/tricat/tricat_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tricat_msgs /home/i-tricat241/catkin_ws/src/tricat/tricat_msgs/msg/Sensor_total.msg std_msgs/Header:geometry_msgs/Point:std_msgs/Float64
+	cd /home/i-tricat241/catkin_ws/build/tricat/tricat_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tricat_msgs /home/i-tricat241/catkin_ws/src/tricat/tricat_msgs/msg/Sensor_total.msg std_msgs/Float64:std_msgs/Header:geometry_msgs/Point
 
 _tricat_msgs_generate_messages_check_deps_Sensor_total: tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_Sensor_total
 _tricat_msgs_generate_messages_check_deps_Sensor_total: tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_Sensor_total.dir/build.make

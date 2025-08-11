@@ -62,8 +62,8 @@ class HoppingTestNode:
         try:
             self.x_ned = float(msg.x.data)
             self.y_ned = float(msg.y.data)
-            psi_deg = float(msg.psi.data)-58
-            self.psi_ned = ((((((psi_deg)+180)%360)-180) * D2R + pi) % (2 * pi)) - pi  # deg -> rad
+            psi_deg = float(msg.psi.data)
+            self.psi_ned = (((psi_deg) * D2R + pi) % (2 * pi)) - pi  # deg -> rad
 
             rospy.loginfo_throttle(2, f"Pose 수신: x={self.x_ned}, y={self.y_ned}, psi(deg)={psi_deg}, psi(rad)={self.psi_ned}")
 
@@ -94,7 +94,7 @@ class HoppingTestNode:
         # if vector_desired is None and psi_desire:
         #     self.thruster_p 
         #     self.thruster_s 
-        if abs(control_angle_deg) > self.yaw_range/2:
+        if abs(control_angle_deg) > self.yaw_range:
             Re_diff = 150
             if 180 >control_angle_deg >= 0:
                 self.thruster_p = 1500 - Re_diff # 아두이노 코드 ㅄ

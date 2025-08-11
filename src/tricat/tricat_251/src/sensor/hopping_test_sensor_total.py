@@ -19,7 +19,7 @@ class HoppingTestSensorTotalNode:
 
         # Setup subscribers
         rospy.Subscriber("/position_ned", Point, self.position_ned_callback, queue_size=10)
-        # rospy.Subscriber("/psi", Float64, self.psi_callback, queue_size=10)
+        rospy.Subscriber("/psi", Float64, self.psi_callback, queue_size=10)
 
         # Setup publisher
         self.sensor_total_pub = rospy.Publisher("/sensor_total", SensorTotalMsg, queue_size=10)
@@ -76,8 +76,8 @@ class HoppingTestSensorTotalNode:
 
             # Fill the message with the received data
             sensor_total_msg.position_ned = Point(x=self.position_ned_x, y=self.position_ned_y)
-            # sensor_total_msg.psi = Float64(data=self.psi)
-            sensor_total_msg.psi = 0.0
+            sensor_total_msg.psi = Float64(data=self.psi)
+        
 
 
 

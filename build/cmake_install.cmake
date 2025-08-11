@@ -131,6 +131,8 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/i-tricat241/catkin_ws/build/gtest/cmake_install.cmake")
+  include("/home/i-tricat241/catkin_ws/build/ublox/ntrip_ros_python3/cmake_install.cmake")
+  include("/home/i-tricat241/catkin_ws/build/ublox/rtcm_msgs/cmake_install.cmake")
   include("/home/i-tricat241/catkin_ws/build/tricat/tricat/cmake_install.cmake")
   include("/home/i-tricat241/catkin_ws/build/tricat/tricat_msgs/cmake_install.cmake")
   include("/home/i-tricat241/catkin_ws/build/tricat/tricat_sensor/cmake_install.cmake")

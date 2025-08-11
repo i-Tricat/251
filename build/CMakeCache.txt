@@ -833,10 +833,10 @@ nodelet_DIR:PATH=/opt/ros/noetic/share/nodelet/cmake
 nodelet_topic_tools_DIR:PATH=/opt/ros/noetic/share/nodelet_topic_tools/cmake
 
 //Value Computed by CMake
-ntrip_ros_BINARY_DIR:STATIC=/home/i-tricat241/catkin_ws/build/ublox_f9p/ntrip_ros
+ntrip_ros_BINARY_DIR:STATIC=/home/i-tricat241/catkin_ws/build/ublox/ntrip_ros_python3
 
 //Value Computed by CMake
-ntrip_ros_SOURCE_DIR:STATIC=/home/i-tricat241/catkin_ws/src/ublox_f9p/ntrip_ros
+ntrip_ros_SOURCE_DIR:STATIC=/home/i-tricat241/catkin_ws/src/ublox/ntrip_ros_python3
 
 //Value Computed by CMake
 obstacle_detector_BINARY_DIR:STATIC=/home/i-tricat241/catkin_ws/build/obstacle_detector
@@ -923,13 +923,13 @@ rplidar_ros_BINARY_DIR:STATIC=/home/i-tricat241/catkin_ws/build/rplidar_ros
 rplidar_ros_SOURCE_DIR:STATIC=/home/i-tricat241/catkin_ws/src/rplidar_ros
 
 //Value Computed by CMake
-rtcm_msgs_BINARY_DIR:STATIC=/home/i-tricat241/catkin_ws/build/ublox_f9p/rtcm_msgs
+rtcm_msgs_BINARY_DIR:STATIC=/home/i-tricat241/catkin_ws/build/ublox/rtcm_msgs
 
 //The directory containing a CMake configuration file for rtcm_msgs.
 rtcm_msgs_DIR:PATH=/home/i-tricat241/catkin_ws/devel/share/rtcm_msgs/cmake
 
 //Value Computed by CMake
-rtcm_msgs_SOURCE_DIR:STATIC=/home/i-tricat241/catkin_ws/src/ublox_f9p/rtcm_msgs
+rtcm_msgs_SOURCE_DIR:STATIC=/home/i-tricat241/catkin_ws/src/ublox/rtcm_msgs
 
 //The directory containing a CMake configuration file for sensor_msgs.
 sensor_msgs_DIR:PATH=/opt/ros/noetic/share/sensor_msgs/cmake
@@ -1225,7 +1225,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=18
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=20
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

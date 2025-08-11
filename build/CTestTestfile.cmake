@@ -5,6 +5,8 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
+subdirs("ublox/ntrip_ros_python3")
+subdirs("ublox/rtcm_msgs")
 subdirs("tricat/tricat")
 subdirs("tricat/tricat_msgs")
 subdirs("tricat/tricat_sensor")

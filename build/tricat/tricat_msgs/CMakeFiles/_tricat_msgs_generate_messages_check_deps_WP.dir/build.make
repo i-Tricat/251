@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/i-tricat241/catkin_ws/build
 include tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_WP.dir/progress.make
 
 tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_WP:
-	cd /home/i-tricat241/catkin_ws/build/tricat/tricat_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tricat_msgs /home/i-tricat241/catkin_ws/src/tricat/tricat_msgs/msg/WP.msg std_msgs/String:std_msgs/UInt16:std_msgs/Float64:std_msgs/Bool
+	cd /home/i-tricat241/catkin_ws/build/tricat/tricat_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tricat_msgs /home/i-tricat241/catkin_ws/src/tricat/tricat_msgs/msg/WP.msg std_msgs/Float64:std_msgs/Bool:std_msgs/String:std_msgs/UInt16
 
 _tricat_msgs_generate_messages_check_deps_WP: tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_WP
 _tricat_msgs_generate_messages_check_deps_WP: tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_WP.dir/build.make

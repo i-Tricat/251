@@ -22,7 +22,7 @@ class WpManager():
             get_waypoints = rospy.ServiceProxy('get_waypoints', WaypointService)
             response = get_waypoints()  # WaypointServiceResponse 객체를 반환
             self.WP_data = response.waypoint_list.WP_data  # 리스트로 할당
-            self.num_k = 0
+            self.num_k = self.WP_data[0].num.data
 
             rospy.loginfo("Received waypoint list:")
             for wp in response.waypoint_list.WP_data:

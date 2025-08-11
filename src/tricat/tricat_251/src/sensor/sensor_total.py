@@ -23,12 +23,11 @@
 import rospy
 from std_msgs.msg import Float64, Header
 from geometry_msgs.msg import Point
-from tricat_msgs.msg import ObstacleList, Sensor_total as SensorTotalMsg
+from tricat_msgs.msg import Sensor_total as SensorTotalMsg
 
 class SensorTotalNode:
     def __init__(self):
         # Initialize variables to store received data
-        self.obstacles = None
         self.psi = None
         self.position_ned_x = None
         self.position_ned_y = None
