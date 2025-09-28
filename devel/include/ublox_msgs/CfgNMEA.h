@@ -546,36 +546,72 @@ struct Printer< ::ublox_msgs::CfgNMEA_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgNMEA_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "filter: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.filter);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "nmeaVersion: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.nmeaVersion);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "numSV: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.numSV);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "gnssToFilter: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.gnssToFilter);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svNumbering: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svNumbering);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "mainTalkerId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.mainTalkerId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "gsvTalkerId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.gsvTalkerId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "version: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.version);
-    s << indent << "bdsTalkerId[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "bdsTalkerId: ";
+    if (v.bdsTalkerId.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.bdsTalkerId.size(); ++i)
     {
-      s << indent << "  bdsTalkerId[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.bdsTalkerId[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.bdsTalkerId[i]);
     }
-    s << indent << "reserved1[]" << std::endl;
+    if (v.bdsTalkerId.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
+    if (v.reserved1.empty() || true)
+      s << "]";
   }
 };
 

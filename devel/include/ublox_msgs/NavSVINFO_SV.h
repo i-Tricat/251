@@ -373,20 +373,36 @@ struct Printer< ::ublox_msgs::NavSVINFO_SV_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavSVINFO_SV_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "chn: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.chn);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svid: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svid);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "quality: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.quality);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cno: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.cno);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "elev: ";
     Printer<int8_t>::stream(s, indent + "  ", v.elev);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "azim: ";
     Printer<int16_t>::stream(s, indent + "  ", v.azim);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "prRes: ";
     Printer<int32_t>::stream(s, indent + "  ", v.prRes);
   }

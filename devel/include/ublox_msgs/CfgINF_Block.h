@@ -270,20 +270,40 @@ struct Printer< ::ublox_msgs::CfgINF_Block_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgINF_Block_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "protocolID: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.protocolID);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
-    s << indent << "infMsgMask[]" << std::endl;
+    if (v.reserved1.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "infMsgMask: ";
+    if (v.infMsgMask.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.infMsgMask.size(); ++i)
     {
-      s << indent << "  infMsgMask[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.infMsgMask[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.infMsgMask[i]);
     }
+    if (v.infMsgMask.empty() || true)
+      s << "]";
   }
 };
 

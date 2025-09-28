@@ -9,12 +9,13 @@ import struct
 import geometry_msgs.msg
 
 class CircleObstacle(genpy.Message):
-  _md5sum = "ab296cd39c1a1fa7dd67209d6a4767e1"
+  _md5sum = "d23cb7e768ed09971078d4cccc3808a9"
   _type = "obstacle_detector/CircleObstacle"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """geometry_msgs/Point center
-float64 radius
-
+  _full_text = """geometry_msgs/Point center      # Central point [m]
+geometry_msgs/Vector3 velocity  # Linear velocity [m/s]
+float64 radius                  # Radius with added margin [m]
+float64 true_radius             # True measured radius [m]
 
 ================================================================================
 MSG: geometry_msgs/Point
@@ -22,9 +23,21 @@ MSG: geometry_msgs/Point
 float64 x
 float64 y
 float64 z
-"""
-  __slots__ = ['center','radius']
-  _slot_types = ['geometry_msgs/Point','float64']
+
+================================================================================
+MSG: geometry_msgs/Vector3
+# This represents a vector in free space. 
+# It is only meant to represent a direction. Therefore, it does not
+# make sense to apply a translation to it (e.g., when applying a 
+# generic rigid transformation to a Vector3, tf2 will only apply the
+# rotation). If you want your data to be translatable too, use the
+# geometry_msgs/Point message instead.
+
+float64 x
+float64 y
+float64 z"""
+  __slots__ = ['center','velocity','radius','true_radius']
+  _slot_types = ['geometry_msgs/Point','geometry_msgs/Vector3','float64','float64']
 
   def __init__(self, *args, **kwds):
     """
@@ -34,7 +47,7 @@ float64 z
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       center,radius
+       center,velocity,radius,true_radius
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -45,11 +58,17 @@ float64 z
       # message fields cannot be None, assign default values for those that are
       if self.center is None:
         self.center = geometry_msgs.msg.Point()
+      if self.velocity is None:
+        self.velocity = geometry_msgs.msg.Vector3()
       if self.radius is None:
         self.radius = 0.
+      if self.true_radius is None:
+        self.true_radius = 0.
     else:
       self.center = geometry_msgs.msg.Point()
+      self.velocity = geometry_msgs.msg.Vector3()
       self.radius = 0.
+      self.true_radius = 0.
 
   def _get_types(self):
     """
@@ -64,7 +83,7 @@ float64 z
     """
     try:
       _x = self
-      buff.write(_get_struct_4d().pack(_x.center.x, _x.center.y, _x.center.z, _x.radius))
+      buff.write(_get_struct_8d().pack(_x.center.x, _x.center.y, _x.center.z, _x.velocity.x, _x.velocity.y, _x.velocity.z, _x.radius, _x.true_radius))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -78,11 +97,13 @@ float64 z
     try:
       if self.center is None:
         self.center = geometry_msgs.msg.Point()
+      if self.velocity is None:
+        self.velocity = geometry_msgs.msg.Vector3()
       end = 0
       _x = self
       start = end
-      end += 32
-      (_x.center.x, _x.center.y, _x.center.z, _x.radius,) = _get_struct_4d().unpack(str[start:end])
+      end += 64
+      (_x.center.x, _x.center.y, _x.center.z, _x.velocity.x, _x.velocity.y, _x.velocity.z, _x.radius, _x.true_radius,) = _get_struct_8d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -96,7 +117,7 @@ float64 z
     """
     try:
       _x = self
-      buff.write(_get_struct_4d().pack(_x.center.x, _x.center.y, _x.center.z, _x.radius))
+      buff.write(_get_struct_8d().pack(_x.center.x, _x.center.y, _x.center.z, _x.velocity.x, _x.velocity.y, _x.velocity.z, _x.radius, _x.true_radius))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -111,11 +132,13 @@ float64 z
     try:
       if self.center is None:
         self.center = geometry_msgs.msg.Point()
+      if self.velocity is None:
+        self.velocity = geometry_msgs.msg.Vector3()
       end = 0
       _x = self
       start = end
-      end += 32
-      (_x.center.x, _x.center.y, _x.center.z, _x.radius,) = _get_struct_4d().unpack(str[start:end])
+      end += 64
+      (_x.center.x, _x.center.y, _x.center.z, _x.velocity.x, _x.velocity.y, _x.velocity.z, _x.radius, _x.true_radius,) = _get_struct_8d().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -124,9 +147,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_4d = None
-def _get_struct_4d():
-    global _struct_4d
-    if _struct_4d is None:
-        _struct_4d = struct.Struct("<4d")
-    return _struct_4d
+_struct_8d = None
+def _get_struct_8d():
+    global _struct_8d
+    if _struct_8d is None:
+        _struct_8d = struct.Struct("<8d")
+    return _struct_8d

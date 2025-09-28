@@ -315,44 +315,97 @@ struct Printer< ::ublox_msgs::CfgUSB_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgUSB_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "vendorID: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.vendorID);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "productID: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.productID);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
-    s << indent << "reserved2[]" << std::endl;
+    if (v.reserved1.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved2: ";
+    if (v.reserved2.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved2.size(); ++i)
     {
-      s << indent << "  reserved2[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved2[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved2[i]);
     }
+    if (v.reserved2.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "powerConsumption: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.powerConsumption);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.flags);
-    s << indent << "vendorString[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "vendorString: ";
+    if (v.vendorString.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.vendorString.size(); ++i)
     {
-      s << indent << "  vendorString[" << i << "]: ";
-      Printer<int8_t>::stream(s, indent + "  ", v.vendorString[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<int8_t>::stream(s, true ? std::string() : indent + "    ", v.vendorString[i]);
     }
-    s << indent << "productString[]" << std::endl;
+    if (v.vendorString.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "productString: ";
+    if (v.productString.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.productString.size(); ++i)
     {
-      s << indent << "  productString[" << i << "]: ";
-      Printer<int8_t>::stream(s, indent + "  ", v.productString[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<int8_t>::stream(s, true ? std::string() : indent + "    ", v.productString[i]);
     }
-    s << indent << "serialNumber[]" << std::endl;
+    if (v.productString.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "serialNumber: ";
+    if (v.serialNumber.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.serialNumber.size(); ++i)
     {
-      s << indent << "  serialNumber[" << i << "]: ";
-      Printer<int8_t>::stream(s, indent + "  ", v.serialNumber[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<int8_t>::stream(s, true ? std::string() : indent + "    ", v.serialNumber[i]);
     }
+    if (v.serialNumber.empty() || true)
+      s << "]";
   }
 };
 

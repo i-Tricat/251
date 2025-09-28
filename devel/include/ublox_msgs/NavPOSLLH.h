@@ -262,18 +262,32 @@ struct Printer< ::ublox_msgs::NavPOSLLH_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavPOSLLH_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "lon: ";
     Printer<int32_t>::stream(s, indent + "  ", v.lon);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "lat: ";
     Printer<int32_t>::stream(s, indent + "  ", v.lat);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "height: ";
     Printer<int32_t>::stream(s, indent + "  ", v.height);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "hMSL: ";
     Printer<int32_t>::stream(s, indent + "  ", v.hMSL);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "hAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.hAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "vAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.vAcc);
   }

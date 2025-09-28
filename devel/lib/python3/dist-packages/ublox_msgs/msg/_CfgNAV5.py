@@ -8,7 +8,7 @@ import struct
 
 
 class CfgNAV5(genpy.Message):
-  _md5sum = "ac3dd34c30655c54e2d11a724de7dcd6"
+  _md5sum = "30ca0eca946e4bd96bf9f8a145f7b72c"
   _type = "ublox_msgs/CfgNAV5"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """# CFG-NAV5 (0x06 0x24)
@@ -40,7 +40,6 @@ uint8 DYN_MODEL_AIRBORNE_1G = 6     # Airborne with <1g Acceleration
 uint8 DYN_MODEL_AIRBORNE_2G = 7     # Airborne with <2g Acceleration
 uint8 DYN_MODEL_AIRBORNE_4G = 8     # Airborne with <4g Acceleration
 uint8 DYN_MODEL_WRIST_WATCH = 9     # Wrist watch, protocol >= 18
-uint8 DYN_MODEL_BIKE = 10           # Bike, protocol >= 19.2
 
 uint8 fixMode           # Position Fixing Mode.
 uint8 FIX_MODE_2D_ONLY = 1          # 2D only
@@ -100,7 +99,6 @@ uint8[5] reserved2      # Reserved"""
   DYN_MODEL_AIRBORNE_2G = 7
   DYN_MODEL_AIRBORNE_4G = 8
   DYN_MODEL_WRIST_WATCH = 9
-  DYN_MODEL_BIKE = 10
   FIX_MODE_2D_ONLY = 1
   FIX_MODE_3D_ONLY = 2
   FIX_MODE_AUTO = 3

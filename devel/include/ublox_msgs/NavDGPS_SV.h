@@ -240,14 +240,24 @@ struct Printer< ::ublox_msgs::NavDGPS_SV_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavDGPS_SV_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "svid: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svid);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ageC: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.ageC);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "prc: ";
     Printer<float>::stream(s, indent + "  ", v.prc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "prrc: ";
     Printer<float>::stream(s, indent + "  ", v.prrc);
   }

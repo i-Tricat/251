@@ -232,17 +232,25 @@ struct Printer< ::tricat_msgs::WPList_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::tricat_msgs::WPList_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "header: ";
-    s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-    s << indent << "WP_data[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "WP_data: ";
+    if (v.WP_data.empty() || false)
+      s << "[";
     for (size_t i = 0; i < v.WP_data.size(); ++i)
     {
-      s << indent << "  WP_data[" << i << "]: ";
-      s << std::endl;
-      s << indent;
-      Printer< ::tricat_msgs::WP_<ContainerAllocator> >::stream(s, indent + "    ", v.WP_data[i]);
+      if (false && i > 0)
+        s << ", ";
+      else if (!false)
+        s << std::endl << indent << "  -";
+      Printer< ::tricat_msgs::WP_<ContainerAllocator> >::stream(s, false ? std::string() : indent + "    ", v.WP_data[i]);
     }
+    if (v.WP_data.empty() || false)
+      s << "]";
   }
 };
 

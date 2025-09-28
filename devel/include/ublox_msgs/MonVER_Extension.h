@@ -189,12 +189,21 @@ struct Printer< ::ublox_msgs::MonVER_Extension_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::MonVER_Extension_<ContainerAllocator>& v)
   {
-    s << indent << "field[]" << std::endl;
+    if (false || !indent.empty())
+      s << std::endl;
+    s << indent << "field: ";
+    if (v.field.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.field.size(); ++i)
     {
-      s << indent << "  field[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.field[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.field[i]);
     }
+    if (v.field.empty() || true)
+      s << "]";
   }
 };
 

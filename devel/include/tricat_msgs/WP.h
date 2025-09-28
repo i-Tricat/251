@@ -244,23 +244,29 @@ struct Printer< ::tricat_msgs::WP_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::tricat_msgs::WP_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "x: ";
-    s << std::endl;
     Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.x);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "y: ";
-    s << std::endl;
     Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.y);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "type: ";
-    s << std::endl;
     Printer< ::std_msgs::String_<ContainerAllocator> >::stream(s, indent + "  ", v.type);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "num: ";
-    s << std::endl;
     Printer< ::std_msgs::UInt16_<ContainerAllocator> >::stream(s, indent + "  ", v.num);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "range: ";
-    s << std::endl;
     Printer< ::std_msgs::UInt16_<ContainerAllocator> >::stream(s, indent + "  ", v.range);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "arrive: ";
-    s << std::endl;
     Printer< ::std_msgs::Bool_<ContainerAllocator> >::stream(s, indent + "  ", v.arrive);
   }
 };

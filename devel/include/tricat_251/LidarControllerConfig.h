@@ -263,17 +263,17 @@ double wall_particle_length;
 
 
 
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       int min_input_points_size;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       double max_gap_in_set;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       int point_set_size;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       double max_dist_to_ps_line;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       double min_wall_length;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       double wall_particle_length;
 //#line 231 "/opt/ros/noetic/share/dynamic_reconfigure/cmake/../templates/ConfigType.h.template"
 
@@ -301,16 +301,16 @@ double wall_particle_length;
       {
         ROS_ERROR("LidarControllerConfig::__fromMessage__ called with an unexpected parameter.");
         ROS_ERROR("Booleans:");
-        for (unsigned int i = 0; i < msg.bools.size(); i++)
+        for (size_t i = 0; i < msg.bools.size(); i++)
           ROS_ERROR("  %s", msg.bools[i].name.c_str());
         ROS_ERROR("Integers:");
-        for (unsigned int i = 0; i < msg.ints.size(); i++)
+        for (size_t i = 0; i < msg.ints.size(); i++)
           ROS_ERROR("  %s", msg.ints[i].name.c_str());
         ROS_ERROR("Doubles:");
-        for (unsigned int i = 0; i < msg.doubles.size(); i++)
+        for (size_t i = 0; i < msg.doubles.size(); i++)
           ROS_ERROR("  %s", msg.doubles[i].name.c_str());
         ROS_ERROR("Strings:");
-        for (unsigned int i = 0; i < msg.strs.size(); i++)
+        for (size_t i = 0; i < msg.strs.size(); i++)
           ROS_ERROR("  %s", msg.strs[i].name.c_str());
         // @todo Check that there are no duplicates. Make this error more
         // explicit.
@@ -413,69 +413,69 @@ double wall_particle_length;
     LidarControllerConfigStatics()
     {
 LidarControllerConfig::GroupDescription<LidarControllerConfig::DEFAULT, LidarControllerConfig> Default("Default", "", 0, 0, true, &LidarControllerConfig::groups);
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __min__.min_input_points_size = 1;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.min_input_points_size = 100;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __default__.min_input_points_size = 10;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<int>("min_input_points_size", "int", 0, "Minimum input points size", "", &LidarControllerConfig::min_input_points_size)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __param_descriptions__.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<int>("min_input_points_size", "int", 0, "Minimum input points size", "", &LidarControllerConfig::min_input_points_size)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __min__.max_gap_in_set = 0.1;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.max_gap_in_set = 5.0;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __default__.max_gap_in_set = 0.5;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<double>("max_gap_in_set", "double", 0, "Maximum gap between points in a set", "", &LidarControllerConfig::max_gap_in_set)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __param_descriptions__.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<double>("max_gap_in_set", "double", 0, "Maximum gap between points in a set", "", &LidarControllerConfig::max_gap_in_set)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __min__.point_set_size = 1;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.point_set_size = 50;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __default__.point_set_size = 10;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<int>("point_set_size", "int", 0, "Point set size", "", &LidarControllerConfig::point_set_size)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __param_descriptions__.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<int>("point_set_size", "int", 0, "Point set size", "", &LidarControllerConfig::point_set_size)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __min__.max_dist_to_ps_line = 0.1;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.max_dist_to_ps_line = 5.0;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __default__.max_dist_to_ps_line = 0.5;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<double>("max_dist_to_ps_line", "double", 0, "Maximum distance to projection line", "", &LidarControllerConfig::max_dist_to_ps_line)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __param_descriptions__.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<double>("max_dist_to_ps_line", "double", 0, "Maximum distance to projection line", "", &LidarControllerConfig::max_dist_to_ps_line)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __min__.min_wall_length = 0.1;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.min_wall_length = 5.0;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __default__.min_wall_length = 1.0;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<double>("min_wall_length", "double", 0, "Minimum wall length", "", &LidarControllerConfig::min_wall_length)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __param_descriptions__.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<double>("min_wall_length", "double", 0, "Minimum wall length", "", &LidarControllerConfig::min_wall_length)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __min__.wall_particle_length = 0.1;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.wall_particle_length = 5.0;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __default__.wall_particle_length = 1.0;
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<double>("wall_particle_length", "double", 0, "Wall particle length", "", &LidarControllerConfig::wall_particle_length)));
-//#line 291 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 292 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __param_descriptions__.push_back(LidarControllerConfig::AbstractParamDescriptionConstPtr(new LidarControllerConfig::ParamDescription<double>("wall_particle_length", "double", 0, "Wall particle length", "", &LidarControllerConfig::wall_particle_length)));
-//#line 246 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 247 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.convertParams();
-//#line 246 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+//#line 247 "/opt/ros/noetic/lib/python3/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __group_descriptions__.push_back(LidarControllerConfig::AbstractGroupDescriptionConstPtr(new LidarControllerConfig::GroupDescription<LidarControllerConfig::DEFAULT, LidarControllerConfig>(Default)));
 //#line 369 "/opt/ros/noetic/share/dynamic_reconfigure/cmake/../templates/ConfigType.h.template"
 

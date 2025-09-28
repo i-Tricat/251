@@ -101,7 +101,7 @@
    self)
   )
 
-(setf (get obstacle_detector::Obstacles :md5sum-) "d1ad5dcfab44f5899cb5e192beb9c8f9")
+(setf (get obstacle_detector::Obstacles :md5sum-) "043bbf49c7775f8111e850268dbcf2e3")
 (setf (get obstacle_detector::Obstacles :datatype-) "obstacle_detector/Obstacles")
 (setf (get obstacle_detector::Obstacles :definition-)
       "Header header
@@ -127,9 +127,8 @@ string frame_id
 
 ================================================================================
 MSG: obstacle_detector/SegmentObstacle
-geometry_msgs/Point first_point
-geometry_msgs/Point last_point
-
+geometry_msgs/Point first_point  # First point of the segment [m]
+geometry_msgs/Point last_point   # Last point of the segment [m]
 
 ================================================================================
 MSG: geometry_msgs/Point
@@ -140,14 +139,27 @@ float64 z
 
 ================================================================================
 MSG: obstacle_detector/CircleObstacle
-geometry_msgs/Point center
-float64 radius
+geometry_msgs/Point center      # Central point [m]
+geometry_msgs/Vector3 velocity  # Linear velocity [m/s]
+float64 radius                  # Radius with added margin [m]
+float64 true_radius             # True measured radius [m]
 
+================================================================================
+MSG: geometry_msgs/Vector3
+# This represents a vector in free space. 
+# It is only meant to represent a direction. Therefore, it does not
+# make sense to apply a translation to it (e.g., when applying a 
+# generic rigid transformation to a Vector3, tf2 will only apply the
+# rotation). If you want your data to be translatable too, use the
+# geometry_msgs/Point message instead.
 
+float64 x
+float64 y
+float64 z
 ")
 
 
 
-(provide :obstacle_detector/Obstacles "d1ad5dcfab44f5899cb5e192beb9c8f9")
+(provide :obstacle_detector/Obstacles "043bbf49c7775f8111e850268dbcf2e3")
 
 

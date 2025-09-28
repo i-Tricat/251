@@ -375,24 +375,44 @@ struct Printer< ::ublox_msgs::NavTIMEUTC_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavTIMEUTC_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "tAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.tAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "nano: ";
     Printer<int32_t>::stream(s, indent + "  ", v.nano);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "year: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.year);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "month: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.month);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "day: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.day);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "hour: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.hour);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "min: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.min);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sec: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.sec);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "valid: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.valid);
   }

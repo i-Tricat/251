@@ -344,32 +344,60 @@ struct Printer< ::ublox_msgs::RxmRAWX_Meas_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::RxmRAWX_Meas_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "prMes: ";
     Printer<double>::stream(s, indent + "  ", v.prMes);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cpMes: ";
     Printer<double>::stream(s, indent + "  ", v.cpMes);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "doMes: ";
     Printer<float>::stream(s, indent + "  ", v.doMes);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "gnssId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.gnssId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved0: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "freqId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.freqId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "locktime: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.locktime);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cno: ";
     Printer<int8_t>::stream(s, indent + "  ", v.cno);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "prStdev: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.prStdev);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cpStdev: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.cpStdev);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "doStdev: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.doStdev);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "trkStat: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.trkStat);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved1: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved1);
   }

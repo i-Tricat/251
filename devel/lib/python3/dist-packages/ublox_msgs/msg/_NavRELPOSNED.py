@@ -8,7 +8,7 @@ import struct
 
 
 class NavRELPOSNED(genpy.Message):
-  _md5sum = "1b22df5b18240fc796963c10b1dfc88d"
+  _md5sum = "230f179ad5d03f7dffe9babdd98b23cc"
   _type = "ublox_msgs/NavRELPOSNED"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """# NAV-RELPOSNED (0x01 0x3C)
@@ -22,7 +22,7 @@ class NavRELPOSNED(genpy.Message):
 # defined at the reference station
 #
 # Supported on:
-#  - u-blox 8 / u-blox M8 from protocol version 20 up to version 23.01 (only
+#  - u-blox 9 with protocol version 27.1 (only
 #    with High Precision GNSS products)
 #
 
@@ -33,7 +33,7 @@ uint8 version                     # Message version (0x00 for this version)
 uint8 reserved0                   # Reserved
 uint16 refStationId               # Reference Station ID. Must be in the range 
                                   # 0..4095
-uint32 iTOW                       # GPS time of week of the navigation epoch 
+uint32 iTow                       # GPS time of week of the navigation epoch 
                                   # [ms]
 
 int32 relPosN                     # North component of relative position vector 
@@ -42,6 +42,13 @@ int32 relPosE                     # East component of relative position vector
                                   # [cm]
 int32 relPosD                     # Down component of relative position vector
                                   # [cm]
+int32 relPosLength
+
+int32 relPosHeading
+
+uint32 reserved1
+
+
 
 int8 relPosHPN                    # High-precision North component of relative
                                   # position vector. [0.1 mm]
@@ -62,7 +69,7 @@ int8 relPosHPD                    # High-precision Down component of relative
                                   # position vector, in units of cm, is given by
                                   # relPosD + (relPosHPD * 1e-2)
 
-uint8 reserved1                   # Reserved
+uint8 relPosHPLength
 
 uint32 accN                       # Accuracy of relative position North 
                                   # component [0.1 mm]
@@ -70,6 +77,12 @@ uint32 accE                       # Accuracy of relative position East component
                                   # [0.1 mm]
 uint32 accD                       # Accuracy of relative position Down component
                                   # [0.1 mm]
+
+uint32 accLength
+
+uint32 accHeading
+
+uint32 reserved2
 
 uint32 flags
 uint32 FLAGS_GNSS_FIX_OK = 1      # A valid fix (i.e within DOP & accuracy 
@@ -110,8 +123,8 @@ uint32 FLAGS_REF_OBS_MISS = 128   # Set if extrapolated reference observations
   FLAGS_REF_POS_MISS = 64
   FLAGS_REF_OBS_MISS = 128
 
-  __slots__ = ['version','reserved0','refStationId','iTOW','relPosN','relPosE','relPosD','relPosHPN','relPosHPE','relPosHPD','reserved1','accN','accE','accD','flags']
-  _slot_types = ['uint8','uint8','uint16','uint32','int32','int32','int32','int8','int8','int8','uint8','uint32','uint32','uint32','uint32']
+  __slots__ = ['version','reserved0','refStationId','iTow','relPosN','relPosE','relPosD','relPosLength','relPosHeading','reserved1','relPosHPN','relPosHPE','relPosHPD','relPosHPLength','accN','accE','accD','accLength','accHeading','reserved2','flags']
+  _slot_types = ['uint8','uint8','uint16','uint32','int32','int32','int32','int32','int32','uint32','int8','int8','int8','uint8','uint32','uint32','uint32','uint32','uint32','uint32','uint32']
 
   def __init__(self, *args, **kwds):
     """
@@ -121,7 +134,7 @@ uint32 FLAGS_REF_OBS_MISS = 128   # Set if extrapolated reference observations
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       version,reserved0,refStationId,iTOW,relPosN,relPosE,relPosD,relPosHPN,relPosHPE,relPosHPD,reserved1,accN,accE,accD,flags
+       version,reserved0,refStationId,iTow,relPosN,relPosE,relPosD,relPosLength,relPosHeading,reserved1,relPosHPN,relPosHPE,relPosHPD,relPosHPLength,accN,accE,accD,accLength,accHeading,reserved2,flags
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -136,45 +149,63 @@ uint32 FLAGS_REF_OBS_MISS = 128   # Set if extrapolated reference observations
         self.reserved0 = 0
       if self.refStationId is None:
         self.refStationId = 0
-      if self.iTOW is None:
-        self.iTOW = 0
+      if self.iTow is None:
+        self.iTow = 0
       if self.relPosN is None:
         self.relPosN = 0
       if self.relPosE is None:
         self.relPosE = 0
       if self.relPosD is None:
         self.relPosD = 0
+      if self.relPosLength is None:
+        self.relPosLength = 0
+      if self.relPosHeading is None:
+        self.relPosHeading = 0
+      if self.reserved1 is None:
+        self.reserved1 = 0
       if self.relPosHPN is None:
         self.relPosHPN = 0
       if self.relPosHPE is None:
         self.relPosHPE = 0
       if self.relPosHPD is None:
         self.relPosHPD = 0
-      if self.reserved1 is None:
-        self.reserved1 = 0
+      if self.relPosHPLength is None:
+        self.relPosHPLength = 0
       if self.accN is None:
         self.accN = 0
       if self.accE is None:
         self.accE = 0
       if self.accD is None:
         self.accD = 0
+      if self.accLength is None:
+        self.accLength = 0
+      if self.accHeading is None:
+        self.accHeading = 0
+      if self.reserved2 is None:
+        self.reserved2 = 0
       if self.flags is None:
         self.flags = 0
     else:
       self.version = 0
       self.reserved0 = 0
       self.refStationId = 0
-      self.iTOW = 0
+      self.iTow = 0
       self.relPosN = 0
       self.relPosE = 0
       self.relPosD = 0
+      self.relPosLength = 0
+      self.relPosHeading = 0
+      self.reserved1 = 0
       self.relPosHPN = 0
       self.relPosHPE = 0
       self.relPosHPD = 0
-      self.reserved1 = 0
+      self.relPosHPLength = 0
       self.accN = 0
       self.accE = 0
       self.accD = 0
+      self.accLength = 0
+      self.accHeading = 0
+      self.reserved2 = 0
       self.flags = 0
 
   def _get_types(self):
@@ -190,7 +221,7 @@ uint32 FLAGS_REF_OBS_MISS = 128   # Set if extrapolated reference observations
     """
     try:
       _x = self
-      buff.write(_get_struct_2BHI3i3bB4I().pack(_x.version, _x.reserved0, _x.refStationId, _x.iTOW, _x.relPosN, _x.relPosE, _x.relPosD, _x.relPosHPN, _x.relPosHPE, _x.relPosHPD, _x.reserved1, _x.accN, _x.accE, _x.accD, _x.flags))
+      buff.write(_get_struct_2BHI5iI3bB7I().pack(_x.version, _x.reserved0, _x.refStationId, _x.iTow, _x.relPosN, _x.relPosE, _x.relPosD, _x.relPosLength, _x.relPosHeading, _x.reserved1, _x.relPosHPN, _x.relPosHPE, _x.relPosHPD, _x.relPosHPLength, _x.accN, _x.accE, _x.accD, _x.accLength, _x.accHeading, _x.reserved2, _x.flags))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -205,8 +236,8 @@ uint32 FLAGS_REF_OBS_MISS = 128   # Set if extrapolated reference observations
       end = 0
       _x = self
       start = end
-      end += 40
-      (_x.version, _x.reserved0, _x.refStationId, _x.iTOW, _x.relPosN, _x.relPosE, _x.relPosD, _x.relPosHPN, _x.relPosHPE, _x.relPosHPD, _x.reserved1, _x.accN, _x.accE, _x.accD, _x.flags,) = _get_struct_2BHI3i3bB4I().unpack(str[start:end])
+      end += 64
+      (_x.version, _x.reserved0, _x.refStationId, _x.iTow, _x.relPosN, _x.relPosE, _x.relPosD, _x.relPosLength, _x.relPosHeading, _x.reserved1, _x.relPosHPN, _x.relPosHPE, _x.relPosHPD, _x.relPosHPLength, _x.accN, _x.accE, _x.accD, _x.accLength, _x.accHeading, _x.reserved2, _x.flags,) = _get_struct_2BHI5iI3bB7I().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -220,7 +251,7 @@ uint32 FLAGS_REF_OBS_MISS = 128   # Set if extrapolated reference observations
     """
     try:
       _x = self
-      buff.write(_get_struct_2BHI3i3bB4I().pack(_x.version, _x.reserved0, _x.refStationId, _x.iTOW, _x.relPosN, _x.relPosE, _x.relPosD, _x.relPosHPN, _x.relPosHPE, _x.relPosHPD, _x.reserved1, _x.accN, _x.accE, _x.accD, _x.flags))
+      buff.write(_get_struct_2BHI5iI3bB7I().pack(_x.version, _x.reserved0, _x.refStationId, _x.iTow, _x.relPosN, _x.relPosE, _x.relPosD, _x.relPosLength, _x.relPosHeading, _x.reserved1, _x.relPosHPN, _x.relPosHPE, _x.relPosHPD, _x.relPosHPLength, _x.accN, _x.accE, _x.accD, _x.accLength, _x.accHeading, _x.reserved2, _x.flags))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -236,8 +267,8 @@ uint32 FLAGS_REF_OBS_MISS = 128   # Set if extrapolated reference observations
       end = 0
       _x = self
       start = end
-      end += 40
-      (_x.version, _x.reserved0, _x.refStationId, _x.iTOW, _x.relPosN, _x.relPosE, _x.relPosD, _x.relPosHPN, _x.relPosHPE, _x.relPosHPD, _x.reserved1, _x.accN, _x.accE, _x.accD, _x.flags,) = _get_struct_2BHI3i3bB4I().unpack(str[start:end])
+      end += 64
+      (_x.version, _x.reserved0, _x.refStationId, _x.iTow, _x.relPosN, _x.relPosE, _x.relPosD, _x.relPosLength, _x.relPosHeading, _x.reserved1, _x.relPosHPN, _x.relPosHPE, _x.relPosHPD, _x.relPosHPLength, _x.accN, _x.accE, _x.accD, _x.accLength, _x.accHeading, _x.reserved2, _x.flags,) = _get_struct_2BHI5iI3bB7I().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -246,9 +277,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_2BHI3i3bB4I = None
-def _get_struct_2BHI3i3bB4I():
-    global _struct_2BHI3i3bB4I
-    if _struct_2BHI3i3bB4I is None:
-        _struct_2BHI3i3bB4I = struct.Struct("<2BHI3i3bB4I")
-    return _struct_2BHI3i3bB4I
+_struct_2BHI5iI3bB7I = None
+def _get_struct_2BHI5iI3bB7I():
+    global _struct_2BHI5iI3bB7I
+    if _struct_2BHI5iI3bB7I is None:
+        _struct_2BHI5iI3bB7I = struct.Struct("<2BHI5iI3bB7I")
+    return _struct_2BHI5iI3bB7I

@@ -365,10 +365,16 @@ struct Printer< ::ublox_msgs::CfgRST_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgRST_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "navBbrMask: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.navBbrMask);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "resetMode: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.resetMode);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved1: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved1);
   }

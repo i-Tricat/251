@@ -73,9 +73,8 @@
 (setf (get obstacle_detector::SegmentObstacle :md5sum-) "37ecbf7e1053bae89f0770466b37c3c3")
 (setf (get obstacle_detector::SegmentObstacle :datatype-) "obstacle_detector/SegmentObstacle")
 (setf (get obstacle_detector::SegmentObstacle :definition-)
-      "geometry_msgs/Point first_point
-geometry_msgs/Point last_point
-
+      "geometry_msgs/Point first_point  # First point of the segment [m]
+geometry_msgs/Point last_point   # Last point of the segment [m]
 
 ================================================================================
 MSG: geometry_msgs/Point

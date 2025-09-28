@@ -254,28 +254,59 @@ struct Printer< ::ublox_msgs::RxmEPH_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::RxmEPH_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "svid: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.svid);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "how: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.how);
-    s << indent << "sf1d[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "sf1d: ";
+    if (v.sf1d.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.sf1d.size(); ++i)
     {
-      s << indent << "  sf1d[" << i << "]: ";
-      Printer<uint32_t>::stream(s, indent + "  ", v.sf1d[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint32_t>::stream(s, true ? std::string() : indent + "    ", v.sf1d[i]);
     }
-    s << indent << "sf2d[]" << std::endl;
+    if (v.sf1d.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "sf2d: ";
+    if (v.sf2d.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.sf2d.size(); ++i)
     {
-      s << indent << "  sf2d[" << i << "]: ";
-      Printer<uint32_t>::stream(s, indent + "  ", v.sf2d[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint32_t>::stream(s, true ? std::string() : indent + "    ", v.sf2d[i]);
     }
-    s << indent << "sf3d[]" << std::endl;
+    if (v.sf2d.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "sf3d: ";
+    if (v.sf3d.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.sf3d.size(); ++i)
     {
-      s << indent << "  sf3d[" << i << "]: ";
-      Printer<uint32_t>::stream(s, indent + "  ", v.sf3d[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint32_t>::stream(s, true ? std::string() : indent + "    ", v.sf3d[i]);
     }
+    if (v.sf3d.empty() || true)
+      s << "]";
   }
 };
 

@@ -390,38 +390,73 @@ struct Printer< ::ublox_msgs::CfgTMODE3_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgTMODE3_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "version: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.version);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved1: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefXOrLat: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefXOrLat);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefYOrLon: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefYOrLon);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefZOrAlt: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefZOrAlt);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefXOrLatHP: ";
     Printer<int8_t>::stream(s, indent + "  ", v.ecefXOrLatHP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefYOrLonHP: ";
     Printer<int8_t>::stream(s, indent + "  ", v.ecefYOrLonHP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefZOrAltHP: ";
     Printer<int8_t>::stream(s, indent + "  ", v.ecefZOrAltHP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved2: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "fixedPosAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.fixedPosAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svinMinDur: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.svinMinDur);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svinAccLimit: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.svinAccLimit);
-    s << indent << "reserved3[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved3: ";
+    if (v.reserved3.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved3.size(); ++i)
     {
-      s << indent << "  reserved3[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved3[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved3[i]);
     }
+    if (v.reserved3.empty() || true)
+      s << "]";
   }
 };
 

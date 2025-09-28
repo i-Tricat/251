@@ -483,46 +483,94 @@ struct Printer< ::ublox_msgs::MonHW6_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::MonHW6_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "pinSel: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.pinSel);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pinBank: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.pinBank);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pinDir: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.pinDir);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pinVal: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.pinVal);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "noisePerMS: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.noisePerMS);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "agcCnt: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.agcCnt);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "aStatus: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.aStatus);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "aPower: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.aPower);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved0: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "usedMask: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.usedMask);
-    s << indent << "VP[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "VP: ";
+    if (v.VP.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.VP.size(); ++i)
     {
-      s << indent << "  VP[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.VP[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.VP[i]);
     }
+    if (v.VP.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "jamInd: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.jamInd);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
+    if (v.reserved1.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pinIrq: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.pinIrq);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pullH: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.pullH);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pullL: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.pullL);
   }

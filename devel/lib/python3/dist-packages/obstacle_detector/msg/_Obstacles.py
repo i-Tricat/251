@@ -11,7 +11,7 @@ import obstacle_detector.msg
 import std_msgs.msg
 
 class Obstacles(genpy.Message):
-  _md5sum = "d1ad5dcfab44f5899cb5e192beb9c8f9"
+  _md5sum = "043bbf49c7775f8111e850268dbcf2e3"
   _type = "obstacle_detector/Obstacles"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
@@ -37,9 +37,8 @@ string frame_id
 
 ================================================================================
 MSG: obstacle_detector/SegmentObstacle
-geometry_msgs/Point first_point
-geometry_msgs/Point last_point
-
+geometry_msgs/Point first_point  # First point of the segment [m]
+geometry_msgs/Point last_point   # Last point of the segment [m]
 
 ================================================================================
 MSG: geometry_msgs/Point
@@ -50,10 +49,23 @@ float64 z
 
 ================================================================================
 MSG: obstacle_detector/CircleObstacle
-geometry_msgs/Point center
-float64 radius
+geometry_msgs/Point center      # Central point [m]
+geometry_msgs/Vector3 velocity  # Linear velocity [m/s]
+float64 radius                  # Radius with added margin [m]
+float64 true_radius             # True measured radius [m]
 
-"""
+================================================================================
+MSG: geometry_msgs/Vector3
+# This represents a vector in free space. 
+# It is only meant to represent a direction. Therefore, it does not
+# make sense to apply a translation to it (e.g., when applying a 
+# generic rigid transformation to a Vector3, tf2 will only apply the
+# rotation). If you want your data to be translatable too, use the
+# geometry_msgs/Point message instead.
+
+float64 x
+float64 y
+float64 z"""
   __slots__ = ['header','segments','circles']
   _slot_types = ['std_msgs/Header','obstacle_detector/SegmentObstacle[]','obstacle_detector/CircleObstacle[]']
 
@@ -120,8 +132,11 @@ float64 radius
         _v3 = val1.center
         _x = _v3
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
-        _x = val1.radius
-        buff.write(_get_struct_d().pack(_x))
+        _v4 = val1.velocity
+        _x = _v4
+        buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
+        _x = val1
+        buff.write(_get_struct_2d().pack(_x.radius, _x.true_radius))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -159,13 +174,13 @@ float64 radius
       self.segments = []
       for i in range(0, length):
         val1 = obstacle_detector.msg.SegmentObstacle()
-        _v4 = val1.first_point
-        _x = _v4
+        _v5 = val1.first_point
+        _x = _v5
         start = end
         end += 24
         (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
-        _v5 = val1.last_point
-        _x = _v5
+        _v6 = val1.last_point
+        _x = _v6
         start = end
         end += 24
         (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
@@ -176,14 +191,20 @@ float64 radius
       self.circles = []
       for i in range(0, length):
         val1 = obstacle_detector.msg.CircleObstacle()
-        _v6 = val1.center
-        _x = _v6
+        _v7 = val1.center
+        _x = _v7
         start = end
         end += 24
         (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
+        _v8 = val1.velocity
+        _x = _v8
         start = end
-        end += 8
-        (val1.radius,) = _get_struct_d().unpack(str[start:end])
+        end += 24
+        (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
+        _x = val1
+        start = end
+        end += 16
+        (_x.radius, _x.true_radius,) = _get_struct_2d().unpack(str[start:end])
         self.circles.append(val1)
       return self
     except struct.error as e:
@@ -208,20 +229,23 @@ float64 radius
       length = len(self.segments)
       buff.write(_struct_I.pack(length))
       for val1 in self.segments:
-        _v7 = val1.first_point
-        _x = _v7
+        _v9 = val1.first_point
+        _x = _v9
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
-        _v8 = val1.last_point
-        _x = _v8
+        _v10 = val1.last_point
+        _x = _v10
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
       length = len(self.circles)
       buff.write(_struct_I.pack(length))
       for val1 in self.circles:
-        _v9 = val1.center
-        _x = _v9
+        _v11 = val1.center
+        _x = _v11
         buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
-        _x = val1.radius
-        buff.write(_get_struct_d().pack(_x))
+        _v12 = val1.velocity
+        _x = _v12
+        buff.write(_get_struct_3d().pack(_x.x, _x.y, _x.z))
+        _x = val1
+        buff.write(_get_struct_2d().pack(_x.radius, _x.true_radius))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -260,13 +284,13 @@ float64 radius
       self.segments = []
       for i in range(0, length):
         val1 = obstacle_detector.msg.SegmentObstacle()
-        _v10 = val1.first_point
-        _x = _v10
+        _v13 = val1.first_point
+        _x = _v13
         start = end
         end += 24
         (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
-        _v11 = val1.last_point
-        _x = _v11
+        _v14 = val1.last_point
+        _x = _v14
         start = end
         end += 24
         (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
@@ -277,14 +301,20 @@ float64 radius
       self.circles = []
       for i in range(0, length):
         val1 = obstacle_detector.msg.CircleObstacle()
-        _v12 = val1.center
-        _x = _v12
+        _v15 = val1.center
+        _x = _v15
         start = end
         end += 24
         (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
+        _v16 = val1.velocity
+        _x = _v16
         start = end
-        end += 8
-        (val1.radius,) = _get_struct_d().unpack(str[start:end])
+        end += 24
+        (_x.x, _x.y, _x.z,) = _get_struct_3d().unpack(str[start:end])
+        _x = val1
+        start = end
+        end += 16
+        (_x.radius, _x.true_radius,) = _get_struct_2d().unpack(str[start:end])
         self.circles.append(val1)
       return self
     except struct.error as e:
@@ -294,6 +324,12 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
+_struct_2d = None
+def _get_struct_2d():
+    global _struct_2d
+    if _struct_2d is None:
+        _struct_2d = struct.Struct("<2d")
+    return _struct_2d
 _struct_3I = None
 def _get_struct_3I():
     global _struct_3I
@@ -306,9 +342,3 @@ def _get_struct_3d():
     if _struct_3d is None:
         _struct_3d = struct.Struct("<3d")
     return _struct_3d
-_struct_d = None
-def _get_struct_d():
-    global _struct_d
-    if _struct_d is None:
-        _struct_d = struct.Struct("<d")
-    return _struct_d

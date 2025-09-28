@@ -154,9 +154,8 @@ struct Definition< ::obstacle_detector::SegmentObstacle_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "geometry_msgs/Point first_point\n"
-"geometry_msgs/Point last_point\n"
-"\n"
+    return "geometry_msgs/Point first_point  # First point of the segment [m]\n"
+"geometry_msgs/Point last_point   # Last point of the segment [m]\n"
 "\n"
 "================================================================================\n"
 "MSG: geometry_msgs/Point\n"
@@ -202,11 +201,13 @@ struct Printer< ::obstacle_detector::SegmentObstacle_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::obstacle_detector::SegmentObstacle_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "first_point: ";
-    s << std::endl;
     Printer< ::geometry_msgs::Point_<ContainerAllocator> >::stream(s, indent + "  ", v.first_point);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "last_point: ";
-    s << std::endl;
     Printer< ::geometry_msgs::Point_<ContainerAllocator> >::stream(s, indent + "  ", v.last_point);
   }
 };

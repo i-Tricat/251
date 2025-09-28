@@ -237,20 +237,36 @@ struct Printer< ::ublox_msgs::EsfRAW_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::EsfRAW_<ContainerAllocator>& v)
   {
-    s << indent << "reserved0[]" << std::endl;
+    if (false || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved0: ";
+    if (v.reserved0.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved0.size(); ++i)
     {
-      s << indent << "  reserved0[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved0[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved0[i]);
     }
-    s << indent << "blocks[]" << std::endl;
+    if (v.reserved0.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "blocks: ";
+    if (v.blocks.empty() || false)
+      s << "[";
     for (size_t i = 0; i < v.blocks.size(); ++i)
     {
-      s << indent << "  blocks[" << i << "]: ";
-      s << std::endl;
-      s << indent;
-      Printer< ::ublox_msgs::EsfRAW_Block_<ContainerAllocator> >::stream(s, indent + "    ", v.blocks[i]);
+      if (false && i > 0)
+        s << ", ";
+      else if (!false)
+        s << std::endl << indent << "  -";
+      Printer< ::ublox_msgs::EsfRAW_Block_<ContainerAllocator> >::stream(s, false ? std::string() : indent + "    ", v.blocks[i]);
     }
+    if (v.blocks.empty() || false)
+      s << "]";
   }
 };
 

@@ -240,20 +240,25 @@ struct Printer< ::tricat_msgs::Control_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::tricat_msgs::Control_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "header: ";
-    s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "servo_s: ";
-    s << std::endl;
     Printer< ::std_msgs::UInt16_<ContainerAllocator> >::stream(s, indent + "  ", v.servo_s);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "servo_p: ";
-    s << std::endl;
     Printer< ::std_msgs::UInt16_<ContainerAllocator> >::stream(s, indent + "  ", v.servo_p);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "thruster_p: ";
-    s << std::endl;
     Printer< ::std_msgs::UInt16_<ContainerAllocator> >::stream(s, indent + "  ", v.thruster_p);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "thruster_s: ";
-    s << std::endl;
     Printer< ::std_msgs::UInt16_<ContainerAllocator> >::stream(s, indent + "  ", v.thruster_s);
   }
 };

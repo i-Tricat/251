@@ -361,46 +361,92 @@ struct Printer< ::ublox_msgs::NavSVIN_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavSVIN_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "version: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.version);
-    s << indent << "reserved0[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved0: ";
+    if (v.reserved0.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved0.size(); ++i)
     {
-      s << indent << "  reserved0[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved0[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved0[i]);
     }
+    if (v.reserved0.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "dur: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.dur);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "meanX: ";
     Printer<int32_t>::stream(s, indent + "  ", v.meanX);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "meanY: ";
     Printer<int32_t>::stream(s, indent + "  ", v.meanY);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "meanZ: ";
     Printer<int32_t>::stream(s, indent + "  ", v.meanZ);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "meanXHP: ";
     Printer<int8_t>::stream(s, indent + "  ", v.meanXHP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "meanYHP: ";
     Printer<int8_t>::stream(s, indent + "  ", v.meanYHP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "meanZHP: ";
     Printer<int8_t>::stream(s, indent + "  ", v.meanZHP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved1: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "meanAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.meanAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "obs: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.obs);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "valid: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.valid);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "active: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.active);
-    s << indent << "reserved3[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved3: ";
+    if (v.reserved3.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved3.size(); ++i)
     {
-      s << indent << "  reserved3[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved3[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved3[i]);
     }
+    if (v.reserved3.empty() || true)
+      s << "]";
   }
 };
 

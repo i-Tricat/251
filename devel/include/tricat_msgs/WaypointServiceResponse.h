@@ -229,8 +229,9 @@ struct Printer< ::tricat_msgs::WaypointServiceResponse_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::tricat_msgs::WaypointServiceResponse_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "waypoint_list: ";
-    s << std::endl;
     Printer< ::tricat_msgs::WPList_<ContainerAllocator> >::stream(s, indent + "  ", v.waypoint_list);
   }
 };

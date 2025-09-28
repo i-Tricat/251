@@ -21,17 +21,23 @@ class NavRELPOSNED {
       this.version = null;
       this.reserved0 = null;
       this.refStationId = null;
-      this.iTOW = null;
+      this.iTow = null;
       this.relPosN = null;
       this.relPosE = null;
       this.relPosD = null;
+      this.relPosLength = null;
+      this.relPosHeading = null;
+      this.reserved1 = null;
       this.relPosHPN = null;
       this.relPosHPE = null;
       this.relPosHPD = null;
-      this.reserved1 = null;
+      this.relPosHPLength = null;
       this.accN = null;
       this.accE = null;
       this.accD = null;
+      this.accLength = null;
+      this.accHeading = null;
+      this.reserved2 = null;
       this.flags = null;
     }
     else {
@@ -53,11 +59,11 @@ class NavRELPOSNED {
       else {
         this.refStationId = 0;
       }
-      if (initObj.hasOwnProperty('iTOW')) {
-        this.iTOW = initObj.iTOW
+      if (initObj.hasOwnProperty('iTow')) {
+        this.iTow = initObj.iTow
       }
       else {
-        this.iTOW = 0;
+        this.iTow = 0;
       }
       if (initObj.hasOwnProperty('relPosN')) {
         this.relPosN = initObj.relPosN
@@ -77,6 +83,24 @@ class NavRELPOSNED {
       else {
         this.relPosD = 0;
       }
+      if (initObj.hasOwnProperty('relPosLength')) {
+        this.relPosLength = initObj.relPosLength
+      }
+      else {
+        this.relPosLength = 0;
+      }
+      if (initObj.hasOwnProperty('relPosHeading')) {
+        this.relPosHeading = initObj.relPosHeading
+      }
+      else {
+        this.relPosHeading = 0;
+      }
+      if (initObj.hasOwnProperty('reserved1')) {
+        this.reserved1 = initObj.reserved1
+      }
+      else {
+        this.reserved1 = 0;
+      }
       if (initObj.hasOwnProperty('relPosHPN')) {
         this.relPosHPN = initObj.relPosHPN
       }
@@ -95,11 +119,11 @@ class NavRELPOSNED {
       else {
         this.relPosHPD = 0;
       }
-      if (initObj.hasOwnProperty('reserved1')) {
-        this.reserved1 = initObj.reserved1
+      if (initObj.hasOwnProperty('relPosHPLength')) {
+        this.relPosHPLength = initObj.relPosHPLength
       }
       else {
-        this.reserved1 = 0;
+        this.relPosHPLength = 0;
       }
       if (initObj.hasOwnProperty('accN')) {
         this.accN = initObj.accN
@@ -119,6 +143,24 @@ class NavRELPOSNED {
       else {
         this.accD = 0;
       }
+      if (initObj.hasOwnProperty('accLength')) {
+        this.accLength = initObj.accLength
+      }
+      else {
+        this.accLength = 0;
+      }
+      if (initObj.hasOwnProperty('accHeading')) {
+        this.accHeading = initObj.accHeading
+      }
+      else {
+        this.accHeading = 0;
+      }
+      if (initObj.hasOwnProperty('reserved2')) {
+        this.reserved2 = initObj.reserved2
+      }
+      else {
+        this.reserved2 = 0;
+      }
       if (initObj.hasOwnProperty('flags')) {
         this.flags = initObj.flags
       }
@@ -136,28 +178,40 @@ class NavRELPOSNED {
     bufferOffset = _serializer.uint8(obj.reserved0, buffer, bufferOffset);
     // Serialize message field [refStationId]
     bufferOffset = _serializer.uint16(obj.refStationId, buffer, bufferOffset);
-    // Serialize message field [iTOW]
-    bufferOffset = _serializer.uint32(obj.iTOW, buffer, bufferOffset);
+    // Serialize message field [iTow]
+    bufferOffset = _serializer.uint32(obj.iTow, buffer, bufferOffset);
     // Serialize message field [relPosN]
     bufferOffset = _serializer.int32(obj.relPosN, buffer, bufferOffset);
     // Serialize message field [relPosE]
     bufferOffset = _serializer.int32(obj.relPosE, buffer, bufferOffset);
     // Serialize message field [relPosD]
     bufferOffset = _serializer.int32(obj.relPosD, buffer, bufferOffset);
+    // Serialize message field [relPosLength]
+    bufferOffset = _serializer.int32(obj.relPosLength, buffer, bufferOffset);
+    // Serialize message field [relPosHeading]
+    bufferOffset = _serializer.int32(obj.relPosHeading, buffer, bufferOffset);
+    // Serialize message field [reserved1]
+    bufferOffset = _serializer.uint32(obj.reserved1, buffer, bufferOffset);
     // Serialize message field [relPosHPN]
     bufferOffset = _serializer.int8(obj.relPosHPN, buffer, bufferOffset);
     // Serialize message field [relPosHPE]
     bufferOffset = _serializer.int8(obj.relPosHPE, buffer, bufferOffset);
     // Serialize message field [relPosHPD]
     bufferOffset = _serializer.int8(obj.relPosHPD, buffer, bufferOffset);
-    // Serialize message field [reserved1]
-    bufferOffset = _serializer.uint8(obj.reserved1, buffer, bufferOffset);
+    // Serialize message field [relPosHPLength]
+    bufferOffset = _serializer.uint8(obj.relPosHPLength, buffer, bufferOffset);
     // Serialize message field [accN]
     bufferOffset = _serializer.uint32(obj.accN, buffer, bufferOffset);
     // Serialize message field [accE]
     bufferOffset = _serializer.uint32(obj.accE, buffer, bufferOffset);
     // Serialize message field [accD]
     bufferOffset = _serializer.uint32(obj.accD, buffer, bufferOffset);
+    // Serialize message field [accLength]
+    bufferOffset = _serializer.uint32(obj.accLength, buffer, bufferOffset);
+    // Serialize message field [accHeading]
+    bufferOffset = _serializer.uint32(obj.accHeading, buffer, bufferOffset);
+    // Serialize message field [reserved2]
+    bufferOffset = _serializer.uint32(obj.reserved2, buffer, bufferOffset);
     // Serialize message field [flags]
     bufferOffset = _serializer.uint32(obj.flags, buffer, bufferOffset);
     return bufferOffset;
@@ -173,35 +227,47 @@ class NavRELPOSNED {
     data.reserved0 = _deserializer.uint8(buffer, bufferOffset);
     // Deserialize message field [refStationId]
     data.refStationId = _deserializer.uint16(buffer, bufferOffset);
-    // Deserialize message field [iTOW]
-    data.iTOW = _deserializer.uint32(buffer, bufferOffset);
+    // Deserialize message field [iTow]
+    data.iTow = _deserializer.uint32(buffer, bufferOffset);
     // Deserialize message field [relPosN]
     data.relPosN = _deserializer.int32(buffer, bufferOffset);
     // Deserialize message field [relPosE]
     data.relPosE = _deserializer.int32(buffer, bufferOffset);
     // Deserialize message field [relPosD]
     data.relPosD = _deserializer.int32(buffer, bufferOffset);
+    // Deserialize message field [relPosLength]
+    data.relPosLength = _deserializer.int32(buffer, bufferOffset);
+    // Deserialize message field [relPosHeading]
+    data.relPosHeading = _deserializer.int32(buffer, bufferOffset);
+    // Deserialize message field [reserved1]
+    data.reserved1 = _deserializer.uint32(buffer, bufferOffset);
     // Deserialize message field [relPosHPN]
     data.relPosHPN = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [relPosHPE]
     data.relPosHPE = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [relPosHPD]
     data.relPosHPD = _deserializer.int8(buffer, bufferOffset);
-    // Deserialize message field [reserved1]
-    data.reserved1 = _deserializer.uint8(buffer, bufferOffset);
+    // Deserialize message field [relPosHPLength]
+    data.relPosHPLength = _deserializer.uint8(buffer, bufferOffset);
     // Deserialize message field [accN]
     data.accN = _deserializer.uint32(buffer, bufferOffset);
     // Deserialize message field [accE]
     data.accE = _deserializer.uint32(buffer, bufferOffset);
     // Deserialize message field [accD]
     data.accD = _deserializer.uint32(buffer, bufferOffset);
+    // Deserialize message field [accLength]
+    data.accLength = _deserializer.uint32(buffer, bufferOffset);
+    // Deserialize message field [accHeading]
+    data.accHeading = _deserializer.uint32(buffer, bufferOffset);
+    // Deserialize message field [reserved2]
+    data.reserved2 = _deserializer.uint32(buffer, bufferOffset);
     // Deserialize message field [flags]
     data.flags = _deserializer.uint32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 40;
+    return 64;
   }
 
   static datatype() {
@@ -211,7 +277,7 @@ class NavRELPOSNED {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '1b22df5b18240fc796963c10b1dfc88d';
+    return '230f179ad5d03f7dffe9babdd98b23cc';
   }
 
   static messageDefinition() {
@@ -228,7 +294,7 @@ class NavRELPOSNED {
     # defined at the reference station
     #
     # Supported on:
-    #  - u-blox 8 / u-blox M8 from protocol version 20 up to version 23.01 (only
+    #  - u-blox 9 with protocol version 27.1 (only
     #    with High Precision GNSS products)
     #
     
@@ -239,7 +305,7 @@ class NavRELPOSNED {
     uint8 reserved0                   # Reserved
     uint16 refStationId               # Reference Station ID. Must be in the range 
                                       # 0..4095
-    uint32 iTOW                       # GPS time of week of the navigation epoch 
+    uint32 iTow                       # GPS time of week of the navigation epoch 
                                       # [ms]
     
     int32 relPosN                     # North component of relative position vector 
@@ -248,6 +314,13 @@ class NavRELPOSNED {
                                       # [cm]
     int32 relPosD                     # Down component of relative position vector
                                       # [cm]
+    int32 relPosLength
+    
+    int32 relPosHeading
+    
+    uint32 reserved1
+    
+    
     
     int8 relPosHPN                    # High-precision North component of relative
                                       # position vector. [0.1 mm]
@@ -268,7 +341,7 @@ class NavRELPOSNED {
                                       # position vector, in units of cm, is given by
                                       # relPosD + (relPosHPD * 1e-2)
     
-    uint8 reserved1                   # Reserved
+    uint8 relPosHPLength
     
     uint32 accN                       # Accuracy of relative position North 
                                       # component [0.1 mm]
@@ -276,6 +349,12 @@ class NavRELPOSNED {
                                       # [0.1 mm]
     uint32 accD                       # Accuracy of relative position Down component
                                       # [0.1 mm]
+    
+    uint32 accLength
+    
+    uint32 accHeading
+    
+    uint32 reserved2
     
     uint32 flags
     uint32 FLAGS_GNSS_FIX_OK = 1      # A valid fix (i.e within DOP & accuracy 
@@ -332,11 +411,11 @@ class NavRELPOSNED {
       resolved.refStationId = 0
     }
 
-    if (msg.iTOW !== undefined) {
-      resolved.iTOW = msg.iTOW;
+    if (msg.iTow !== undefined) {
+      resolved.iTow = msg.iTow;
     }
     else {
-      resolved.iTOW = 0
+      resolved.iTow = 0
     }
 
     if (msg.relPosN !== undefined) {
@@ -360,6 +439,27 @@ class NavRELPOSNED {
       resolved.relPosD = 0
     }
 
+    if (msg.relPosLength !== undefined) {
+      resolved.relPosLength = msg.relPosLength;
+    }
+    else {
+      resolved.relPosLength = 0
+    }
+
+    if (msg.relPosHeading !== undefined) {
+      resolved.relPosHeading = msg.relPosHeading;
+    }
+    else {
+      resolved.relPosHeading = 0
+    }
+
+    if (msg.reserved1 !== undefined) {
+      resolved.reserved1 = msg.reserved1;
+    }
+    else {
+      resolved.reserved1 = 0
+    }
+
     if (msg.relPosHPN !== undefined) {
       resolved.relPosHPN = msg.relPosHPN;
     }
@@ -381,11 +481,11 @@ class NavRELPOSNED {
       resolved.relPosHPD = 0
     }
 
-    if (msg.reserved1 !== undefined) {
-      resolved.reserved1 = msg.reserved1;
+    if (msg.relPosHPLength !== undefined) {
+      resolved.relPosHPLength = msg.relPosHPLength;
     }
     else {
-      resolved.reserved1 = 0
+      resolved.relPosHPLength = 0
     }
 
     if (msg.accN !== undefined) {
@@ -407,6 +507,27 @@ class NavRELPOSNED {
     }
     else {
       resolved.accD = 0
+    }
+
+    if (msg.accLength !== undefined) {
+      resolved.accLength = msg.accLength;
+    }
+    else {
+      resolved.accLength = 0
+    }
+
+    if (msg.accHeading !== undefined) {
+      resolved.accHeading = msg.accHeading;
+    }
+    else {
+      resolved.accHeading = 0
+    }
+
+    if (msg.reserved2 !== undefined) {
+      resolved.reserved2 = msg.reserved2;
+    }
+    else {
+      resolved.reserved2 = 0
     }
 
     if (msg.flags !== undefined) {

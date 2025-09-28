@@ -283,28 +283,53 @@ struct Printer< ::ublox_msgs::RxmSFRBX_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::RxmSFRBX_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "gnssId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.gnssId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved0: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "freqId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.freqId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "numWords: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.numWords);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "chn: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.chn);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "version: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.version);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved1: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved1);
-    s << indent << "dwrd[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "dwrd: ";
+    if (v.dwrd.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.dwrd.size(); ++i)
     {
-      s << indent << "  dwrd[" << i << "]: ";
-      Printer<uint32_t>::stream(s, indent + "  ", v.dwrd[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint32_t>::stream(s, true ? std::string() : indent + "    ", v.dwrd[i]);
     }
+    if (v.dwrd.empty() || true)
+      s << "]";
   }
 };
 

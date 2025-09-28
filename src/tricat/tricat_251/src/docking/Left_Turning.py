@@ -61,8 +61,8 @@ def main():
         raise Exception("웹캠을 열 수 없습니다.")  
 
     # 카메라 해상도 설정
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560)  
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1920) 
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)  
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080) 
 
     rate = rospy.Rate(10)  
 

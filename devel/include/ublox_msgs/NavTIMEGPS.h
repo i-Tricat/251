@@ -272,16 +272,28 @@ struct Printer< ::ublox_msgs::NavTIMEGPS_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavTIMEGPS_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "fTOW: ";
     Printer<int32_t>::stream(s, indent + "  ", v.fTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "week: ";
     Printer<int16_t>::stream(s, indent + "  ", v.week);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "leapS: ";
     Printer<int8_t>::stream(s, indent + "  ", v.leapS);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "valid: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.valid);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "tAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.tAcc);
   }

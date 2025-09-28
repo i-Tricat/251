@@ -214,8 +214,12 @@ struct Printer< ::ublox_msgs::EsfRAW_Block_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::EsfRAW_Block_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "data: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.data);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sTtag: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.sTtag);
   }

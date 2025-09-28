@@ -68,16 +68,16 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-.PHONY : test/fast
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -90,26 +90,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target test
+test/fast: test
 
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+.PHONY : test/fast
 
 # Special rule for the target install
 install: preinstall
@@ -122,6 +112,16 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -168,64 +168,259 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/rule
+obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/rule
 
 # Convenience name for target.
-obstacle_detector_geneus: obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/rule
+obstacle_detector_gui: obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/rule
 
-.PHONY : obstacle_detector_geneus
+.PHONY : obstacle_detector_gui
 
 # fast build rule for target.
-obstacle_detector_geneus/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/build
-.PHONY : obstacle_detector_geneus/fast
+obstacle_detector_gui/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build
+.PHONY : obstacle_detector_gui/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/rule
+obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/rule
 
 # Convenience name for target.
-obstacle_detector_generate_messages_eus: obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/rule
+obstacle_detector_nodelets: obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/rule
 
-.PHONY : obstacle_detector_generate_messages_eus
+.PHONY : obstacle_detector_nodelets
 
 # fast build rule for target.
-obstacle_detector_generate_messages_eus/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/build
-.PHONY : obstacle_detector_generate_messages_eus/fast
+obstacle_detector_nodelets/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build
+.PHONY : obstacle_detector_nodelets/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/rule
+obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/rule
 
 # Convenience name for target.
-_obstacle_detector_generate_messages_check_deps_SegmentObstacle: obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/rule
+obstacle_extractor_node: obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/rule
 
-.PHONY : _obstacle_detector_generate_messages_check_deps_SegmentObstacle
+.PHONY : obstacle_extractor_node
 
 # fast build rule for target.
-_obstacle_detector_generate_messages_check_deps_SegmentObstacle/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/build.make obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/build
-.PHONY : _obstacle_detector_generate_messages_check_deps_SegmentObstacle/fast
+obstacle_extractor_node/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/build
+.PHONY : obstacle_extractor_node/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/rule
+obstacle_detector/CMakeFiles/scans_merger_node.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/scans_merger_node.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/scans_merger_node.dir/rule
 
 # Convenience name for target.
-_obstacle_detector_generate_messages_check_deps_CircleObstacle: obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/rule
+scans_merger_node: obstacle_detector/CMakeFiles/scans_merger_node.dir/rule
 
-.PHONY : _obstacle_detector_generate_messages_check_deps_CircleObstacle
+.PHONY : scans_merger_node
 
 # fast build rule for target.
-_obstacle_detector_generate_messages_check_deps_CircleObstacle/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/build.make obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/build
-.PHONY : _obstacle_detector_generate_messages_check_deps_CircleObstacle/fast
+scans_merger_node/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/scans_merger_node.dir/build.make obstacle_detector/CMakeFiles/scans_merger_node.dir/build
+.PHONY : scans_merger_node/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_tracker.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_tracker.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_tracker.dir/rule
+
+# Convenience name for target.
+obstacle_tracker: obstacle_detector/CMakeFiles/obstacle_tracker.dir/rule
+
+.PHONY : obstacle_tracker
+
+# fast build rule for target.
+obstacle_tracker/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_tracker.dir/build.make obstacle_detector/CMakeFiles/obstacle_tracker.dir/build
+.PHONY : obstacle_tracker/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/rule
+
+# Convenience name for target.
+obstacle_detector_generate_messages_py: obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/rule
+
+.PHONY : obstacle_detector_generate_messages_py
+
+# fast build rule for target.
+obstacle_detector_generate_messages_py/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/build
+.PHONY : obstacle_detector_generate_messages_py/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+obstacle_detector_generate_messages_nodejs: obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/rule
+
+.PHONY : obstacle_detector_generate_messages_nodejs
+
+# fast build rule for target.
+obstacle_detector_generate_messages_nodejs/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/build
+.PHONY : obstacle_detector_generate_messages_nodejs/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/rule
+
+# Convenience name for target.
+obstacle_detector_genlisp: obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/rule
+
+.PHONY : obstacle_detector_genlisp
+
+# fast build rule for target.
+obstacle_detector_genlisp/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/build
+.PHONY : obstacle_detector_genlisp/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/map_msgs_generate_messages_lisp.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/map_msgs_generate_messages_lisp.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/map_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+map_msgs_generate_messages_lisp: obstacle_detector/CMakeFiles/map_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : map_msgs_generate_messages_lisp
+
+# fast build rule for target.
+map_msgs_generate_messages_lisp/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/map_msgs_generate_messages_lisp.dir/build.make obstacle_detector/CMakeFiles/map_msgs_generate_messages_lisp.dir/build
+.PHONY : map_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/rviz_generate_messages_cpp.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/rviz_generate_messages_cpp.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/rviz_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rviz_generate_messages_cpp: obstacle_detector/CMakeFiles/rviz_generate_messages_cpp.dir/rule
+
+.PHONY : rviz_generate_messages_cpp
+
+# fast build rule for target.
+rviz_generate_messages_cpp/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/rviz_generate_messages_cpp.dir/build.make obstacle_detector/CMakeFiles/rviz_generate_messages_cpp.dir/build
+.PHONY : rviz_generate_messages_cpp/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/map_msgs_generate_messages_cpp.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/map_msgs_generate_messages_cpp.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/map_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+map_msgs_generate_messages_cpp: obstacle_detector/CMakeFiles/map_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : map_msgs_generate_messages_cpp
+
+# fast build rule for target.
+map_msgs_generate_messages_cpp/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/map_msgs_generate_messages_cpp.dir/build.make obstacle_detector/CMakeFiles/map_msgs_generate_messages_cpp.dir/build
+.PHONY : map_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+visualization_msgs_generate_messages_py: obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
+
+.PHONY : visualization_msgs_generate_messages_py
+
+# fast build rule for target.
+visualization_msgs_generate_messages_py/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/build.make obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/build
+.PHONY : visualization_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/scans_merger.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/scans_merger.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/scans_merger.dir/rule
+
+# Convenience name for target.
+scans_merger: obstacle_detector/CMakeFiles/scans_merger.dir/rule
+
+.PHONY : scans_merger
+
+# fast build rule for target.
+scans_merger/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/scans_merger.dir/build.make obstacle_detector/CMakeFiles/scans_merger.dir/build
+.PHONY : scans_merger/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/rule
+
+# Convenience name for target.
+obstacle_detector_gencpp: obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/rule
+
+.PHONY : obstacle_detector_gencpp
+
+# fast build rule for target.
+obstacle_detector_gencpp/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/build
+.PHONY : obstacle_detector_gencpp/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/rule
+
+# Convenience name for target.
+obstacle_detector_genpy: obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/rule
+
+.PHONY : obstacle_detector_genpy
+
+# fast build rule for target.
+obstacle_detector_genpy/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/build
+.PHONY : obstacle_detector_genpy/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+visualization_msgs_generate_messages_nodejs: obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : visualization_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+visualization_msgs_generate_messages_nodejs/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build.make obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build
+.PHONY : visualization_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+nav_msgs_generate_messages_eus: obstacle_detector/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
+
+.PHONY : nav_msgs_generate_messages_eus
+
+# fast build rule for target.
+nav_msgs_generate_messages_eus/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make obstacle_detector/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
+.PHONY : nav_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule:
@@ -243,64 +438,79 @@ visualization_msgs_generate_messages_eus/fast:
 .PHONY : visualization_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/rule
+obstacle_detector/CMakeFiles/map_msgs_generate_messages_py.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/map_msgs_generate_messages_py.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/map_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-obstacle_detector_generate_messages_cpp: obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/rule
+map_msgs_generate_messages_py: obstacle_detector/CMakeFiles/map_msgs_generate_messages_py.dir/rule
 
-.PHONY : obstacle_detector_generate_messages_cpp
+.PHONY : map_msgs_generate_messages_py
 
 # fast build rule for target.
-obstacle_detector_generate_messages_cpp/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/build
-.PHONY : obstacle_detector_generate_messages_cpp/fast
+map_msgs_generate_messages_py/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/map_msgs_generate_messages_py.dir/build.make obstacle_detector/CMakeFiles/map_msgs_generate_messages_py.dir/build
+.PHONY : map_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_visualizer.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_visualizer.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_visualizer.dir/rule
+obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/rule
 
 # Convenience name for target.
-obstacle_visualizer: obstacle_detector/CMakeFiles/obstacle_visualizer.dir/rule
+_obstacle_detector_generate_messages_check_deps_CircleObstacle: obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/rule
 
-.PHONY : obstacle_visualizer
+.PHONY : _obstacle_detector_generate_messages_check_deps_CircleObstacle
 
 # fast build rule for target.
-obstacle_visualizer/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_visualizer.dir/build.make obstacle_detector/CMakeFiles/obstacle_visualizer.dir/build
-.PHONY : obstacle_visualizer/fast
+_obstacle_detector_generate_messages_check_deps_CircleObstacle/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/build.make obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/build
+.PHONY : _obstacle_detector_generate_messages_check_deps_CircleObstacle/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/rule
+obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/rule
 
 # Convenience name for target.
-obstacle_detector_generate_messages: obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/rule
+obstacle_publisher_node: obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/rule
 
-.PHONY : obstacle_detector_generate_messages
+.PHONY : obstacle_publisher_node
 
 # fast build rule for target.
-obstacle_detector_generate_messages/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/build
-.PHONY : obstacle_detector_generate_messages/fast
+obstacle_publisher_node/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/build
+.PHONY : obstacle_publisher_node/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/rule
+obstacle_detector/CMakeFiles/rviz_generate_messages_py.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/rviz_generate_messages_py.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/rviz_generate_messages_py.dir/rule
 
 # Convenience name for target.
-_obstacle_detector_generate_messages_check_deps_Obstacles: obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/rule
+rviz_generate_messages_py: obstacle_detector/CMakeFiles/rviz_generate_messages_py.dir/rule
 
-.PHONY : _obstacle_detector_generate_messages_check_deps_Obstacles
+.PHONY : rviz_generate_messages_py
 
 # fast build rule for target.
-_obstacle_detector_generate_messages_check_deps_Obstacles/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/build.make obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/build
-.PHONY : _obstacle_detector_generate_messages_check_deps_Obstacles/fast
+rviz_generate_messages_py/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/rviz_generate_messages_py.dir/build.make obstacle_detector/CMakeFiles/rviz_generate_messages_py.dir/build
+.PHONY : rviz_generate_messages_py/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/rviz_generate_messages_nodejs.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/rviz_generate_messages_nodejs.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/rviz_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+rviz_generate_messages_nodejs: obstacle_detector/CMakeFiles/rviz_generate_messages_nodejs.dir/rule
+
+.PHONY : rviz_generate_messages_nodejs
+
+# fast build rule for target.
+rviz_generate_messages_nodejs/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/rviz_generate_messages_nodejs.dir/build.make obstacle_detector/CMakeFiles/rviz_generate_messages_nodejs.dir/build
+.PHONY : rviz_generate_messages_nodejs/fast
 
 # Convenience name for target.
 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_lisp.dir/rule:
@@ -333,34 +543,34 @@ visualization_msgs_generate_messages_lisp/fast:
 .PHONY : visualization_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/rule
+obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/rule
 
 # Convenience name for target.
-obstacle_detector_genlisp: obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/rule
+obstacle_detector_gennodejs: obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/rule
 
-.PHONY : obstacle_detector_genlisp
+.PHONY : obstacle_detector_gennodejs
 
 # fast build rule for target.
-obstacle_detector_genlisp/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_genlisp.dir/build
-.PHONY : obstacle_detector_genlisp/fast
+obstacle_detector_gennodejs/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/build
+.PHONY : obstacle_detector_gennodejs/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/rule
+obstacle_detector/CMakeFiles/map_msgs_generate_messages_eus.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/map_msgs_generate_messages_eus.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/map_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-obstacle_detector_generate_messages_nodejs: obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/rule
+map_msgs_generate_messages_eus: obstacle_detector/CMakeFiles/map_msgs_generate_messages_eus.dir/rule
 
-.PHONY : obstacle_detector_generate_messages_nodejs
+.PHONY : map_msgs_generate_messages_eus
 
 # fast build rule for target.
-obstacle_detector_generate_messages_nodejs/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_nodejs.dir/build
-.PHONY : obstacle_detector_generate_messages_nodejs/fast
+map_msgs_generate_messages_eus/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/map_msgs_generate_messages_eus.dir/build.make obstacle_detector/CMakeFiles/map_msgs_generate_messages_eus.dir/build
+.PHONY : map_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule:
@@ -378,193 +588,772 @@ visualization_msgs_generate_messages_cpp/fast:
 .PHONY : visualization_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/rule
+obstacle_detector/CMakeFiles/obstacle_extractor.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_extractor.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_extractor.dir/rule
 
 # Convenience name for target.
-obstacle_detector_gennodejs: obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/rule
+obstacle_extractor: obstacle_detector/CMakeFiles/obstacle_extractor.dir/rule
 
-.PHONY : obstacle_detector_gennodejs
+.PHONY : obstacle_extractor
 
 # fast build rule for target.
-obstacle_detector_gennodejs/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gennodejs.dir/build
-.PHONY : obstacle_detector_gennodejs/fast
+obstacle_extractor/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_extractor.dir/build.make obstacle_detector/CMakeFiles/obstacle_extractor.dir/build
+.PHONY : obstacle_extractor/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/static_scan_publisher.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/static_scan_publisher.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/static_scan_publisher.dir/rule
+obstacle_detector/CMakeFiles/rviz_generate_messages_eus.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/rviz_generate_messages_eus.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/rviz_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-static_scan_publisher: obstacle_detector/CMakeFiles/static_scan_publisher.dir/rule
+rviz_generate_messages_eus: obstacle_detector/CMakeFiles/rviz_generate_messages_eus.dir/rule
 
-.PHONY : static_scan_publisher
+.PHONY : rviz_generate_messages_eus
 
 # fast build rule for target.
-static_scan_publisher/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/static_scan_publisher.dir/build.make obstacle_detector/CMakeFiles/static_scan_publisher.dir/build
-.PHONY : static_scan_publisher/fast
+rviz_generate_messages_eus/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/rviz_generate_messages_eus.dir/build.make obstacle_detector/CMakeFiles/rviz_generate_messages_eus.dir/build
+.PHONY : rviz_generate_messages_eus/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/rule
+obstacle_detector/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-obstacle_detector_generate_messages_py: obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/rule
+nav_msgs_generate_messages_cpp: obstacle_detector/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : obstacle_detector_generate_messages_py
+.PHONY : nav_msgs_generate_messages_cpp
 
 # fast build rule for target.
-obstacle_detector_generate_messages_py/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_py.dir/build
-.PHONY : obstacle_detector_generate_messages_py/fast
+nav_msgs_generate_messages_cpp/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make obstacle_detector/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
+.PHONY : nav_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/rule
+obstacle_detector/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-obstacle_detector_gencpp: obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/rule
+nav_msgs_generate_messages_lisp: obstacle_detector/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : obstacle_detector_gencpp
+.PHONY : nav_msgs_generate_messages_lisp
 
 # fast build rule for target.
-obstacle_detector_gencpp/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gencpp.dir/build
-.PHONY : obstacle_detector_gencpp/fast
+nav_msgs_generate_messages_lisp/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make obstacle_detector/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
+.PHONY : nav_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/scans_merger.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/scans_merger.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/scans_merger.dir/rule
+obstacle_detector/CMakeFiles/rviz_generate_messages_lisp.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/rviz_generate_messages_lisp.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/rviz_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-scans_merger: obstacle_detector/CMakeFiles/scans_merger.dir/rule
+rviz_generate_messages_lisp: obstacle_detector/CMakeFiles/rviz_generate_messages_lisp.dir/rule
 
-.PHONY : scans_merger
+.PHONY : rviz_generate_messages_lisp
 
 # fast build rule for target.
-scans_merger/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/scans_merger.dir/build.make obstacle_detector/CMakeFiles/scans_merger.dir/build
-.PHONY : scans_merger/fast
+rviz_generate_messages_lisp/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/rviz_generate_messages_lisp.dir/build.make obstacle_detector/CMakeFiles/rviz_generate_messages_lisp.dir/build
+.PHONY : rviz_generate_messages_lisp/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector.dir/rule
+obstacle_detector/CMakeFiles/map_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/map_msgs_generate_messages_nodejs.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/map_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-obstacle_detector: obstacle_detector/CMakeFiles/obstacle_detector.dir/rule
+map_msgs_generate_messages_nodejs: obstacle_detector/CMakeFiles/map_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : obstacle_detector
+.PHONY : map_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-obstacle_detector/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector.dir/build
-.PHONY : obstacle_detector/fast
+map_msgs_generate_messages_nodejs/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/map_msgs_generate_messages_nodejs.dir/build.make obstacle_detector/CMakeFiles/map_msgs_generate_messages_nodejs.dir/build
+.PHONY : map_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
+obstacle_detector/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-visualization_msgs_generate_messages_nodejs: obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule
+nav_msgs_generate_messages_nodejs: obstacle_detector/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : visualization_msgs_generate_messages_nodejs
+.PHONY : nav_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-visualization_msgs_generate_messages_nodejs/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build.make obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build
-.PHONY : visualization_msgs_generate_messages_nodejs/fast
+nav_msgs_generate_messages_nodejs/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make obstacle_detector/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
+.PHONY : nav_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/rule
+obstacle_detector/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-obstacle_detector_genpy: obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/rule
+nav_msgs_generate_messages_py: obstacle_detector/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
 
-.PHONY : obstacle_detector_genpy
+.PHONY : nav_msgs_generate_messages_py
 
 # fast build rule for target.
-obstacle_detector_genpy/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_genpy.dir/build
-.PHONY : obstacle_detector_genpy/fast
+nav_msgs_generate_messages_py/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make obstacle_detector/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+.PHONY : nav_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
-.PHONY : obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
+obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/rule
 
 # Convenience name for target.
-visualization_msgs_generate_messages_py: obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule
+obstacle_detector_generate_messages: obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/rule
 
-.PHONY : visualization_msgs_generate_messages_py
+.PHONY : obstacle_detector_generate_messages
 
 # fast build rule for target.
-visualization_msgs_generate_messages_py/fast:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/build.make obstacle_detector/CMakeFiles/visualization_msgs_generate_messages_py.dir/build
-.PHONY : visualization_msgs_generate_messages_py/fast
+obstacle_detector_generate_messages/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_generate_messages.dir/build
+.PHONY : obstacle_detector_generate_messages/fast
 
-src/obstacle_detector.o: src/obstacle_detector.cpp.o
+# Convenience name for target.
+obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/rule
 
-.PHONY : src/obstacle_detector.o
+# Convenience name for target.
+_obstacle_detector_generate_messages_check_deps_SegmentObstacle: obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/rule
+
+.PHONY : _obstacle_detector_generate_messages_check_deps_SegmentObstacle
+
+# fast build rule for target.
+_obstacle_detector_generate_messages_check_deps_SegmentObstacle/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/build.make obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_SegmentObstacle.dir/build
+.PHONY : _obstacle_detector_generate_messages_check_deps_SegmentObstacle/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/rule
+
+# Convenience name for target.
+_obstacle_detector_generate_messages_check_deps_Obstacles: obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/rule
+
+.PHONY : _obstacle_detector_generate_messages_check_deps_Obstacles
+
+# fast build rule for target.
+_obstacle_detector_generate_messages_check_deps_Obstacles/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/build.make obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_Obstacles.dir/build
+.PHONY : _obstacle_detector_generate_messages_check_deps_Obstacles/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+obstacle_detector_generate_messages_cpp: obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/rule
+
+.PHONY : obstacle_detector_generate_messages_cpp
+
+# fast build rule for target.
+obstacle_detector_generate_messages_cpp/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_cpp.dir/build
+.PHONY : obstacle_detector_generate_messages_cpp/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/rule
+
+# Convenience name for target.
+obstacle_tracker_node: obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/rule
+
+.PHONY : obstacle_tracker_node
+
+# fast build rule for target.
+obstacle_tracker_node/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/build
+.PHONY : obstacle_tracker_node/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_publisher.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_publisher.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_publisher.dir/rule
+
+# Convenience name for target.
+obstacle_publisher: obstacle_detector/CMakeFiles/obstacle_publisher.dir/rule
+
+.PHONY : obstacle_publisher
+
+# fast build rule for target.
+obstacle_publisher/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_publisher.dir/build.make obstacle_detector/CMakeFiles/obstacle_publisher.dir/build
+.PHONY : obstacle_publisher/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+obstacle_detector_generate_messages_eus: obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/rule
+
+.PHONY : obstacle_detector_generate_messages_eus
+
+# fast build rule for target.
+obstacle_detector_generate_messages_eus/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_generate_messages_eus.dir/build
+.PHONY : obstacle_detector_generate_messages_eus/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/rule
+
+# Convenience name for target.
+obstacle_detector_geneus: obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/rule
+
+.PHONY : obstacle_detector_geneus
+
+# fast build rule for target.
+obstacle_detector_geneus/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_geneus.dir/build
+.PHONY : obstacle_detector_geneus/fast
+
+# Convenience name for target.
+obstacle_detector/CMakeFiles/obstacle_detector_gui_autogen.dir/rule:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 obstacle_detector/CMakeFiles/obstacle_detector_gui_autogen.dir/rule
+.PHONY : obstacle_detector/CMakeFiles/obstacle_detector_gui_autogen.dir/rule
+
+# Convenience name for target.
+obstacle_detector_gui_autogen: obstacle_detector/CMakeFiles/obstacle_detector_gui_autogen.dir/rule
+
+.PHONY : obstacle_detector_gui_autogen
+
+# fast build rule for target.
+obstacle_detector_gui_autogen/fast:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui_autogen.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui_autogen.dir/build
+.PHONY : obstacle_detector_gui_autogen/fast
+
+obstacle_detector_gui_autogen/mocs_compilation.o: obstacle_detector_gui_autogen/mocs_compilation.cpp.o
+
+.PHONY : obstacle_detector_gui_autogen/mocs_compilation.o
 
 # target to build an object file
-src/obstacle_detector.cpp.o:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector.dir/src/obstacle_detector.cpp.o
-.PHONY : src/obstacle_detector.cpp.o
+obstacle_detector_gui_autogen/mocs_compilation.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/obstacle_detector_gui_autogen/mocs_compilation.cpp.o
+.PHONY : obstacle_detector_gui_autogen/mocs_compilation.cpp.o
 
-src/obstacle_detector.i: src/obstacle_detector.cpp.i
+obstacle_detector_gui_autogen/mocs_compilation.i: obstacle_detector_gui_autogen/mocs_compilation.cpp.i
 
-.PHONY : src/obstacle_detector.i
+.PHONY : obstacle_detector_gui_autogen/mocs_compilation.i
 
 # target to preprocess a source file
-src/obstacle_detector.cpp.i:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector.dir/src/obstacle_detector.cpp.i
-.PHONY : src/obstacle_detector.cpp.i
+obstacle_detector_gui_autogen/mocs_compilation.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/obstacle_detector_gui_autogen/mocs_compilation.cpp.i
+.PHONY : obstacle_detector_gui_autogen/mocs_compilation.cpp.i
 
-src/obstacle_detector.s: src/obstacle_detector.cpp.s
+obstacle_detector_gui_autogen/mocs_compilation.s: obstacle_detector_gui_autogen/mocs_compilation.cpp.s
 
-.PHONY : src/obstacle_detector.s
+.PHONY : obstacle_detector_gui_autogen/mocs_compilation.s
 
 # target to generate assembly for a file
-src/obstacle_detector.cpp.s:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector.dir/src/obstacle_detector.cpp.s
-.PHONY : src/obstacle_detector.cpp.s
+obstacle_detector_gui_autogen/mocs_compilation.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/obstacle_detector_gui_autogen/mocs_compilation.cpp.s
+.PHONY : obstacle_detector_gui_autogen/mocs_compilation.cpp.s
 
-src/obstacle_visualizer.o: src/obstacle_visualizer.cpp.o
+src/displays/circle_visual.o: src/displays/circle_visual.cpp.o
 
-.PHONY : src/obstacle_visualizer.o
+.PHONY : src/displays/circle_visual.o
 
 # target to build an object file
-src/obstacle_visualizer.cpp.o:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_visualizer.dir/build.make obstacle_detector/CMakeFiles/obstacle_visualizer.dir/src/obstacle_visualizer.cpp.o
-.PHONY : src/obstacle_visualizer.cpp.o
+src/displays/circle_visual.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/displays/circle_visual.cpp.o
+.PHONY : src/displays/circle_visual.cpp.o
 
-src/obstacle_visualizer.i: src/obstacle_visualizer.cpp.i
+src/displays/circle_visual.i: src/displays/circle_visual.cpp.i
 
-.PHONY : src/obstacle_visualizer.i
+.PHONY : src/displays/circle_visual.i
 
 # target to preprocess a source file
-src/obstacle_visualizer.cpp.i:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_visualizer.dir/build.make obstacle_detector/CMakeFiles/obstacle_visualizer.dir/src/obstacle_visualizer.cpp.i
-.PHONY : src/obstacle_visualizer.cpp.i
+src/displays/circle_visual.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/displays/circle_visual.cpp.i
+.PHONY : src/displays/circle_visual.cpp.i
 
-src/obstacle_visualizer.s: src/obstacle_visualizer.cpp.s
+src/displays/circle_visual.s: src/displays/circle_visual.cpp.s
 
-.PHONY : src/obstacle_visualizer.s
+.PHONY : src/displays/circle_visual.s
 
 # target to generate assembly for a file
-src/obstacle_visualizer.cpp.s:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_visualizer.dir/build.make obstacle_detector/CMakeFiles/obstacle_visualizer.dir/src/obstacle_visualizer.cpp.s
-.PHONY : src/obstacle_visualizer.cpp.s
+src/displays/circle_visual.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/displays/circle_visual.cpp.s
+.PHONY : src/displays/circle_visual.cpp.s
+
+src/displays/obstacles_display.o: src/displays/obstacles_display.cpp.o
+
+.PHONY : src/displays/obstacles_display.o
+
+# target to build an object file
+src/displays/obstacles_display.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/displays/obstacles_display.cpp.o
+.PHONY : src/displays/obstacles_display.cpp.o
+
+src/displays/obstacles_display.i: src/displays/obstacles_display.cpp.i
+
+.PHONY : src/displays/obstacles_display.i
+
+# target to preprocess a source file
+src/displays/obstacles_display.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/displays/obstacles_display.cpp.i
+.PHONY : src/displays/obstacles_display.cpp.i
+
+src/displays/obstacles_display.s: src/displays/obstacles_display.cpp.s
+
+.PHONY : src/displays/obstacles_display.s
+
+# target to generate assembly for a file
+src/displays/obstacles_display.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/displays/obstacles_display.cpp.s
+.PHONY : src/displays/obstacles_display.cpp.s
+
+src/displays/segment_visual.o: src/displays/segment_visual.cpp.o
+
+.PHONY : src/displays/segment_visual.o
+
+# target to build an object file
+src/displays/segment_visual.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/displays/segment_visual.cpp.o
+.PHONY : src/displays/segment_visual.cpp.o
+
+src/displays/segment_visual.i: src/displays/segment_visual.cpp.i
+
+.PHONY : src/displays/segment_visual.i
+
+# target to preprocess a source file
+src/displays/segment_visual.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/displays/segment_visual.cpp.i
+.PHONY : src/displays/segment_visual.cpp.i
+
+src/displays/segment_visual.s: src/displays/segment_visual.cpp.s
+
+.PHONY : src/displays/segment_visual.s
+
+# target to generate assembly for a file
+src/displays/segment_visual.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/displays/segment_visual.cpp.s
+.PHONY : src/displays/segment_visual.cpp.s
+
+src/nodelets/obstacle_extractor_nodelet.o: src/nodelets/obstacle_extractor_nodelet.cpp.o
+
+.PHONY : src/nodelets/obstacle_extractor_nodelet.o
+
+# target to build an object file
+src/nodelets/obstacle_extractor_nodelet.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/obstacle_extractor_nodelet.cpp.o
+.PHONY : src/nodelets/obstacle_extractor_nodelet.cpp.o
+
+src/nodelets/obstacle_extractor_nodelet.i: src/nodelets/obstacle_extractor_nodelet.cpp.i
+
+.PHONY : src/nodelets/obstacle_extractor_nodelet.i
+
+# target to preprocess a source file
+src/nodelets/obstacle_extractor_nodelet.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/obstacle_extractor_nodelet.cpp.i
+.PHONY : src/nodelets/obstacle_extractor_nodelet.cpp.i
+
+src/nodelets/obstacle_extractor_nodelet.s: src/nodelets/obstacle_extractor_nodelet.cpp.s
+
+.PHONY : src/nodelets/obstacle_extractor_nodelet.s
+
+# target to generate assembly for a file
+src/nodelets/obstacle_extractor_nodelet.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/obstacle_extractor_nodelet.cpp.s
+.PHONY : src/nodelets/obstacle_extractor_nodelet.cpp.s
+
+src/nodelets/obstacle_publisher_nodelet.o: src/nodelets/obstacle_publisher_nodelet.cpp.o
+
+.PHONY : src/nodelets/obstacle_publisher_nodelet.o
+
+# target to build an object file
+src/nodelets/obstacle_publisher_nodelet.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/obstacle_publisher_nodelet.cpp.o
+.PHONY : src/nodelets/obstacle_publisher_nodelet.cpp.o
+
+src/nodelets/obstacle_publisher_nodelet.i: src/nodelets/obstacle_publisher_nodelet.cpp.i
+
+.PHONY : src/nodelets/obstacle_publisher_nodelet.i
+
+# target to preprocess a source file
+src/nodelets/obstacle_publisher_nodelet.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/obstacle_publisher_nodelet.cpp.i
+.PHONY : src/nodelets/obstacle_publisher_nodelet.cpp.i
+
+src/nodelets/obstacle_publisher_nodelet.s: src/nodelets/obstacle_publisher_nodelet.cpp.s
+
+.PHONY : src/nodelets/obstacle_publisher_nodelet.s
+
+# target to generate assembly for a file
+src/nodelets/obstacle_publisher_nodelet.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/obstacle_publisher_nodelet.cpp.s
+.PHONY : src/nodelets/obstacle_publisher_nodelet.cpp.s
+
+src/nodelets/obstacle_tracker_nodelet.o: src/nodelets/obstacle_tracker_nodelet.cpp.o
+
+.PHONY : src/nodelets/obstacle_tracker_nodelet.o
+
+# target to build an object file
+src/nodelets/obstacle_tracker_nodelet.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/obstacle_tracker_nodelet.cpp.o
+.PHONY : src/nodelets/obstacle_tracker_nodelet.cpp.o
+
+src/nodelets/obstacle_tracker_nodelet.i: src/nodelets/obstacle_tracker_nodelet.cpp.i
+
+.PHONY : src/nodelets/obstacle_tracker_nodelet.i
+
+# target to preprocess a source file
+src/nodelets/obstacle_tracker_nodelet.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/obstacle_tracker_nodelet.cpp.i
+.PHONY : src/nodelets/obstacle_tracker_nodelet.cpp.i
+
+src/nodelets/obstacle_tracker_nodelet.s: src/nodelets/obstacle_tracker_nodelet.cpp.s
+
+.PHONY : src/nodelets/obstacle_tracker_nodelet.s
+
+# target to generate assembly for a file
+src/nodelets/obstacle_tracker_nodelet.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/obstacle_tracker_nodelet.cpp.s
+.PHONY : src/nodelets/obstacle_tracker_nodelet.cpp.s
+
+src/nodelets/scans_merger_nodelet.o: src/nodelets/scans_merger_nodelet.cpp.o
+
+.PHONY : src/nodelets/scans_merger_nodelet.o
+
+# target to build an object file
+src/nodelets/scans_merger_nodelet.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/scans_merger_nodelet.cpp.o
+.PHONY : src/nodelets/scans_merger_nodelet.cpp.o
+
+src/nodelets/scans_merger_nodelet.i: src/nodelets/scans_merger_nodelet.cpp.i
+
+.PHONY : src/nodelets/scans_merger_nodelet.i
+
+# target to preprocess a source file
+src/nodelets/scans_merger_nodelet.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/scans_merger_nodelet.cpp.i
+.PHONY : src/nodelets/scans_merger_nodelet.cpp.i
+
+src/nodelets/scans_merger_nodelet.s: src/nodelets/scans_merger_nodelet.cpp.s
+
+.PHONY : src/nodelets/scans_merger_nodelet.s
+
+# target to generate assembly for a file
+src/nodelets/scans_merger_nodelet.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_nodelets.dir/src/nodelets/scans_merger_nodelet.cpp.s
+.PHONY : src/nodelets/scans_merger_nodelet.cpp.s
+
+src/nodes/obstacle_extractor_node.o: src/nodes/obstacle_extractor_node.cpp.o
+
+.PHONY : src/nodes/obstacle_extractor_node.o
+
+# target to build an object file
+src/nodes/obstacle_extractor_node.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/src/nodes/obstacle_extractor_node.cpp.o
+.PHONY : src/nodes/obstacle_extractor_node.cpp.o
+
+src/nodes/obstacle_extractor_node.i: src/nodes/obstacle_extractor_node.cpp.i
+
+.PHONY : src/nodes/obstacle_extractor_node.i
+
+# target to preprocess a source file
+src/nodes/obstacle_extractor_node.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/src/nodes/obstacle_extractor_node.cpp.i
+.PHONY : src/nodes/obstacle_extractor_node.cpp.i
+
+src/nodes/obstacle_extractor_node.s: src/nodes/obstacle_extractor_node.cpp.s
+
+.PHONY : src/nodes/obstacle_extractor_node.s
+
+# target to generate assembly for a file
+src/nodes/obstacle_extractor_node.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_extractor_node.dir/src/nodes/obstacle_extractor_node.cpp.s
+.PHONY : src/nodes/obstacle_extractor_node.cpp.s
+
+src/nodes/obstacle_publisher_node.o: src/nodes/obstacle_publisher_node.cpp.o
+
+.PHONY : src/nodes/obstacle_publisher_node.o
+
+# target to build an object file
+src/nodes/obstacle_publisher_node.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/src/nodes/obstacle_publisher_node.cpp.o
+.PHONY : src/nodes/obstacle_publisher_node.cpp.o
+
+src/nodes/obstacle_publisher_node.i: src/nodes/obstacle_publisher_node.cpp.i
+
+.PHONY : src/nodes/obstacle_publisher_node.i
+
+# target to preprocess a source file
+src/nodes/obstacle_publisher_node.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/src/nodes/obstacle_publisher_node.cpp.i
+.PHONY : src/nodes/obstacle_publisher_node.cpp.i
+
+src/nodes/obstacle_publisher_node.s: src/nodes/obstacle_publisher_node.cpp.s
+
+.PHONY : src/nodes/obstacle_publisher_node.s
+
+# target to generate assembly for a file
+src/nodes/obstacle_publisher_node.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_publisher_node.dir/src/nodes/obstacle_publisher_node.cpp.s
+.PHONY : src/nodes/obstacle_publisher_node.cpp.s
+
+src/nodes/obstacle_tracker_node.o: src/nodes/obstacle_tracker_node.cpp.o
+
+.PHONY : src/nodes/obstacle_tracker_node.o
+
+# target to build an object file
+src/nodes/obstacle_tracker_node.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/src/nodes/obstacle_tracker_node.cpp.o
+.PHONY : src/nodes/obstacle_tracker_node.cpp.o
+
+src/nodes/obstacle_tracker_node.i: src/nodes/obstacle_tracker_node.cpp.i
+
+.PHONY : src/nodes/obstacle_tracker_node.i
+
+# target to preprocess a source file
+src/nodes/obstacle_tracker_node.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/src/nodes/obstacle_tracker_node.cpp.i
+.PHONY : src/nodes/obstacle_tracker_node.cpp.i
+
+src/nodes/obstacle_tracker_node.s: src/nodes/obstacle_tracker_node.cpp.s
+
+.PHONY : src/nodes/obstacle_tracker_node.s
+
+# target to generate assembly for a file
+src/nodes/obstacle_tracker_node.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/build.make obstacle_detector/CMakeFiles/obstacle_tracker_node.dir/src/nodes/obstacle_tracker_node.cpp.s
+.PHONY : src/nodes/obstacle_tracker_node.cpp.s
+
+src/nodes/scans_merger_node.o: src/nodes/scans_merger_node.cpp.o
+
+.PHONY : src/nodes/scans_merger_node.o
+
+# target to build an object file
+src/nodes/scans_merger_node.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/scans_merger_node.dir/build.make obstacle_detector/CMakeFiles/scans_merger_node.dir/src/nodes/scans_merger_node.cpp.o
+.PHONY : src/nodes/scans_merger_node.cpp.o
+
+src/nodes/scans_merger_node.i: src/nodes/scans_merger_node.cpp.i
+
+.PHONY : src/nodes/scans_merger_node.i
+
+# target to preprocess a source file
+src/nodes/scans_merger_node.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/scans_merger_node.dir/build.make obstacle_detector/CMakeFiles/scans_merger_node.dir/src/nodes/scans_merger_node.cpp.i
+.PHONY : src/nodes/scans_merger_node.cpp.i
+
+src/nodes/scans_merger_node.s: src/nodes/scans_merger_node.cpp.s
+
+.PHONY : src/nodes/scans_merger_node.s
+
+# target to generate assembly for a file
+src/nodes/scans_merger_node.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/scans_merger_node.dir/build.make obstacle_detector/CMakeFiles/scans_merger_node.dir/src/nodes/scans_merger_node.cpp.s
+.PHONY : src/nodes/scans_merger_node.cpp.s
+
+src/obstacle_extractor.o: src/obstacle_extractor.cpp.o
+
+.PHONY : src/obstacle_extractor.o
+
+# target to build an object file
+src/obstacle_extractor.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_extractor.dir/build.make obstacle_detector/CMakeFiles/obstacle_extractor.dir/src/obstacle_extractor.cpp.o
+.PHONY : src/obstacle_extractor.cpp.o
+
+src/obstacle_extractor.i: src/obstacle_extractor.cpp.i
+
+.PHONY : src/obstacle_extractor.i
+
+# target to preprocess a source file
+src/obstacle_extractor.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_extractor.dir/build.make obstacle_detector/CMakeFiles/obstacle_extractor.dir/src/obstacle_extractor.cpp.i
+.PHONY : src/obstacle_extractor.cpp.i
+
+src/obstacle_extractor.s: src/obstacle_extractor.cpp.s
+
+.PHONY : src/obstacle_extractor.s
+
+# target to generate assembly for a file
+src/obstacle_extractor.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_extractor.dir/build.make obstacle_detector/CMakeFiles/obstacle_extractor.dir/src/obstacle_extractor.cpp.s
+.PHONY : src/obstacle_extractor.cpp.s
+
+src/obstacle_publisher.o: src/obstacle_publisher.cpp.o
+
+.PHONY : src/obstacle_publisher.o
+
+# target to build an object file
+src/obstacle_publisher.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_publisher.dir/build.make obstacle_detector/CMakeFiles/obstacle_publisher.dir/src/obstacle_publisher.cpp.o
+.PHONY : src/obstacle_publisher.cpp.o
+
+src/obstacle_publisher.i: src/obstacle_publisher.cpp.i
+
+.PHONY : src/obstacle_publisher.i
+
+# target to preprocess a source file
+src/obstacle_publisher.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_publisher.dir/build.make obstacle_detector/CMakeFiles/obstacle_publisher.dir/src/obstacle_publisher.cpp.i
+.PHONY : src/obstacle_publisher.cpp.i
+
+src/obstacle_publisher.s: src/obstacle_publisher.cpp.s
+
+.PHONY : src/obstacle_publisher.s
+
+# target to generate assembly for a file
+src/obstacle_publisher.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_publisher.dir/build.make obstacle_detector/CMakeFiles/obstacle_publisher.dir/src/obstacle_publisher.cpp.s
+.PHONY : src/obstacle_publisher.cpp.s
+
+src/obstacle_tracker.o: src/obstacle_tracker.cpp.o
+
+.PHONY : src/obstacle_tracker.o
+
+# target to build an object file
+src/obstacle_tracker.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_tracker.dir/build.make obstacle_detector/CMakeFiles/obstacle_tracker.dir/src/obstacle_tracker.cpp.o
+.PHONY : src/obstacle_tracker.cpp.o
+
+src/obstacle_tracker.i: src/obstacle_tracker.cpp.i
+
+.PHONY : src/obstacle_tracker.i
+
+# target to preprocess a source file
+src/obstacle_tracker.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_tracker.dir/build.make obstacle_detector/CMakeFiles/obstacle_tracker.dir/src/obstacle_tracker.cpp.i
+.PHONY : src/obstacle_tracker.cpp.i
+
+src/obstacle_tracker.s: src/obstacle_tracker.cpp.s
+
+.PHONY : src/obstacle_tracker.s
+
+# target to generate assembly for a file
+src/obstacle_tracker.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_tracker.dir/build.make obstacle_detector/CMakeFiles/obstacle_tracker.dir/src/obstacle_tracker.cpp.s
+.PHONY : src/obstacle_tracker.cpp.s
+
+src/panels/obstacle_extractor_panel.o: src/panels/obstacle_extractor_panel.cpp.o
+
+.PHONY : src/panels/obstacle_extractor_panel.o
+
+# target to build an object file
+src/panels/obstacle_extractor_panel.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/obstacle_extractor_panel.cpp.o
+.PHONY : src/panels/obstacle_extractor_panel.cpp.o
+
+src/panels/obstacle_extractor_panel.i: src/panels/obstacle_extractor_panel.cpp.i
+
+.PHONY : src/panels/obstacle_extractor_panel.i
+
+# target to preprocess a source file
+src/panels/obstacle_extractor_panel.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/obstacle_extractor_panel.cpp.i
+.PHONY : src/panels/obstacle_extractor_panel.cpp.i
+
+src/panels/obstacle_extractor_panel.s: src/panels/obstacle_extractor_panel.cpp.s
+
+.PHONY : src/panels/obstacle_extractor_panel.s
+
+# target to generate assembly for a file
+src/panels/obstacle_extractor_panel.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/obstacle_extractor_panel.cpp.s
+.PHONY : src/panels/obstacle_extractor_panel.cpp.s
+
+src/panels/obstacle_publisher_panel.o: src/panels/obstacle_publisher_panel.cpp.o
+
+.PHONY : src/panels/obstacle_publisher_panel.o
+
+# target to build an object file
+src/panels/obstacle_publisher_panel.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/obstacle_publisher_panel.cpp.o
+.PHONY : src/panels/obstacle_publisher_panel.cpp.o
+
+src/panels/obstacle_publisher_panel.i: src/panels/obstacle_publisher_panel.cpp.i
+
+.PHONY : src/panels/obstacle_publisher_panel.i
+
+# target to preprocess a source file
+src/panels/obstacle_publisher_panel.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/obstacle_publisher_panel.cpp.i
+.PHONY : src/panels/obstacle_publisher_panel.cpp.i
+
+src/panels/obstacle_publisher_panel.s: src/panels/obstacle_publisher_panel.cpp.s
+
+.PHONY : src/panels/obstacle_publisher_panel.s
+
+# target to generate assembly for a file
+src/panels/obstacle_publisher_panel.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/obstacle_publisher_panel.cpp.s
+.PHONY : src/panels/obstacle_publisher_panel.cpp.s
+
+src/panels/obstacle_tracker_panel.o: src/panels/obstacle_tracker_panel.cpp.o
+
+.PHONY : src/panels/obstacle_tracker_panel.o
+
+# target to build an object file
+src/panels/obstacle_tracker_panel.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/obstacle_tracker_panel.cpp.o
+.PHONY : src/panels/obstacle_tracker_panel.cpp.o
+
+src/panels/obstacle_tracker_panel.i: src/panels/obstacle_tracker_panel.cpp.i
+
+.PHONY : src/panels/obstacle_tracker_panel.i
+
+# target to preprocess a source file
+src/panels/obstacle_tracker_panel.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/obstacle_tracker_panel.cpp.i
+.PHONY : src/panels/obstacle_tracker_panel.cpp.i
+
+src/panels/obstacle_tracker_panel.s: src/panels/obstacle_tracker_panel.cpp.s
+
+.PHONY : src/panels/obstacle_tracker_panel.s
+
+# target to generate assembly for a file
+src/panels/obstacle_tracker_panel.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/obstacle_tracker_panel.cpp.s
+.PHONY : src/panels/obstacle_tracker_panel.cpp.s
+
+src/panels/scans_merger_panel.o: src/panels/scans_merger_panel.cpp.o
+
+.PHONY : src/panels/scans_merger_panel.o
+
+# target to build an object file
+src/panels/scans_merger_panel.cpp.o:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/scans_merger_panel.cpp.o
+.PHONY : src/panels/scans_merger_panel.cpp.o
+
+src/panels/scans_merger_panel.i: src/panels/scans_merger_panel.cpp.i
+
+.PHONY : src/panels/scans_merger_panel.i
+
+# target to preprocess a source file
+src/panels/scans_merger_panel.cpp.i:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/scans_merger_panel.cpp.i
+.PHONY : src/panels/scans_merger_panel.cpp.i
+
+src/panels/scans_merger_panel.s: src/panels/scans_merger_panel.cpp.s
+
+.PHONY : src/panels/scans_merger_panel.s
+
+# target to generate assembly for a file
+src/panels/scans_merger_panel.cpp.s:
+	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/build.make obstacle_detector/CMakeFiles/obstacle_detector_gui.dir/src/panels/scans_merger_panel.cpp.s
+.PHONY : src/panels/scans_merger_panel.cpp.s
 
 src/scans_merger.o: src/scans_merger.cpp.o
 
@@ -593,33 +1382,6 @@ src/scans_merger.cpp.s:
 	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/scans_merger.dir/build.make obstacle_detector/CMakeFiles/scans_merger.dir/src/scans_merger.cpp.s
 .PHONY : src/scans_merger.cpp.s
 
-src/static_scan_publisher.o: src/static_scan_publisher.cpp.o
-
-.PHONY : src/static_scan_publisher.o
-
-# target to build an object file
-src/static_scan_publisher.cpp.o:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/static_scan_publisher.dir/build.make obstacle_detector/CMakeFiles/static_scan_publisher.dir/src/static_scan_publisher.cpp.o
-.PHONY : src/static_scan_publisher.cpp.o
-
-src/static_scan_publisher.i: src/static_scan_publisher.cpp.i
-
-.PHONY : src/static_scan_publisher.i
-
-# target to preprocess a source file
-src/static_scan_publisher.cpp.i:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/static_scan_publisher.dir/build.make obstacle_detector/CMakeFiles/static_scan_publisher.dir/src/static_scan_publisher.cpp.i
-.PHONY : src/static_scan_publisher.cpp.i
-
-src/static_scan_publisher.s: src/static_scan_publisher.cpp.s
-
-.PHONY : src/static_scan_publisher.s
-
-# target to generate assembly for a file
-src/static_scan_publisher.cpp.s:
-	cd /home/i-tricat241/catkin_ws/build && $(MAKE) -f obstacle_detector/CMakeFiles/static_scan_publisher.dir/build.make obstacle_detector/CMakeFiles/static_scan_publisher.dir/src/static_scan_publisher.cpp.s
-.PHONY : src/static_scan_publisher.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -627,47 +1389,117 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... obstacle_detector_geneus"
-	@echo "... obstacle_detector_generate_messages_eus"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... _obstacle_detector_generate_messages_check_deps_SegmentObstacle"
-	@echo "... _obstacle_detector_generate_messages_check_deps_CircleObstacle"
+	@echo "... obstacle_detector_gui"
+	@echo "... obstacle_detector_nodelets"
+	@echo "... obstacle_extractor_node"
+	@echo "... scans_merger_node"
+	@echo "... obstacle_tracker"
+	@echo "... obstacle_detector_generate_messages_py"
+	@echo "... obstacle_detector_generate_messages_nodejs"
+	@echo "... obstacle_detector_genlisp"
+	@echo "... map_msgs_generate_messages_lisp"
+	@echo "... rviz_generate_messages_cpp"
+	@echo "... map_msgs_generate_messages_cpp"
+	@echo "... install"
+	@echo "... visualization_msgs_generate_messages_py"
+	@echo "... scans_merger"
+	@echo "... obstacle_detector_gencpp"
+	@echo "... list_install_components"
+	@echo "... obstacle_detector_genpy"
+	@echo "... visualization_msgs_generate_messages_nodejs"
+	@echo "... nav_msgs_generate_messages_eus"
 	@echo "... visualization_msgs_generate_messages_eus"
-	@echo "... obstacle_detector_generate_messages_cpp"
-	@echo "... obstacle_visualizer"
-	@echo "... obstacle_detector_generate_messages"
-	@echo "... _obstacle_detector_generate_messages_check_deps_Obstacles"
+	@echo "... map_msgs_generate_messages_py"
+	@echo "... _obstacle_detector_generate_messages_check_deps_CircleObstacle"
+	@echo "... obstacle_publisher_node"
+	@echo "... rviz_generate_messages_py"
+	@echo "... rviz_generate_messages_nodejs"
 	@echo "... obstacle_detector_generate_messages_lisp"
 	@echo "... visualization_msgs_generate_messages_lisp"
-	@echo "... obstacle_detector_genlisp"
-	@echo "... obstacle_detector_generate_messages_nodejs"
-	@echo "... visualization_msgs_generate_messages_cpp"
 	@echo "... obstacle_detector_gennodejs"
-	@echo "... static_scan_publisher"
-	@echo "... obstacle_detector_generate_messages_py"
-	@echo "... obstacle_detector_gencpp"
-	@echo "... scans_merger"
-	@echo "... edit_cache"
-	@echo "... obstacle_detector"
-	@echo "... rebuild_cache"
-	@echo "... visualization_msgs_generate_messages_nodejs"
-	@echo "... obstacle_detector_genpy"
-	@echo "... list_install_components"
-	@echo "... visualization_msgs_generate_messages_py"
-	@echo "... install"
+	@echo "... map_msgs_generate_messages_eus"
+	@echo "... visualization_msgs_generate_messages_cpp"
+	@echo "... obstacle_extractor"
+	@echo "... rviz_generate_messages_eus"
 	@echo "... install/local"
-	@echo "... src/obstacle_detector.o"
-	@echo "... src/obstacle_detector.i"
-	@echo "... src/obstacle_detector.s"
-	@echo "... src/obstacle_visualizer.o"
-	@echo "... src/obstacle_visualizer.i"
-	@echo "... src/obstacle_visualizer.s"
+	@echo "... nav_msgs_generate_messages_cpp"
+	@echo "... nav_msgs_generate_messages_lisp"
+	@echo "... rviz_generate_messages_lisp"
+	@echo "... map_msgs_generate_messages_nodejs"
+	@echo "... nav_msgs_generate_messages_nodejs"
+	@echo "... nav_msgs_generate_messages_py"
+	@echo "... obstacle_detector_generate_messages"
+	@echo "... _obstacle_detector_generate_messages_check_deps_SegmentObstacle"
+	@echo "... _obstacle_detector_generate_messages_check_deps_Obstacles"
+	@echo "... obstacle_detector_generate_messages_cpp"
+	@echo "... obstacle_tracker_node"
+	@echo "... obstacle_publisher"
+	@echo "... obstacle_detector_generate_messages_eus"
+	@echo "... obstacle_detector_geneus"
+	@echo "... obstacle_detector_gui_autogen"
+	@echo "... obstacle_detector_gui_autogen/mocs_compilation.o"
+	@echo "... obstacle_detector_gui_autogen/mocs_compilation.i"
+	@echo "... obstacle_detector_gui_autogen/mocs_compilation.s"
+	@echo "... src/displays/circle_visual.o"
+	@echo "... src/displays/circle_visual.i"
+	@echo "... src/displays/circle_visual.s"
+	@echo "... src/displays/obstacles_display.o"
+	@echo "... src/displays/obstacles_display.i"
+	@echo "... src/displays/obstacles_display.s"
+	@echo "... src/displays/segment_visual.o"
+	@echo "... src/displays/segment_visual.i"
+	@echo "... src/displays/segment_visual.s"
+	@echo "... src/nodelets/obstacle_extractor_nodelet.o"
+	@echo "... src/nodelets/obstacle_extractor_nodelet.i"
+	@echo "... src/nodelets/obstacle_extractor_nodelet.s"
+	@echo "... src/nodelets/obstacle_publisher_nodelet.o"
+	@echo "... src/nodelets/obstacle_publisher_nodelet.i"
+	@echo "... src/nodelets/obstacle_publisher_nodelet.s"
+	@echo "... src/nodelets/obstacle_tracker_nodelet.o"
+	@echo "... src/nodelets/obstacle_tracker_nodelet.i"
+	@echo "... src/nodelets/obstacle_tracker_nodelet.s"
+	@echo "... src/nodelets/scans_merger_nodelet.o"
+	@echo "... src/nodelets/scans_merger_nodelet.i"
+	@echo "... src/nodelets/scans_merger_nodelet.s"
+	@echo "... src/nodes/obstacle_extractor_node.o"
+	@echo "... src/nodes/obstacle_extractor_node.i"
+	@echo "... src/nodes/obstacle_extractor_node.s"
+	@echo "... src/nodes/obstacle_publisher_node.o"
+	@echo "... src/nodes/obstacle_publisher_node.i"
+	@echo "... src/nodes/obstacle_publisher_node.s"
+	@echo "... src/nodes/obstacle_tracker_node.o"
+	@echo "... src/nodes/obstacle_tracker_node.i"
+	@echo "... src/nodes/obstacle_tracker_node.s"
+	@echo "... src/nodes/scans_merger_node.o"
+	@echo "... src/nodes/scans_merger_node.i"
+	@echo "... src/nodes/scans_merger_node.s"
+	@echo "... src/obstacle_extractor.o"
+	@echo "... src/obstacle_extractor.i"
+	@echo "... src/obstacle_extractor.s"
+	@echo "... src/obstacle_publisher.o"
+	@echo "... src/obstacle_publisher.i"
+	@echo "... src/obstacle_publisher.s"
+	@echo "... src/obstacle_tracker.o"
+	@echo "... src/obstacle_tracker.i"
+	@echo "... src/obstacle_tracker.s"
+	@echo "... src/panels/obstacle_extractor_panel.o"
+	@echo "... src/panels/obstacle_extractor_panel.i"
+	@echo "... src/panels/obstacle_extractor_panel.s"
+	@echo "... src/panels/obstacle_publisher_panel.o"
+	@echo "... src/panels/obstacle_publisher_panel.i"
+	@echo "... src/panels/obstacle_publisher_panel.s"
+	@echo "... src/panels/obstacle_tracker_panel.o"
+	@echo "... src/panels/obstacle_tracker_panel.i"
+	@echo "... src/panels/obstacle_tracker_panel.s"
+	@echo "... src/panels/scans_merger_panel.o"
+	@echo "... src/panels/scans_merger_panel.i"
+	@echo "... src/panels/scans_merger_panel.s"
 	@echo "... src/scans_merger.o"
 	@echo "... src/scans_merger.i"
 	@echo "... src/scans_merger.s"
-	@echo "... src/static_scan_publisher.o"
-	@echo "... src/static_scan_publisher.i"
-	@echo "... src/static_scan_publisher.s"
 .PHONY : help
 
 

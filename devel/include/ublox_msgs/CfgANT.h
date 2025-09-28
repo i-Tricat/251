@@ -89,7 +89,7 @@ struct CfgANT_
     PIN_SWITCH_MASK = 31u,
     PIN_SCD_MASK = 992u,
     PIN_OCD_MASK = 31744u,
-    PIN_RECONFIG = 32768u,
+    PIN_RECONFIG = 32678u,
   };
 
 
@@ -198,12 +198,12 @@ struct MD5Sum< ::ublox_msgs::CfgANT_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "3fb4e960ecb1d1999afa14ab38e0b768";
+    return "6c437e89b3ea397651d3a01434d681c7";
   }
 
   static const char* value(const ::ublox_msgs::CfgANT_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x3fb4e960ecb1d199ULL;
-  static const uint64_t static_value2 = 0x9afa14ab38e0b768ULL;
+  static const uint64_t static_value1 = 0x6c437e89b3ea3976ULL;
+  static const uint64_t static_value2 = 0x51d3a01434d681c7ULL;
 };
 
 template<class ContainerAllocator>
@@ -244,7 +244,7 @@ struct Definition< ::ublox_msgs::CfgANT_<ContainerAllocator> >
 "                               # antenna supply\n"
 "uint16 PIN_OCD_MASK = 31744    # PIO-Pin used for detecting open/not connected \n"
 "                               # antenna\n"
-"uint16 PIN_RECONFIG = 32768    # if set to one, and this command is sent to the \n"
+"uint16 PIN_RECONFIG = 32678    # if set to one, and this command is sent to the \n"
 "                               # receiver, the receiver will reconfigure the \n"
 "                               # pins as specified.\n"
 ;
@@ -285,8 +285,12 @@ struct Printer< ::ublox_msgs::CfgANT_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgANT_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pins: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.pins);
   }

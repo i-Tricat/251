@@ -279,14 +279,24 @@ struct Printer< ::ublox_msgs::RxmSVSI_SV_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::RxmSVSI_SV_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "svid: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svid);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svFlag: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svFlag);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "azim: ";
     Printer<int16_t>::stream(s, indent + "  ", v.azim);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "elev: ";
     Printer<int8_t>::stream(s, indent + "  ", v.elev);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "age: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.age);
   }

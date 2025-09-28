@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/i-tricat241/catkin_ws/build
 include obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/progress.make
 
 obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle:
-	cd /home/i-tricat241/catkin_ws/build/obstacle_detector && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py obstacle_detector /home/i-tricat241/catkin_ws/src/obstacle_detector/msg/CircleObstacle.msg geometry_msgs/Point
+	cd /home/i-tricat241/catkin_ws/build/obstacle_detector && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py obstacle_detector /home/i-tricat241/catkin_ws/src/obstacle_detector/msg/CircleObstacle.msg geometry_msgs/Vector3:geometry_msgs/Point
 
 _obstacle_detector_generate_messages_check_deps_CircleObstacle: obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle
 _obstacle_detector_generate_messages_check_deps_CircleObstacle: obstacle_detector/CMakeFiles/_obstacle_detector_generate_messages_check_deps_CircleObstacle.dir/build.make

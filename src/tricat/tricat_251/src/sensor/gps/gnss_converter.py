@@ -24,7 +24,7 @@ class GnssConverter():
 
         self.yaw_deg = 0.0  # ← 추가: yaw 값을 저장할 변수
 
-        self.gnss_sub = rospy.Subscriber("/ublox/fix", NavSatFix, self.gps_fix_callback, queue_size=1)
+        self.gnss_sub = rospy.Subscriber("/ublox_gps/fix", NavSatFix, self.gps_fix_callback, queue_size=1)
         self.yaw_sub = rospy.Subscriber("/psi", Float64, self.yaw_callback, queue_size=1)  # ← 추가: ψ 구독
 
         self.pub = rospy.Publisher(self.pub_name, Point, queue_size=10)

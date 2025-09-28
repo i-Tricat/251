@@ -240,18 +240,32 @@ struct Printer< ::ublox_msgs::RxmRAW_SV_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::RxmRAW_SV_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "cpMes: ";
     Printer<double>::stream(s, indent + "  ", v.cpMes);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "prMes: ";
     Printer<double>::stream(s, indent + "  ", v.prMes);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "doMes: ";
     Printer<float>::stream(s, indent + "  ", v.doMes);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sv: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.sv);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "mesQI: ";
     Printer<int8_t>::stream(s, indent + "  ", v.mesQI);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cno: ";
     Printer<int8_t>::stream(s, indent + "  ", v.cno);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "lli: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.lli);
   }

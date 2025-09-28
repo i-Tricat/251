@@ -230,14 +230,17 @@ struct Printer< ::tricat_msgs::Sensor_total_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::tricat_msgs::Sensor_total_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "header: ";
-    s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "position_ned: ";
-    s << std::endl;
     Printer< ::geometry_msgs::Point_<ContainerAllocator> >::stream(s, indent + "  ", v.position_ned);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "psi: ";
-    s << std::endl;
     Printer< ::std_msgs::Float64_<ContainerAllocator> >::stream(s, indent + "  ", v.psi);
   }
 };

@@ -263,7 +263,7 @@ class CfgNAV5 {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'ac3dd34c30655c54e2d11a724de7dcd6';
+    return '30ca0eca946e4bd96bf9f8a145f7b72c';
   }
 
   static messageDefinition() {
@@ -298,7 +298,6 @@ class CfgNAV5 {
     uint8 DYN_MODEL_AIRBORNE_2G = 7     # Airborne with <2g Acceleration
     uint8 DYN_MODEL_AIRBORNE_4G = 8     # Airborne with <4g Acceleration
     uint8 DYN_MODEL_WRIST_WATCH = 9     # Wrist watch, protocol >= 18
-    uint8 DYN_MODEL_BIKE = 10           # Bike, protocol >= 19.2
     
     uint8 fixMode           # Position Fixing Mode.
     uint8 FIX_MODE_2D_ONLY = 1          # 2D only
@@ -505,7 +504,6 @@ CfgNAV5.Constants = {
   DYN_MODEL_AIRBORNE_2G: 7,
   DYN_MODEL_AIRBORNE_4G: 8,
   DYN_MODEL_WRIST_WATCH: 9,
-  DYN_MODEL_BIKE: 10,
   FIX_MODE_2D_ONLY: 1,
   FIX_MODE_3D_ONLY: 2,
   FIX_MODE_AUTO: 3,

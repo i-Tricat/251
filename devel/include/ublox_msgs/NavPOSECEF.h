@@ -243,14 +243,24 @@ struct Printer< ::ublox_msgs::NavPOSECEF_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavPOSECEF_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefX: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefX);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefY: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefY);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefZ: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefZ);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.pAcc);
   }

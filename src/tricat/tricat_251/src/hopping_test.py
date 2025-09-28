@@ -3,18 +3,17 @@
 
 import rospy
 from std_msgs.msg import UInt16, Float64
-from math import hypot, pi, degrees
+from math import hypot, pi, degrees, sqrt
 import numpy as np
-from geometry_msgs.msg import Point
+from geometry_msgs.msg import Point, TransformStamped
 from tricat_msgs.msg import Pose, Control
-from ship.wp_manager import WpManager 
+from ship.wp_manager import WpManager
 from control.autopilot import heading_cal
-# from visual.visual_hopping import publish_tf, visualize
-### 시각화 ###
+
 import tf2_ros
 from tf.transformations import quaternion_from_euler
-from geometry_msgs.msg import Point, TransformStamped
 from visualization_msgs.msg import Marker, MarkerArray
+
 D2R = pi / 180
 
 class HoppingTestNode:
@@ -22,125 +21,182 @@ class HoppingTestNode:
         rospy.init_node('hopping_test_node')
         self.control_pub = rospy.Publisher('/Control', Control, queue_size=1)
 
+        # --- Waypoint Manager ---
         self.wp_manager = WpManager()
         self.wp_manager.wp_client()
         self.WP_data = []
         self.WP_k = []
         self.num_k = 0
-        self.d_goal = 0
-        self.ch = False
+        self.d_goal = 0.0
 
         if self.wp_manager.WP_data:
             self.wp_manager.initialize()
 
+        # --- States / Pose ---
         self.target_heading = 0.0
         self.target_angle = 0.0
 
         self.x_ned = 0.0
         self.y_ned = 0.0
-        self.psi_ned = 0.0
+        self.psi_ned = 0.0  # rad
         self.u_ned = 0.0
         self.v_ned = 0.0
         self.r_ned = 0.0
         self.U = 0.0
 
+        self.pose_received = False
+
         self.pose_sub = rospy.Subscriber("/Pose", Pose, self.pose_callback, queue_size=10)
 
+        # --- Control message ---
         self.control_msg = Control()
-        self.thruster_s = 0
-        self.thruster_p = 0
-        self.yaw_range = rospy.get_param("yaw_range", 70)
-        self.base_thrust = rospy.get_param("base_thrust", 1500)
+        self.thruster_s = 1500
+        self.thruster_p = 1500
+
+        # --- Parameters ---
+        # 제자리 회전 범위 -10도 ~ +10도
+        self.spin_range_deg = rospy.get_param("spin_range_deg", 10.0)  # 제자리 회전 범위 (degrees)
+        self.base_thrust = rospy.get_param("base_thrust", 1550)      # 전진 기본 추력
         self.thrust_range = rospy.get_param("thrust_range", [1350, 1650])
+
+        # PID 게인 (HOP 상태에서만 사용)
         self.kp_thruster = rospy.get_param("kp_thruster", 2.0)
         self.kd_thruster = rospy.get_param("kd_thruster", 0.3)
-        # self.goal_range_2 = rospy.get_param("goal_range_slow")
-        self.tf_broadcaster = tf2_ros.TransformBroadcaster() 
+
+        # TF/Marker
+        self.tf_broadcaster = tf2_ros.TransformBroadcaster()
         self.marker_array_pub = rospy.Publisher('/visualization_marker_array', MarkerArray, queue_size=10)
-        
-    def pose_callback(self, msg):
+
+        # FSM 모드
+        self.mode = "ROTATE"  # 초기엔 정렬부터
+
+    # ----------------------- Callbacks -----------------------
+    def pose_callback(self, msg: Pose):
         try:
             self.x_ned = float(msg.x.data)
             self.y_ned = float(msg.y.data)
+
             psi_deg = float(msg.psi.data)
-            self.psi_ned = (((psi_deg) * D2R + pi) % (2 * pi)) - pi  # deg -> rad
+            self.psi_ned = (((psi_deg) * D2R + pi) % (2 * pi)) - pi  # deg -> rad, [-pi, pi)
 
-            rospy.loginfo_throttle(2, f"Pose 수신: x={self.x_ned}, y={self.y_ned}, psi(deg)={psi_deg}, psi(rad)={self.psi_ned}")
+            # 선택: u, v, r 필드가 있으면 업데이트
+            try:
+                self.u_ned = float(msg.u.data)
+                self.v_ned = float(msg.v.data)
+            except Exception:
+                pass
+            try:
+                self.r_ned = float(msg.r.data)
+            except Exception:
+                pass
 
+            self.U = sqrt(self.u_ned**2 + self.v_ned**2)
+
+            rospy.loginfo_throttle(2, f"Pose: x={self.x_ned:.2f}, y={self.y_ned:.2f}, psi(deg)={psi_deg:.2f}, r={self.r_ned:.3f}")
             self.pose_received = True
-
         except Exception as e:
             rospy.logwarn(f"Pose 값 수신 오류: {e}")
 
+    # ----------------------- Core Loop -----------------------
     def hopping_run(self):
+        # 최신 WP/거리 계산
         self.d_goal = self.wp_manager.cal_d_goal(self.x_ned, self.y_ned)
         self.WP_k = self.wp_manager.manage(self.x_ned, self.y_ned)
-        self.target_heading = heading_cal(self.WP_k[1].x.data, self.WP_k[1].y.data, self.x_ned, self.y_ned)
+
+        # 목표 방위 갱신
+        self.target_heading = heading_cal(self.WP_k[1].x.data, self.WP_k[1].y.data, self.x_ned, self.y_ned)  # rad
         self.target_angle = self.target_heading - self.psi_ned
 
-        self.thruster_p, self.thruster_s = self.thrust_pid_controller2(self.psi_ned) 
-        # self.thrust_pid_controller(self.psi_ned)
-        self.publish_tf(None)
+        # 상태 전환 판단
+        self.update_mode()
+
+        # 상태별 추력 산출
+        self.control_step()
+
+        # 시각화
+        self.publish_tf()
         self.visualize(self.x_ned, self.y_ned)
- 
-    
-    def thrust_pid_controller2(self, psi_ned):
-        psi_desire = self.target_heading
-        control_angle = (psi_desire - psi_ned + pi) % (2 * pi) - pi
-        control_angle_deg = degrees(control_angle)
-        control_angle_deg = ((control_angle_deg) + 180) % 360 - 180
-        self.psi_desire = psi_desire
+
+    def update_mode(self):
+        # 각도 오차 계산 (deg, -180~180)
+        control_angle = (self.target_heading - self.psi_ned + pi) % (2 * pi) - pi
+        control_angle_deg = ((degrees(control_angle)) + 180) % 360 - 180
         self.control_angle_deg = control_angle_deg
-        # if vector_desired is None and psi_desire:
-        #     self.thruster_p 
-        #     self.thruster_s 
-        if abs(control_angle_deg) > self.yaw_range:
-            Re_diff = 150
-            if 180 >control_angle_deg >= 0:
-                self.thruster_p = 1500 - Re_diff # 아두이노 코드 ㅄ
-                self.thruster_s = 1500 + Re_diff
-            elif -180 < control_angle_deg < 0:
-                self.thruster_p = 1500 + Re_diff # 아두이노 코드 ㅄ
-                self.thruster_s = 1500 - Re_diff
+
+        if abs(control_angle_deg) <= 15:
+            # 제자리 회전 범위 내
+            self.mode = "HOP"
         else:
-            cp_thrust = self.kp_thruster * control_angle_deg
-            yaw_rate = self.r_ned
-            cd_thrust = self.kd_thruster * (-yaw_rate)
+            # 제자리 회전 범위 밖
+            self.mode = "ROTATE"
 
-            thrust_diff = cp_thrust + cd_thrust
+    def control_step(self):
+        if self.mode == "ROTATE":
+            self.control_rotate()
+        else:
+            self.control_hop()
 
-            base_thrust = self.base_thrust
-            left_thrust = 3000 - (base_thrust + thrust_diff)
-            right_thrust =3000 - (base_thrust - thrust_diff)
+    # ----------------------- Controllers -----------------------
+    def control_rotate(self):
+        """
+        제자리 회전: 좌/우 역추진만으로 회전. 각도 제한 없음.
+        """
+        # 각도 부호에 따라 좌우 반대로
+        if self.control_angle_deg >= 0:
+            self.thruster_p = 1500 + 100  # 역추진 (우측)
+            self.thruster_s = 1500 - 100  # 역추진 (좌측)
+        else:
+            self.thruster_p = 1500 - 100  # 역추진 (좌측)
+            self.thruster_s = 1500 + 100  # 역추진 (우측)
 
-            # if self.d_goal <= self.goal_range_2:
-            #     self.thruster_p -= 70
-            #     self.thruster_s -= 70
+        # 안전 클램프
+        self.thruster_p = int(max(min(self.thruster_p, self.thrust_range[1]), self.thrust_range[0]))
+        self.thruster_s = int(max(min(self.thruster_s, self.thrust_range[1]), self.thrust_range[0]))
 
-            self.thruster_p = max(min(left_thrust, self.thrust_range[1]), self.thrust_range[0])
-            self.thruster_s = max(min(right_thrust, self.thrust_range[1]), self.thrust_range[0])
+    def control_hop(self):
+        """
+        전진 추종(PD 차등): **각도 제한 완전 해제**.
+        yaw_range 기반 분기 **완전 제거**, 오차만큼 좌우 차등을 주고 base_thrust로 밀어줌.
+        """
+        # PD (yaw rate가 제대로 들어오면 D 사용)
+        cp = self.kp_thruster * self.control_angle_deg
+        cd = self.kd_thruster * (-self.r_ned)
 
-        return self.thruster_p, self.thruster_s
-    
+        thrust_diff = cp + cd
+
+        left_thrust  = self.base_thrust + thrust_diff
+        right_thrust = self.base_thrust - thrust_diff
+
+        # 안전 클램프
+        self.thruster_p = int(max(min(left_thrust,  self.thrust_range[1]), self.thrust_range[0]))
+        self.thruster_s = int(max(min(right_thrust, self.thrust_range[1]), self.thrust_range[0]))
+
+    # ----------------------- I/O -----------------------
     def control_publish(self):
         self.control_msg.thruster_p = UInt16(int(self.thruster_p))
         self.control_msg.thruster_s = UInt16(int(self.thruster_s))
         self.control_pub.publish(self.control_msg)
 
     def print_hopping(self):
-        rospy.loginfo_throttle(1.0,"---------------------------------------------------------------------\n")
-        rospy.loginfo_throttle(1.0,f"현재 웨이포인트: {self.WP_k[1].num.data}\n")
-        rospy.loginfo_throttle(1.0,f"웨이포인트 위치: x={self.WP_k[1].x.data}, y={self.WP_k[1].y.data}\n")
-        rospy.loginfo_throttle(1.0,f"목표까지 거리[d_goal: {self.d_goal:.3f} m\n")
-        rospy.loginfo_throttle(1.0,f"현재 위치: x={self.x_ned}, y={self.y_ned}\n")
-        rospy.loginfo_throttle(1.0,f"현재 방향: {degrees(self.psi_ned):.2f} deg\n")
-        rospy.loginfo_throttle(1.0,f"목표 방향: {degrees(self.target_heading):.2f} deg\n")
-        rospy.loginfo_throttle(1.0,f"추력 (왼쪽/오른쪽): {self.thruster_p:.0f} / {self.thruster_s:.0f}\n")
+        try:
+            print("---------------------------------------------------------------------")
+            print(f"모드: {self.mode}")
+            print(f"현재 웨이포인트: {self.WP_k[1].num.data}")
+            print(f"웨이포인트 위치: x={self.WP_k[1].x.data:.2f}, y={self.WP_k[1].y.data:.2f}")
+            print(f"목표까지 거리 d_goal: {self.d_goal:.3f} m")
+            print(f"현재 위치: x={self.x_ned:.2f}, y={self.y_ned:.2f}")
+            print(f"현재 방향: {degrees(self.psi_ned):.2f} deg")
+            print(f"목표 방향: {degrees(self.target_heading):.2f} deg")
+            print(f"각도 오차: {self.control_angle_deg:.2f} deg")
+            print(f"추력 (왼/오): {self.thruster_p} / {self.thruster_s}")
+        except Exception:
+            pass
 
+    # ----------------------- Visualization -----------------------
     def publish_tf(self, event=None):
         current_time = rospy.Time.now()
 
-        # ✅ world → map 변환
+        # world -> map
         map_transform = TransformStamped()
         map_transform.header.stamp = current_time
         map_transform.header.frame_id = "world"
@@ -153,7 +209,7 @@ class HoppingTestNode:
         map_transform.transform.rotation.z = 0.0
         map_transform.transform.rotation.w = 1.0
 
-        # ✅ map → base_link 변환 (보트 위치)
+        # map -> base_link
         base_link_transform = TransformStamped()
         base_link_transform.header.stamp = current_time
         base_link_transform.header.frame_id = "map"
@@ -161,19 +217,18 @@ class HoppingTestNode:
         base_link_transform.transform.translation.x = self.x_ned
         base_link_transform.transform.translation.y = self.y_ned
         base_link_transform.transform.translation.z = 0.0
-        quaternion = quaternion_from_euler(0, 0, self.psi_ned)
-        base_link_transform.transform.rotation.x = quaternion[0]
-        base_link_transform.transform.rotation.y = quaternion[1]
-        base_link_transform.transform.rotation.z = quaternion[2]
-        base_link_transform.transform.rotation.w = quaternion[3]
+        q = quaternion_from_euler(0, 0, self.psi_ned)
+        base_link_transform.transform.rotation.x = q[0]
+        base_link_transform.transform.rotation.y = q[1]
+        base_link_transform.transform.rotation.z = q[2]
+        base_link_transform.transform.rotation.w = q[3]
 
         self.tf_broadcaster.sendTransform([map_transform, base_link_transform])
-        
+
     def visualize(self, x_ned, y_ned):
-        # rospy.loginfo("🚀 visualize 호출됨")
         marker_array = MarkerArray()
 
-        # ✅ 현재 위치 마커 (녹색 구)
+        # 현재 위치 (파란 구)
         gps_marker = Marker()
         gps_marker.header.frame_id = "map"
         gps_marker.header.stamp = rospy.Time.now()
@@ -191,14 +246,14 @@ class HoppingTestNode:
         gps_marker.color.a = 1.0
         marker_array.markers.append(gps_marker)
 
-        ### 웨이포인트 표시 및 도달범위 ###
+        # 웨이포인트/범위
         for idx, wp in enumerate(self.wp_manager.WP_data):
-            # 🚩 웨이포인트 마커 (빨간색 점)
+            # WP 점
             wp_marker = Marker()
             wp_marker.header.frame_id = "map"
             wp_marker.header.stamp = rospy.Time.now()
             wp_marker.ns = "waypoints"
-            wp_marker.id = idx + 100  # ✅ ID 충돌 방지를 위해 고유 값 사용
+            wp_marker.id = idx + 100
             wp_marker.type = Marker.SPHERE
             wp_marker.action = Marker.ADD
             wp_marker.pose.position.x = wp.x.data
@@ -206,20 +261,18 @@ class HoppingTestNode:
             wp_marker.pose.position.z = 0
             wp_marker.scale.x = wp_marker.scale.y = wp_marker.scale.z = 0.3
 
-            # 현재 목표 웨이포인트 강조 (노란색)
             if self.WP_k and wp.num.data == self.WP_k[1].num.data:
-                wp_marker.color.r, wp_marker.color.g, wp_marker.color.b, wp_marker.color.a = 1.0, 1.0, 0.0, 1.0  # 노란색
+                wp_marker.color.r, wp_marker.color.g, wp_marker.color.b, wp_marker.color.a = 1.0, 1.0, 0.0, 1.0
             else:
-                wp_marker.color.r, wp_marker.color.g, wp_marker.color.b, wp_marker.color.a = 1.0, 0.0, 0.0, 1.0  # 빨간색
-
+                wp_marker.color.r, wp_marker.color.g, wp_marker.color.b, wp_marker.color.a = 1.0, 0.0, 0.0, 1.0
             marker_array.markers.append(wp_marker)
 
-            # 🔴 도달 범위 원 (반투명 빨간색)
+            # 도달 범위
             range_marker = Marker()
             range_marker.header.frame_id = "map"
             range_marker.header.stamp = rospy.Time.now()
             range_marker.ns = "waypoint_ranges"
-            range_marker.id = idx + 1000  # ✅ 웨이포인트 ID와 겹치지 않도록 충분히 큰 수 사용
+            range_marker.id = idx + 1000
             range_marker.type = Marker.CYLINDER
             range_marker.action = Marker.ADD
             range_marker.pose.position.x = wp.x.data
@@ -231,14 +284,18 @@ class HoppingTestNode:
             marker_array.markers.append(range_marker)
 
         self.marker_array_pub.publish(marker_array)
-# ✅ 파일 제일 아래에 위치 (클래스 밖)
+
+# ----------------------- Main -----------------------
 if __name__ == '__main__':
     try:
         node = HoppingTestNode()
+        node.WP_k = node.wp_manager.manage(node.x_ned, node.y_ned)
         rate = rospy.Rate(10)
         while not rospy.is_shutdown():
-            node.hopping_run()
-            node.control_publish()
-            node.print_hopping()
+            if node.pose_received:
+                node.hopping_run()
+                node.control_publish()
+                node.print_hopping()
+            rate.sleep()
     except rospy.ROSInterruptException:
         pass

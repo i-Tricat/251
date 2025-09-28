@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/i-tricat241/catkin_ws/build
 include tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_Control.dir/progress.make
 
 tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_Control:
-	cd /home/i-tricat241/catkin_ws/build/tricat/tricat_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tricat_msgs /home/i-tricat241/catkin_ws/src/tricat/tricat_msgs/msg/Control.msg std_msgs/Header:std_msgs/UInt16
+	cd /home/i-tricat241/catkin_ws/build/tricat/tricat_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tricat_msgs /home/i-tricat241/catkin_ws/src/tricat/tricat_msgs/msg/Control.msg std_msgs/UInt16:std_msgs/Header
 
 _tricat_msgs_generate_messages_check_deps_Control: tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_Control
 _tricat_msgs_generate_messages_check_deps_Control: tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_Control.dir/build.make

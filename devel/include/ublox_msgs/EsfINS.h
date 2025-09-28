@@ -337,26 +337,51 @@ struct Printer< ::ublox_msgs::EsfINS_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::EsfINS_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "bitfield0: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.bitfield0);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
+    if (v.reserved1.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "xAngRate: ";
     Printer<int32_t>::stream(s, indent + "  ", v.xAngRate);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "yAngRate: ";
     Printer<int32_t>::stream(s, indent + "  ", v.yAngRate);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "zAngRate: ";
     Printer<int32_t>::stream(s, indent + "  ", v.zAngRate);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "xAccel: ";
     Printer<int32_t>::stream(s, indent + "  ", v.xAccel);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "yAccel: ";
     Printer<int32_t>::stream(s, indent + "  ", v.yAccel);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "zAccel: ";
     Printer<int32_t>::stream(s, indent + "  ", v.zAccel);
   }

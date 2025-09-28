@@ -378,42 +378,80 @@ struct Printer< ::ublox_msgs::AidHUI_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::AidHUI_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "health: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.health);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "utcA0: ";
     Printer<double>::stream(s, indent + "  ", v.utcA0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "utcA1: ";
     Printer<double>::stream(s, indent + "  ", v.utcA1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "utcTOW: ";
     Printer<int32_t>::stream(s, indent + "  ", v.utcTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "utcWNT: ";
     Printer<int16_t>::stream(s, indent + "  ", v.utcWNT);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "utcLS: ";
     Printer<int16_t>::stream(s, indent + "  ", v.utcLS);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "utcWNF: ";
     Printer<int16_t>::stream(s, indent + "  ", v.utcWNF);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "utcDN: ";
     Printer<int16_t>::stream(s, indent + "  ", v.utcDN);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "utcLSF: ";
     Printer<int16_t>::stream(s, indent + "  ", v.utcLSF);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "utcSpare: ";
     Printer<int16_t>::stream(s, indent + "  ", v.utcSpare);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "klobA0: ";
     Printer<float>::stream(s, indent + "  ", v.klobA0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "klobA1: ";
     Printer<float>::stream(s, indent + "  ", v.klobA1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "klobA2: ";
     Printer<float>::stream(s, indent + "  ", v.klobA2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "klobA3: ";
     Printer<float>::stream(s, indent + "  ", v.klobA3);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "klobB0: ";
     Printer<float>::stream(s, indent + "  ", v.klobB0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "klobB1: ";
     Printer<float>::stream(s, indent + "  ", v.klobB1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "klobB2: ";
     Printer<float>::stream(s, indent + "  ", v.klobB2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "klobB3: ";
     Printer<float>::stream(s, indent + "  ", v.klobB3);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.flags);
   }

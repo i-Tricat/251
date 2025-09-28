@@ -312,22 +312,44 @@ struct Printer< ::ublox_msgs::UpdSOS_Ack_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::UpdSOS_Ack_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "cmd: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.cmd);
-    s << indent << "reserved0[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved0: ";
+    if (v.reserved0.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved0.size(); ++i)
     {
-      s << indent << "  reserved0[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved0[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved0[i]);
     }
+    if (v.reserved0.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "response: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.response);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
+    if (v.reserved1.empty() || true)
+      s << "]";
   }
 };
 

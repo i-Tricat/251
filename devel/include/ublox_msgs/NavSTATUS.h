@@ -462,18 +462,32 @@ struct Printer< ::ublox_msgs::NavSTATUS_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavSTATUS_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "gpsFix: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.gpsFix);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "fixStat: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.fixStat);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags2: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ttff: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.ttff);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "msss: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.msss);
   }

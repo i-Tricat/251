@@ -202,12 +202,21 @@ struct Printer< ::ublox_msgs::Inf_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::Inf_<ContainerAllocator>& v)
   {
-    s << indent << "str[]" << std::endl;
+    if (false || !indent.empty())
+      s << std::endl;
+    s << indent << "str: ";
+    if (v.str.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.str.size(); ++i)
     {
-      s << indent << "  str[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.str[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.str[i]);
     }
+    if (v.str.empty() || true)
+      s << "]";
   }
 };
 

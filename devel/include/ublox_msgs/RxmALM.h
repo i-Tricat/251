@@ -240,16 +240,29 @@ struct Printer< ::ublox_msgs::RxmALM_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::RxmALM_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "svid: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.svid);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "week: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.week);
-    s << indent << "dwrd[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "dwrd: ";
+    if (v.dwrd.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.dwrd.size(); ++i)
     {
-      s << indent << "  dwrd[" << i << "]: ";
-      Printer<uint32_t>::stream(s, indent + "  ", v.dwrd[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint32_t>::stream(s, true ? std::string() : indent + "    ", v.dwrd[i]);
     }
+    if (v.dwrd.empty() || true)
+      s << "]";
   }
 };
 

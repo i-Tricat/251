@@ -99,7 +99,7 @@ if(NOT "/home/i-tricat241/catkin_ws/devel/include;/home/i-tricat241/catkin_ws/sr
   elseif(NOT " " STREQUAL " ")
     set(_report "Check the website '' for information and consider reporting the problem.")
   else()
-    set(_report "Report the problem to the maintainer 'Mateusz Przybyla <mateusz.przybyla@doctorate.put.poznan.pl>' and request to fix the problem.")
+    set(_report "Report the problem to the maintainer 'Mateusz Przybyla <mateusz.przybyla@put.poznan.pl>' and request to fix the problem.")
   endif()
   foreach(idir ${_include_dirs})
     if(IS_ABSOLUTE ${idir} AND IS_DIRECTORY ${idir})
@@ -116,9 +116,9 @@ if(NOT "/home/i-tricat241/catkin_ws/devel/include;/home/i-tricat241/catkin_ws/sr
   endforeach()
 endif()
 
-set(libraries "obstacle_detector")
+set(libraries "scans_merger;obstacle_extractor;obstacle_tracker;obstacle_publisher;obstacle_detector_nodelets;obstacle_detector_gui")
 foreach(library ${libraries})
-  # keep build configuration keywords, target names and absolute libraries as-is
+  # keep build configuration keywords, generator expressions, target names, and absolute libraries as-is
   if("${library}" MATCHES "^(debug|optimized|general)$")
     list(APPEND obstacle_detector_LIBRARIES ${library})
   elseif(${library} MATCHES "^-l")
@@ -146,6 +146,8 @@ foreach(library ${libraries})
       target_link_options("${interface_target_name}" INTERFACE "${library}")
     endif()
     list(APPEND obstacle_detector_LIBRARIES "${interface_target_name}")
+  elseif(${library} MATCHES "^\\$<")
+    list(APPEND obstacle_detector_LIBRARIES ${library})
   elseif(TARGET ${library})
     list(APPEND obstacle_detector_LIBRARIES ${library})
   elseif(IS_ABSOLUTE ${library})
@@ -185,7 +187,7 @@ foreach(t ${obstacle_detector_EXPORTED_TARGETS})
   endif()
 endforeach()
 
-set(depends "roscpp;std_msgs;geometry_msgs;sensor_msgs;visualization_msgs;tf;message_runtime")
+set(depends "roscpp;nodelet;rviz;std_msgs;std_srvs;geometry_msgs;sensor_msgs;tf;laser_geometry;message_runtime")
 foreach(depend ${depends})
   string(REPLACE " " ";" depend_list ${depend})
   # the package name of the dependency must be kept in a unique variable so that it is not overwritten in recursive calls

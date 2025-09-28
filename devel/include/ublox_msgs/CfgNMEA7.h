@@ -463,22 +463,40 @@ struct Printer< ::ublox_msgs::CfgNMEA7_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgNMEA7_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "filter: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.filter);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "nmeaVersion: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.nmeaVersion);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "numSV: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.numSV);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "gnssToFilter: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.gnssToFilter);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svNumbering: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svNumbering);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "mainTalkerId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.mainTalkerId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "gsvTalkerId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.gsvTalkerId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved);
   }

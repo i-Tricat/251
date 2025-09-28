@@ -3,7 +3,6 @@
 
 let NavSBAS = require('./NavSBAS.js');
 let MonHW = require('./MonHW.js');
-let NavHPPOSECEF = require('./NavHPPOSECEF.js');
 let NavTIMEGPS = require('./NavTIMEGPS.js');
 let MonVER_Extension = require('./MonVER_Extension.js');
 let NavDOP = require('./NavDOP.js');
@@ -38,7 +37,6 @@ let CfgRST = require('./CfgRST.js');
 let CfgPRT = require('./CfgPRT.js');
 let RxmSFRB = require('./RxmSFRB.js');
 let CfgANT = require('./CfgANT.js');
-let EsfALG = require('./EsfALG.js');
 let CfgGNSS_Block = require('./CfgGNSS_Block.js');
 let CfgSBAS = require('./CfgSBAS.js');
 let NavSAT_SV = require('./NavSAT_SV.js');
@@ -62,7 +60,6 @@ let Inf = require('./Inf.js');
 let CfgHNR = require('./CfgHNR.js');
 let HnrPVT = require('./HnrPVT.js');
 let NavSVINFO_SV = require('./NavSVINFO_SV.js');
-let NavRELPOSNED9 = require('./NavRELPOSNED9.js');
 let RxmRAWX = require('./RxmRAWX.js');
 let NavSBAS_SV = require('./NavSBAS_SV.js');
 let RxmRAW_SV = require('./RxmRAW_SV.js');
@@ -75,7 +72,6 @@ let EsfRAW = require('./EsfRAW.js');
 let CfgNMEA6 = require('./CfgNMEA6.js');
 let RxmSFRBX = require('./RxmSFRBX.js');
 let RxmSVSI_SV = require('./RxmSVSI_SV.js');
-let NavHPPOSLLH = require('./NavHPPOSLLH.js');
 let AidHUI = require('./AidHUI.js');
 let NavPOSECEF = require('./NavPOSECEF.js');
 let NavSOL = require('./NavSOL.js');
@@ -85,7 +81,6 @@ let CfgNAV5 = require('./CfgNAV5.js');
 module.exports = {
   NavSBAS: NavSBAS,
   MonHW: MonHW,
-  NavHPPOSECEF: NavHPPOSECEF,
   NavTIMEGPS: NavTIMEGPS,
   MonVER_Extension: MonVER_Extension,
   NavDOP: NavDOP,
@@ -120,7 +115,6 @@ module.exports = {
   CfgPRT: CfgPRT,
   RxmSFRB: RxmSFRB,
   CfgANT: CfgANT,
-  EsfALG: EsfALG,
   CfgGNSS_Block: CfgGNSS_Block,
   CfgSBAS: CfgSBAS,
   NavSAT_SV: NavSAT_SV,
@@ -144,7 +138,6 @@ module.exports = {
   CfgHNR: CfgHNR,
   HnrPVT: HnrPVT,
   NavSVINFO_SV: NavSVINFO_SV,
-  NavRELPOSNED9: NavRELPOSNED9,
   RxmRAWX: RxmRAWX,
   NavSBAS_SV: NavSBAS_SV,
   RxmRAW_SV: RxmRAW_SV,
@@ -157,7 +150,6 @@ module.exports = {
   CfgNMEA6: CfgNMEA6,
   RxmSFRBX: RxmSFRBX,
   RxmSVSI_SV: RxmSVSI_SV,
-  NavHPPOSLLH: NavHPPOSLLH,
   AidHUI: AidHUI,
   NavPOSECEF: NavPOSECEF,
   NavSOL: NavSOL,

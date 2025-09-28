@@ -118,6 +118,21 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
+   "/home/i-tricat241/catkin_ws/install/setup.fish;/home/i-tricat241/catkin_ws/install/local_setup.fish")
+  if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
+    message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+  endif()
+  if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
+    message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+  endif()
+file(INSTALL DESTINATION "/home/i-tricat241/catkin_ws/install" TYPE FILE FILES
+    "/home/i-tricat241/catkin_ws/build/catkin_generated/installspace/setup.fish"
+    "/home/i-tricat241/catkin_ws/build/catkin_generated/installspace/local_setup.fish"
+    )
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
    "/home/i-tricat241/catkin_ws/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
@@ -131,21 +146,20 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/i-tricat241/catkin_ws/build/gtest/cmake_install.cmake")
-  include("/home/i-tricat241/catkin_ws/build/ublox/ntrip_ros_python3/cmake_install.cmake")
-  include("/home/i-tricat241/catkin_ws/build/ublox/rtcm_msgs/cmake_install.cmake")
+  include("/home/i-tricat241/catkin_ws/build/ublox_f9p/ntrip_ros/cmake_install.cmake")
+  include("/home/i-tricat241/catkin_ws/build/ublox_f9p/rtcm_msgs/cmake_install.cmake")
   include("/home/i-tricat241/catkin_ws/build/tricat/tricat/cmake_install.cmake")
   include("/home/i-tricat241/catkin_ws/build/tricat/tricat_msgs/cmake_install.cmake")
   include("/home/i-tricat241/catkin_ws/build/tricat/tricat_sensor/cmake_install.cmake")
-  include("/home/i-tricat241/catkin_ws/build/ublox/ublox/cmake_install.cmake")
+  include("/home/i-tricat241/catkin_ws/build/ublox_f9p/ublox/cmake_install.cmake")
   include("/home/i-tricat241/catkin_ws/build/rplidar_ros/cmake_install.cmake")
   include("/home/i-tricat241/catkin_ws/build/myahrs_driver/cmake_install.cmake")
-  include("/home/i-tricat241/catkin_ws/build/obstacle_detector/cmake_install.cmake")
   include("/home/i-tricat241/catkin_ws/build/tricat/tricat_251/cmake_install.cmake")
   include("/home/i-tricat241/catkin_ws/build/tricat/tricat_actuator/cmake_install.cmake")
-  include("/home/i-tricat241/catkin_ws/build/ublox/ublox_serialization/cmake_install.cmake")
-  include("/home/i-tricat241/catkin_ws/build/ublox/ublox_msgs/cmake_install.cmake")
-  include("/home/i-tricat241/catkin_ws/build/ublox/ublox_gps/cmake_install.cmake")
-  include("/home/i-tricat241/catkin_ws/build/ublox/ublox_msg_filters/cmake_install.cmake")
+  include("/home/i-tricat241/catkin_ws/build/ublox_f9p/ublox_serialization/cmake_install.cmake")
+  include("/home/i-tricat241/catkin_ws/build/ublox_f9p/ublox_msgs/cmake_install.cmake")
+  include("/home/i-tricat241/catkin_ws/build/ublox_f9p/ublox_gps/cmake_install.cmake")
+  include("/home/i-tricat241/catkin_ws/build/obstacle_detector/cmake_install.cmake")
 
 endif()
 

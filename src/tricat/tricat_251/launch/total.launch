@@ -39,7 +39,12 @@
 	<node pkg="tricat_251" type="psi_converter.py" name="psi_converter" respawn="true"/>
 	<!-- rosbag/test_static_23.py play -->
     <!-- <node pkg="rosbag" type="play" name="rosbag_sensor" args="-l $(find tricat_251)/sensor.bag"/> -->
-	<node name="ship_25_node" pkg="tricat_251" type="ship_25.py" output="screen" />
+	<!-- <node name="ship_25_node" pkg="tricat_251" type="point.py" output="screen" /> -->
+/	<node name="ship_25_node" pkg="tricat_251" type="detecting.py" output="screen" />
+<!-- /	<node name="ship_25_node" pkg="tricat_251" type="tracking.py" output="screen" /> -->
+
+	<!-- <node name="ship_25_node" pkg="tricat_251" type="thruster_test.py" output="screen" /> -->
+	<!-- <node name="ship_25_node" pkg="tricat_251" type="ssh.py" output="screen" /> -->
 
     <!-- Total -->
     <node pkg="tricat_251" type="sensor_total.py" name="sensor_total" args="Sensor_total" respawn="true" /> 

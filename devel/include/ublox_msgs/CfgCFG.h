@@ -342,12 +342,20 @@ struct Printer< ::ublox_msgs::CfgCFG_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgCFG_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "clearMask: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.clearMask);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "saveMask: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.saveMask);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "loadMask: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.loadMask);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "deviceMask: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.deviceMask);
   }

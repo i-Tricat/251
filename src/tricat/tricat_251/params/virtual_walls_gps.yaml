@@ -1,0 +1,12 @@
+origin_lat: 37.4500000
+origin_lon: 126.6500000
+frame_id: "map"
+pub_topic: "/obstacles_virtual"
+publish_rate: 10.0
+marker_line_thickness: 0.2
+
+walls_gps:
+  - [[37.447989887721, 126.653490252792], [37.4481365514347, 126.653588488698]]
+  - [[37.4520000,      126.6480000     ], [37.4530000,      126.6495000     ]]
+
+polylines_gps: []

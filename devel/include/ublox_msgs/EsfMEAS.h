@@ -442,24 +442,48 @@ struct Printer< ::ublox_msgs::EsfMEAS_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::EsfMEAS_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "timeTag: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.timeTag);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "id: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.id);
-    s << indent << "data[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "data: ";
+    if (v.data.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.data.size(); ++i)
     {
-      s << indent << "  data[" << i << "]: ";
-      Printer<uint32_t>::stream(s, indent + "  ", v.data[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint32_t>::stream(s, true ? std::string() : indent + "    ", v.data[i]);
     }
-    s << indent << "calibTtag[]" << std::endl;
+    if (v.data.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "calibTtag: ";
+    if (v.calibTtag.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.calibTtag.size(); ++i)
     {
-      s << indent << "  calibTtag[" << i << "]: ";
-      Printer<uint32_t>::stream(s, indent + "  ", v.calibTtag[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint32_t>::stream(s, true ? std::string() : indent + "    ", v.calibTtag[i]);
     }
+    if (v.calibTtag.empty() || true)
+      s << "]";
   }
 };
 

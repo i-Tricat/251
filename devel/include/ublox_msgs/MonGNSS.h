@@ -291,22 +291,41 @@ struct Printer< ::ublox_msgs::MonGNSS_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::MonGNSS_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "version: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.version);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "supported: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.supported);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "defaultGnss: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.defaultGnss);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "enabled: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.enabled);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "simultaneous: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.simultaneous);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
+    if (v.reserved1.empty() || true)
+      s << "]";
   }
 };
 

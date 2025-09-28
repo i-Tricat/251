@@ -224,8 +224,12 @@ struct Printer< ::ublox_msgs::Ack_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::Ack_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "clsID: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.clsID);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "msgID: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.msgID);
   }

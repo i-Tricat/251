@@ -251,22 +251,40 @@ struct Printer< ::ublox_msgs::NavSBAS_SV_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavSBAS_SV_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "svid: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svid);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "udre: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.udre);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svSys: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svSys);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svService: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svService);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved1: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "prc: ";
     Printer<int16_t>::stream(s, indent + "  ", v.prc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved2: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.reserved2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ic: ";
     Printer<int16_t>::stream(s, indent + "  ", v.ic);
   }

@@ -324,22 +324,37 @@ struct Printer< ::ublox_msgs::NavSVINFO_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavSVINFO_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "numCh: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.numCh);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "globalFlags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.globalFlags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved2: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.reserved2);
-    s << indent << "sv[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "sv: ";
+    if (v.sv.empty() || false)
+      s << "[";
     for (size_t i = 0; i < v.sv.size(); ++i)
     {
-      s << indent << "  sv[" << i << "]: ";
-      s << std::endl;
-      s << indent;
-      Printer< ::ublox_msgs::NavSVINFO_SV_<ContainerAllocator> >::stream(s, indent + "    ", v.sv[i]);
+      if (false && i > 0)
+        s << ", ";
+      else if (!false)
+        s << std::endl << indent << "  -";
+      Printer< ::ublox_msgs::NavSVINFO_SV_<ContainerAllocator> >::stream(s, false ? std::string() : indent + "    ", v.sv[i]);
     }
+    if (v.sv.empty() || false)
+      s << "]";
   }
 };
 

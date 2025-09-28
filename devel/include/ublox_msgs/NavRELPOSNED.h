@@ -27,34 +27,46 @@ struct NavRELPOSNED_
     : version(0)
     , reserved0(0)
     , refStationId(0)
-    , iTOW(0)
+    , iTow(0)
     , relPosN(0)
     , relPosE(0)
     , relPosD(0)
+    , relPosLength(0)
+    , relPosHeading(0)
+    , reserved1(0)
     , relPosHPN(0)
     , relPosHPE(0)
     , relPosHPD(0)
-    , reserved1(0)
+    , relPosHPLength(0)
     , accN(0)
     , accE(0)
     , accD(0)
+    , accLength(0)
+    , accHeading(0)
+    , reserved2(0)
     , flags(0)  {
     }
   NavRELPOSNED_(const ContainerAllocator& _alloc)
     : version(0)
     , reserved0(0)
     , refStationId(0)
-    , iTOW(0)
+    , iTow(0)
     , relPosN(0)
     , relPosE(0)
     , relPosD(0)
+    , relPosLength(0)
+    , relPosHeading(0)
+    , reserved1(0)
     , relPosHPN(0)
     , relPosHPE(0)
     , relPosHPD(0)
-    , reserved1(0)
+    , relPosHPLength(0)
     , accN(0)
     , accE(0)
     , accD(0)
+    , accLength(0)
+    , accHeading(0)
+    , reserved2(0)
     , flags(0)  {
   (void)_alloc;
     }
@@ -70,8 +82,8 @@ struct NavRELPOSNED_
    typedef uint16_t _refStationId_type;
   _refStationId_type refStationId;
 
-   typedef uint32_t _iTOW_type;
-  _iTOW_type iTOW;
+   typedef uint32_t _iTow_type;
+  _iTow_type iTow;
 
    typedef int32_t _relPosN_type;
   _relPosN_type relPosN;
@@ -82,6 +94,15 @@ struct NavRELPOSNED_
    typedef int32_t _relPosD_type;
   _relPosD_type relPosD;
 
+   typedef int32_t _relPosLength_type;
+  _relPosLength_type relPosLength;
+
+   typedef int32_t _relPosHeading_type;
+  _relPosHeading_type relPosHeading;
+
+   typedef uint32_t _reserved1_type;
+  _reserved1_type reserved1;
+
    typedef int8_t _relPosHPN_type;
   _relPosHPN_type relPosHPN;
 
@@ -91,8 +112,8 @@ struct NavRELPOSNED_
    typedef int8_t _relPosHPD_type;
   _relPosHPD_type relPosHPD;
 
-   typedef uint8_t _reserved1_type;
-  _reserved1_type reserved1;
+   typedef uint8_t _relPosHPLength_type;
+  _relPosHPLength_type relPosHPLength;
 
    typedef uint32_t _accN_type;
   _accN_type accN;
@@ -102,6 +123,15 @@ struct NavRELPOSNED_
 
    typedef uint32_t _accD_type;
   _accD_type accD;
+
+   typedef uint32_t _accLength_type;
+  _accLength_type accLength;
+
+   typedef uint32_t _accHeading_type;
+  _accHeading_type accHeading;
+
+   typedef uint32_t _reserved2_type;
+  _reserved2_type reserved2;
 
    typedef uint32_t _flags_type;
   _flags_type flags;
@@ -214,17 +244,23 @@ bool operator==(const ::ublox_msgs::NavRELPOSNED_<ContainerAllocator1> & lhs, co
   return lhs.version == rhs.version &&
     lhs.reserved0 == rhs.reserved0 &&
     lhs.refStationId == rhs.refStationId &&
-    lhs.iTOW == rhs.iTOW &&
+    lhs.iTow == rhs.iTow &&
     lhs.relPosN == rhs.relPosN &&
     lhs.relPosE == rhs.relPosE &&
     lhs.relPosD == rhs.relPosD &&
+    lhs.relPosLength == rhs.relPosLength &&
+    lhs.relPosHeading == rhs.relPosHeading &&
+    lhs.reserved1 == rhs.reserved1 &&
     lhs.relPosHPN == rhs.relPosHPN &&
     lhs.relPosHPE == rhs.relPosHPE &&
     lhs.relPosHPD == rhs.relPosHPD &&
-    lhs.reserved1 == rhs.reserved1 &&
+    lhs.relPosHPLength == rhs.relPosHPLength &&
     lhs.accN == rhs.accN &&
     lhs.accE == rhs.accE &&
     lhs.accD == rhs.accD &&
+    lhs.accLength == rhs.accLength &&
+    lhs.accHeading == rhs.accHeading &&
+    lhs.reserved2 == rhs.reserved2 &&
     lhs.flags == rhs.flags;
 }
 
@@ -282,12 +318,12 @@ struct MD5Sum< ::ublox_msgs::NavRELPOSNED_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "1b22df5b18240fc796963c10b1dfc88d";
+    return "230f179ad5d03f7dffe9babdd98b23cc";
   }
 
   static const char* value(const ::ublox_msgs::NavRELPOSNED_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x1b22df5b18240fc7ULL;
-  static const uint64_t static_value2 = 0x96963c10b1dfc88dULL;
+  static const uint64_t static_value1 = 0x230f179ad5d03f7dULL;
+  static const uint64_t static_value2 = 0xffe9babdd98b23ccULL;
 };
 
 template<class ContainerAllocator>
@@ -317,7 +353,7 @@ struct Definition< ::ublox_msgs::NavRELPOSNED_<ContainerAllocator> >
 "# defined at the reference station\n"
 "#\n"
 "# Supported on:\n"
-"#  - u-blox 8 / u-blox M8 from protocol version 20 up to version 23.01 (only\n"
+"#  - u-blox 9 with protocol version 27.1 (only\n"
 "#    with High Precision GNSS products)\n"
 "#\n"
 "\n"
@@ -328,7 +364,7 @@ struct Definition< ::ublox_msgs::NavRELPOSNED_<ContainerAllocator> >
 "uint8 reserved0                   # Reserved\n"
 "uint16 refStationId               # Reference Station ID. Must be in the range \n"
 "                                  # 0..4095\n"
-"uint32 iTOW                       # GPS time of week of the navigation epoch \n"
+"uint32 iTow                       # GPS time of week of the navigation epoch \n"
 "                                  # [ms]\n"
 "\n"
 "int32 relPosN                     # North component of relative position vector \n"
@@ -337,6 +373,13 @@ struct Definition< ::ublox_msgs::NavRELPOSNED_<ContainerAllocator> >
 "                                  # [cm]\n"
 "int32 relPosD                     # Down component of relative position vector\n"
 "                                  # [cm]\n"
+"int32 relPosLength\n"
+"\n"
+"int32 relPosHeading\n"
+"\n"
+"uint32 reserved1\n"
+"\n"
+"\n"
 "\n"
 "int8 relPosHPN                    # High-precision North component of relative\n"
 "                                  # position vector. [0.1 mm]\n"
@@ -357,7 +400,7 @@ struct Definition< ::ublox_msgs::NavRELPOSNED_<ContainerAllocator> >
 "                                  # position vector, in units of cm, is given by\n"
 "                                  # relPosD + (relPosHPD * 1e-2)\n"
 "\n"
-"uint8 reserved1                   # Reserved\n"
+"uint8 relPosHPLength\n"
 "\n"
 "uint32 accN                       # Accuracy of relative position North \n"
 "                                  # component [0.1 mm]\n"
@@ -365,6 +408,12 @@ struct Definition< ::ublox_msgs::NavRELPOSNED_<ContainerAllocator> >
 "                                  # [0.1 mm]\n"
 "uint32 accD                       # Accuracy of relative position Down component\n"
 "                                  # [0.1 mm]\n"
+"\n"
+"uint32 accLength\n"
+"\n"
+"uint32 accHeading\n"
+"\n"
+"uint32 reserved2\n"
 "\n"
 "uint32 flags\n"
 "uint32 FLAGS_GNSS_FIX_OK = 1      # A valid fix (i.e within DOP & accuracy \n"
@@ -412,17 +461,23 @@ namespace serialization
       stream.next(m.version);
       stream.next(m.reserved0);
       stream.next(m.refStationId);
-      stream.next(m.iTOW);
+      stream.next(m.iTow);
       stream.next(m.relPosN);
       stream.next(m.relPosE);
       stream.next(m.relPosD);
+      stream.next(m.relPosLength);
+      stream.next(m.relPosHeading);
+      stream.next(m.reserved1);
       stream.next(m.relPosHPN);
       stream.next(m.relPosHPE);
       stream.next(m.relPosHPD);
-      stream.next(m.reserved1);
+      stream.next(m.relPosHPLength);
       stream.next(m.accN);
       stream.next(m.accE);
       stream.next(m.accD);
+      stream.next(m.accLength);
+      stream.next(m.accHeading);
+      stream.next(m.reserved2);
       stream.next(m.flags);
     }
 
@@ -442,34 +497,88 @@ struct Printer< ::ublox_msgs::NavRELPOSNED_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavRELPOSNED_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "version: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.version);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved0: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "refStationId: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.refStationId);
-    s << indent << "iTOW: ";
-    Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "iTow: ";
+    Printer<uint32_t>::stream(s, indent + "  ", v.iTow);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "relPosN: ";
     Printer<int32_t>::stream(s, indent + "  ", v.relPosN);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "relPosE: ";
     Printer<int32_t>::stream(s, indent + "  ", v.relPosE);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "relPosD: ";
     Printer<int32_t>::stream(s, indent + "  ", v.relPosD);
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "relPosLength: ";
+    Printer<int32_t>::stream(s, indent + "  ", v.relPosLength);
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "relPosHeading: ";
+    Printer<int32_t>::stream(s, indent + "  ", v.relPosHeading);
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    Printer<uint32_t>::stream(s, indent + "  ", v.reserved1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "relPosHPN: ";
     Printer<int8_t>::stream(s, indent + "  ", v.relPosHPN);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "relPosHPE: ";
     Printer<int8_t>::stream(s, indent + "  ", v.relPosHPE);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "relPosHPD: ";
     Printer<int8_t>::stream(s, indent + "  ", v.relPosHPD);
-    s << indent << "reserved1: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.reserved1);
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "relPosHPLength: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.relPosHPLength);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "accN: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.accN);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "accE: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.accE);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "accD: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.accD);
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "accLength: ";
+    Printer<uint32_t>::stream(s, indent + "  ", v.accLength);
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "accHeading: ";
+    Printer<uint32_t>::stream(s, indent + "  ", v.accHeading);
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved2: ";
+    Printer<uint32_t>::stream(s, indent + "  ", v.reserved2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.flags);
   }

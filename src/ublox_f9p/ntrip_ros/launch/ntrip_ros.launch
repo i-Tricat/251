@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- ublox_device.launch 파일 포함 -->
+  <include file="$(find ublox_gps)/launch/ublox_device.launch"/>
+  
+  <!-- ntrip_ros 노드 실행 -->
+  <node pkg="ntrip_ros" type="ntripclient.py" name="ntrip_ros">
+    <param name="rtcm_topic" value="ublox_gps/rtcm"/>
+    <param name="ntrip_server" value="www.gnssdata.or.kr:2101"/>
+    <param name="ntrip_user" value="jjang01sh@gmail.com"/>
+    <param name="ntrip_pass" value="gnss"/>
+    <param name="ntrip_stream" value="INCH-RTCM31"/>
+    <param name="nmea_gga" value="$GPGGA,174003.223,3726.887,N,12639.213,E,1,12,1.0,0.0,M,0.0,M,,*64"/>
+  </node>
+</launch>

@@ -425,14 +425,24 @@ struct Printer< ::ublox_msgs::CfgGNSS_Block_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgGNSS_Block_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "gnssId: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.gnssId);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "resTrkCh: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.resTrkCh);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "maxTrkCh: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.maxTrkCh);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved1: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.flags);
   }

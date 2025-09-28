@@ -275,22 +275,40 @@ struct Printer< ::ublox_msgs::NavVELNED_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavVELNED_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "velN: ";
     Printer<int32_t>::stream(s, indent + "  ", v.velN);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "velE: ";
     Printer<int32_t>::stream(s, indent + "  ", v.velE);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "velD: ";
     Printer<int32_t>::stream(s, indent + "  ", v.velD);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "speed: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.speed);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "gSpeed: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.gSpeed);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "heading: ";
     Printer<int32_t>::stream(s, indent + "  ", v.heading);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.sAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.cAcc);
   }

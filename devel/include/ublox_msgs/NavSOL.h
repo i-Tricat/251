@@ -414,38 +414,72 @@ struct Printer< ::ublox_msgs::NavSOL_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavSOL_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "fTOW: ";
     Printer<int32_t>::stream(s, indent + "  ", v.fTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "week: ";
     Printer<int16_t>::stream(s, indent + "  ", v.week);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "gpsFix: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.gpsFix);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefX: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefX);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefY: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefY);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefZ: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefZ);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.pAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefVX: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefVX);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefVY: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefVY);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ecefVZ: ";
     Printer<int32_t>::stream(s, indent + "  ", v.ecefVZ);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.sAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pDOP: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.pDOP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved1: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "numSV: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.numSV);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved2: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.reserved2);
   }

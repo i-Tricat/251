@@ -315,34 +315,67 @@ struct Printer< ::ublox_msgs::EsfSTATUS_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::EsfSTATUS_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "version: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.version);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
+    if (v.reserved1.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "fusionMode: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.fusionMode);
-    s << indent << "reserved2[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved2: ";
+    if (v.reserved2.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved2.size(); ++i)
     {
-      s << indent << "  reserved2[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved2[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved2[i]);
     }
+    if (v.reserved2.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "numSens: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.numSens);
-    s << indent << "sens[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "sens: ";
+    if (v.sens.empty() || false)
+      s << "[";
     for (size_t i = 0; i < v.sens.size(); ++i)
     {
-      s << indent << "  sens[" << i << "]: ";
-      s << std::endl;
-      s << indent;
-      Printer< ::ublox_msgs::EsfSTATUS_Sens_<ContainerAllocator> >::stream(s, indent + "    ", v.sens[i]);
+      if (false && i > 0)
+        s << ", ";
+      else if (!false)
+        s << std::endl << indent << "  -";
+      Printer< ::ublox_msgs::EsfSTATUS_Sens_<ContainerAllocator> >::stream(s, false ? std::string() : indent + "    ", v.sens[i]);
     }
+    if (v.sens.empty() || false)
+      s << "]";
   }
 };
 

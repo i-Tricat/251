@@ -12,9 +12,8 @@ class SegmentObstacle(genpy.Message):
   _md5sum = "37ecbf7e1053bae89f0770466b37c3c3"
   _type = "obstacle_detector/SegmentObstacle"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """geometry_msgs/Point first_point
-geometry_msgs/Point last_point
-
+  _full_text = """geometry_msgs/Point first_point  # First point of the segment [m]
+geometry_msgs/Point last_point   # Last point of the segment [m]
 
 ================================================================================
 MSG: geometry_msgs/Point

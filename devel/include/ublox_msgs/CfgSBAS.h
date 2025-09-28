@@ -293,14 +293,24 @@ struct Printer< ::ublox_msgs::CfgSBAS_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgSBAS_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "mode: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.mode);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "usage: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.usage);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "maxSBAS: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.maxSBAS);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "scanmode2: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.scanmode2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "scanmode1: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.scanmode1);
   }

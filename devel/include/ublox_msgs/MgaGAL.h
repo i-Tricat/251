@@ -490,80 +490,160 @@ struct Printer< ::ublox_msgs::MgaGAL_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::MgaGAL_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "type: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.type);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "version: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.version);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "svid: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.svid);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved0: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "iodNav: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.iodNav);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "deltaN: ";
     Printer<int16_t>::stream(s, indent + "  ", v.deltaN);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "m0: ";
     Printer<int32_t>::stream(s, indent + "  ", v.m0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "e: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.e);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sqrtA: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.sqrtA);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "omega0: ";
     Printer<int32_t>::stream(s, indent + "  ", v.omega0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "i0: ";
     Printer<int32_t>::stream(s, indent + "  ", v.i0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "omega: ";
     Printer<int32_t>::stream(s, indent + "  ", v.omega);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "omegaDot: ";
     Printer<int32_t>::stream(s, indent + "  ", v.omegaDot);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "iDot: ";
     Printer<int16_t>::stream(s, indent + "  ", v.iDot);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cuc: ";
     Printer<int16_t>::stream(s, indent + "  ", v.cuc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cus: ";
     Printer<int16_t>::stream(s, indent + "  ", v.cus);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "crc: ";
     Printer<int16_t>::stream(s, indent + "  ", v.crc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "crs: ";
     Printer<int16_t>::stream(s, indent + "  ", v.crs);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cic: ";
     Printer<int16_t>::stream(s, indent + "  ", v.cic);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cis: ";
     Printer<int16_t>::stream(s, indent + "  ", v.cis);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "toe: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.toe);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "af0: ";
     Printer<int32_t>::stream(s, indent + "  ", v.af0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "af1: ";
     Printer<int32_t>::stream(s, indent + "  ", v.af1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "af2: ";
     Printer<int8_t>::stream(s, indent + "  ", v.af2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sisaindexE1E5b: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.sisaindexE1E5b);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "toc: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.toc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "bgdE1E5b: ";
     Printer<int16_t>::stream(s, indent + "  ", v.bgdE1E5b);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
+    if (v.reserved1.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "healthE1B: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.healthE1B);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "dataValidityE1B: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.dataValidityE1B);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "healthE5b: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.healthE5b);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "dataValidityE5b: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.dataValidityE5b);
-    s << indent << "reserved2[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved2: ";
+    if (v.reserved2.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved2.size(); ++i)
     {
-      s << indent << "  reserved2[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved2[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved2[i]);
     }
+    if (v.reserved2.empty() || true)
+      s << "]";
   }
 };
 

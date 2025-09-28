@@ -471,64 +471,139 @@ struct Printer< ::ublox_msgs::CfgNAVX5_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgNAVX5_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "version: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.version);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "mask1: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.mask1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "mask2: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.mask2);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
+    if (v.reserved1.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "minSVs: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.minSVs);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "maxSVs: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.maxSVs);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "minCNO: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.minCNO);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved2: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "iniFix3D: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.iniFix3D);
-    s << indent << "reserved3[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved3: ";
+    if (v.reserved3.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved3.size(); ++i)
     {
-      s << indent << "  reserved3[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved3[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved3[i]);
     }
+    if (v.reserved3.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "ackAiding: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.ackAiding);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "wknRollover: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.wknRollover);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sigAttenCompMode: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.sigAttenCompMode);
-    s << indent << "reserved4[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved4: ";
+    if (v.reserved4.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved4.size(); ++i)
     {
-      s << indent << "  reserved4[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved4[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved4[i]);
     }
+    if (v.reserved4.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "usePPP: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.usePPP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "aopCfg: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.aopCfg);
-    s << indent << "reserved5[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved5: ";
+    if (v.reserved5.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved5.size(); ++i)
     {
-      s << indent << "  reserved5[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved5[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved5[i]);
     }
+    if (v.reserved5.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "aopOrbMaxErr: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.aopOrbMaxErr);
-    s << indent << "reserved6[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved6: ";
+    if (v.reserved6.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved6.size(); ++i)
     {
-      s << indent << "  reserved6[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved6[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved6[i]);
     }
+    if (v.reserved6.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "useAdr: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.useAdr);
   }

@@ -238,14 +238,25 @@ struct Printer< ::ublox_msgs::CfgDGNSS_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgDGNSS_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "dgnssMode: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.dgnssMode);
-    s << indent << "reserved0[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved0: ";
+    if (v.reserved0.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved0.size(); ++i)
     {
-      s << indent << "  reserved0[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved0[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved0[i]);
     }
+    if (v.reserved0.empty() || true)
+      s << "]";
   }
 };
 

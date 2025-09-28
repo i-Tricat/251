@@ -97,28 +97,21 @@ class SHIP:
         self.sensing = None
         
         # 도킹 관련 변수
-        self.docking_wp_num = 3  # 도킹 시작 웨이포인트 번호
-        self.hopping_wp_num = 2   # 호핑 시작 웨이포인트 번호
         self.stop_area_threshold = rospy.get_param("stop_area_threshold", 30000)
         self.aline = False
         self.tracking = True
-        
+       
         
     def pose_callback(self, msg):
-        try:
-            self.x_ned = float(msg.x.data)
-            self.y_ned = float(msg.y.data)
-            psi_deg = float(msg.psi.data)
-            self.psi_ned = ((psi_deg * D2R + pi) % (2 * pi)) - pi  # deg -> rad
+        self.x_ned = float(msg.x.data)
+        self.y_ned = float(msg.y.data)
+        psi_deg = float(msg.psi.data)
+        self.psi_ned = ((psi_deg * D2R + pi) % (2 * pi)) - pi  # deg -> rad
 
-            rospy.loginfo_throttle(2, f"Pose 수신: x={self.x_ned}, y={self.y_ned}, psi(deg)={psi_deg}, psi(rad)={self.psi_ned}")
+        # rospy.loginfo_throttle(2, f"Pose 수신: x={self.x_ned}, y={self.y_ned}, psi(deg)={psi_deg}, psi(rad)={self.psi_ned}")
 
-            self.pose_received = True
-            self.publish_tf(None)  # 수신 시 즉시 tf 퍼블리시
-
-        except Exception as e:
-            rospy.logwarn(f"Pose 값 수신 오류: {e}")
-
+        self.pose_received = True
+        # self.publish_tf(None)  # 수신 시 즉시 tf 퍼블리시
 
     def obstacle_callback(self, msg):
         self.obstacles = msg.circles + msg.segments
@@ -130,15 +123,15 @@ class SHIP:
             return True
             
         try:
-            video_num = rospy.get_param('video_num', 1)
+            video_num = 0
             self.cap = cv2.VideoCapture(0)  
             if not self.cap.isOpened():
                 rospy.logerr("웹캠을 열 수 없습니다.")
                 return False
 
             # 카메라 해상도 설정
-            self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 2560)  
-            self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 2560) 
+            self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)  
+            self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080) 
 
             target_shape = rospy.get_param("target_shape", 'Cross')
             color_to_detect = rospy.get_param("color_to_detect", 'blue')
@@ -153,14 +146,13 @@ class SHIP:
             return False
             
        
-    def ship_run(self):
+    def Avoidance_run(self):
         """장애물 회피 모드 실행"""
         ### ship ###
         self.target_heading = heading_cal(self.WP_k[1].x.data, self.WP_k[1].y.data, self.x_ned, self.y_ned)
         self.target_angle = self.target_heading - self.psi_ned
-
         ### Control ###
-        self.thruster_p, self.thruster_s = self.Avoidance_control(self.psi_ned, self.x_ned, self.y_ned)
+        self.thruster_p, self.thruster_s = self.Avoidance_control_2(self.psi_ned, self.x_ned, self.y_ned)
         ### Vector ###
         self.detecting_points = self.make_detecting_vector(self.psi_ned)
         self.non_cross_vector = self.delete_vector_inside_obstacle(self.detecting_points, self.psi_ned, self.x_ned, self.y_ned)
@@ -169,7 +161,16 @@ class SHIP:
         ### Visual ###
         # self.visual_detecting_points = self.make_detecting_vector(self.psi_ned, for_visual=True)  # 시각화용은 y반전
         # self.visualize(self.visual_detecting_points, self.non_cross_vector, self.vector_desired, self.x_ned, self.y_ned)
-    
+
+    def hopping_run(self):
+        self.target_heading = heading_cal(self.WP_k[1].x.data, self.WP_k[1].y.data, self.x_ned, self.y_ned)
+        self.target_angle = self.target_heading - self.psi_ned
+        self.thruster_p, self.thruster_s = self.Hopping_control(self.psi_ned)
+
+    def about_assembly(self):
+        self.d_goal = self.wp_manager.cal_d_goal(self.x_ned, self.y_ned)
+        self.WP_k = self.wp_manager.manage(self.x_ned, self.y_ned)
+        self.current_wp_num = self.wp_manager.WP_k[1].num.data
 
     def cross_check_segment(self, x1, y1, x2, y2, seg_x1, seg_y1, seg_x2, seg_y2):
         """선분 교차 여부 검사"""
@@ -312,78 +313,31 @@ class SHIP:
         return vector_desired
 
     # Step4. Thrust-based PID control
-    def Avoidance_control_1(self, psi_ned, x_ned, y_ned):
-        non_cross_vector = self.delete_vector_inside_obstacle(self.make_detecting_vector(psi_ned), psi_ned, x_ned, y_ned)
 
-        if getattr(self, 'vector_blocked', False):  # vector_block
-            rospy.logwarn("Backward")
-
-            self.control_angle = degrees(self.target_angle)
-            self.psi_desire = self.target_heading
-            B_diff = 150
-            if -180 < self.control_angle <= 0:
-                self.thruster_p = 1600 - B_diff 
-                self.thruster_s = 1600 + B_diff
-            elif 0 < self.control_angle < 180:
-                self.thruster_p = 1600 + B_diff
-                self.thruster_s = 1600 - B_diff
-            return self.thruster_p, self.thruster_s
-
-        # 벡터 선택 및 각도 계산
-        psi_desire = self.vector_choose(non_cross_vector, x_ned, y_ned)
-        control_angle = (psi_desire - degrees(psi_ned) + 180) % 360 - 180
-
-        if control_angle >= 180:
-            control_angle = -180 + abs(control_angle) % 180
-        elif control_angle <= -180:
-            control_angle = 180 - abs(control_angle) % 180
-
-        self.control_angle = control_angle 
-        self.psi_desire = psi_desire
-
-        # PID 제어기
-        cp_thrust = self.kp_thruster * control_angle
-        yaw_rate = self.r_ned
-        cd_thrust = self.kd_thruster * (-yaw_rate)
-
-        thrust_diff = cp_thrust + cd_thrust
-        base_thrust = self.base_thrust
-        left_thrust = 3000 - (base_thrust + thrust_diff)
-        right_thrust = 3000 - (base_thrust - thrust_diff)
-
-        self.thruster_p = max(min(left_thrust, self.thrust_range[1]), self.thrust_range[0])
-        self.thruster_s = max(min(right_thrust, self.thrust_range[1]), self.thrust_range[0])
-
-        return self.thruster_p, self.thruster_s
     
     def Avoidance_control_2(self, psi_ned, x_ned, y_ned):
         non_cross_vector = self.delete_vector_inside_obstacle(self.make_detecting_vector(psi_ned), psi_ned, x_ned, y_ned)
         psi_desire = self.vector_choose(non_cross_vector, x_ned, y_ned)
+        control_angle = (psi_desire - degrees(psi_ned) + 180) % 360 - 180
         if getattr(self, 'vector_blocked', False):  # vector_block
             rospy.logwarn("Backward")
 
-            self.control_angle = degrees(self.target_angle)
-            self.psi_desire = self.target_heading
-            B_diff = 150
-            if -180 < self.control_angle <= 0:
-                self.thruster_p = 1600 - B_diff
-                self.thruster_s = 1600 + B_diff
-            elif 0 < self.control_angle < 180:
-                self.thruster_p = 1600 + B_diff
-                self.thruster_s = 1600 - B_diff
+            self.thruster_p = 1400 
+            self.thruster_s = 1400 
+          
             return self.thruster_p, self.thruster_s
-        control_angle = (psi_desire - degrees(psi_ned) + 180) % 360 - 180
 
-        if abs(control_angle) > self.yaw_range/5:
+        if abs(control_angle) >= 10:
             Re_diff = 150
             if 180 >control_angle >= 0:
-                self.thruster_p = 1500 - Re_diff # 아두이노 코드 ㅄ
-                self.thruster_s = 1500 + Re_diff
-            elif -180 < control_angle < 0:
+                self.thruster_p = 1500 + Re_diff # 아두이노 코드 ㅄ
+                self.thruster_s = 1500 - Re_diff
+            elif -180 <= control_angle < 0:
                 self.thruster_p = 1500 - Re_diff # 아두이노 코드 ㅄ
                 self.thruster_s = 1500 + Re_diff
 
-        elif abs(control_angle) <= self.yaw_range/5:
+        elif abs(control_angle) < 10:
+            control_angle = (psi_desire - degrees(psi_ned) + 180) % 360 - 180
             cp_thrust = self.kp_thruster * control_angle
             yaw_rate = self.r_ned
             cd_thrust = self.kd_thruster * (-yaw_rate)
@@ -391,179 +345,13 @@ class SHIP:
             thrust_diff = cp_thrust + cd_thrust
 
             base_thrust = self.base_thrust
-            left_thrust = 3000-(base_thrust + thrust_diff)
-            right_thrust =3000-(base_thrust - thrust_diff)
+            left_thrust = (base_thrust + thrust_diff)
+            right_thrust = (base_thrust - thrust_diff)
 
             self.thruster_p = max(min(left_thrust, self.thrust_range[1]), self.thrust_range[0])
             self.thruster_s = max(min(right_thrust, self.thrust_range[1]), self.thrust_range[0])
 
         return self.thruster_p, self.thruster_s
-    
-    def Avoidance_control_3(self, psi_ned, x_ned, y_ned):
-        # 1) 장애물 벡터/목표방위
-        non_cross_vector = self.delete_vector_inside_obstacle(self.make_detecting_vector(psi_ned), psi_ned, x_ned, y_ned)
-        psi_desire = self.vector_choose(non_cross_vector, x_ned, y_ned)
-
-        # 2) 벡터 블록: 후진 + 강제 회전
-        if getattr(self, 'vector_blocked', False):
-            rospy.logwarn("Backward")
-            self.control_angle = math.degrees(self.target_angle)
-            self.psi_desire = self.target_heading
-            B_diff = 150
-            if -180 < self.control_angle <= 0:
-                self.thruster_p = 1600 - B_diff
-                self.thruster_s = 1600 + B_diff
-            elif 0 < self.control_angle < 180:
-                self.thruster_p = 1600 + B_diff
-                self.thruster_s = 1600 - B_diff
-            return self.thruster_p, self.thruster_s
-
-        # 3) 각도 오차
-        control_angle = (psi_desire - math.degrees(psi_ned) + 180) % 360 - 180
-        self.control_angle = control_angle
-        self.psi_desire = psi_desire
-        abs_e = abs(control_angle)
-
-        # 4) 드리프트용 추력차 맵핑
-        pivot_deg = 50.0
-        k_below   = 6.0
-        k_above   = 8.0
-        deadband_deg = 0.0
-
-        if abs_e <= deadband_deg:
-            thrust_diff = 0.0
-        elif abs_e <= pivot_deg:
-            thrust_diff = k_below * abs_e
-        else:
-            thrust_diff = 300.0 + k_above * (abs_e - pivot_deg)
-
-        diff_max = getattr(self, "diff_max_drift", 700)
-        thrust_diff = max(min(thrust_diff, diff_max), 0.0)
-
-        base = self.base_thrust
-
-        if control_angle > 0:
-            # 목표가 좌측(반시계) → 좌 후진 / 우 전진
-            self.outinfo = f"↗ 우측 드리프트 | diff={int(thrust_diff)}"
-            self.thruster_p = base - int(thrust_diff)
-            self.thruster_s = base + int(thrust_diff)
-        else:
-            # 목표가 우측(시계) → 좌 전진 / 우 후진
-            self.outinfo = f"↖ 좌측 드리프트 | diff={int(thrust_diff)}"
-            self.thruster_p = base + int(thrust_diff)
-            self.thruster_s = base - int(thrust_diff)
-
-            self.thruster_p = max(min(self.thruster_p, self.thrust_range[1]), self.thrust_range[0])
-            self.thruster_s = max(min(self.thruster_s, self.thrust_range[1]), self.thrust_range[0])
-
-        return self.thruster_p, self.thruster_s
-
-    def Avoidance_control_4(self, psi_ned, x_ned, y_ned):
-        # 장애물 벡터 정리
-        non_cross_vector = self.delete_vector_inside_obstacle(self.make_detecting_vector(psi_ned), psi_ned, x_ned, y_ned)
-
-        # 벡터 블록: 후진/강제 회전
-        if getattr(self, 'vector_blocked', False):
-            rospy.logwarn("Backward")
-
-            self.control_angle = math.degrees(self.target_angle)
-            self.psi_desire    = self.target_heading
-            B_diff = 150
-            if -180 < self.control_angle <= 0:
-                self.thruster_p = 1600 - B_diff
-                self.thruster_s = 1600 + B_diff
-            elif 0 < self.control_angle < 180:
-                self.thruster_p = 1600 + B_diff
-                self.thruster_s = 1600 - B_diff
-            return self.thruster_p, self.thruster_s
-
-        # 벡터 선택 및 각도 계산
-        psi_desire = self.vector_choose(non_cross_vector, x_ned, y_ned)
-        control_angle = (psi_desire - math.degrees(psi_ned) + 180) % 360 - 180
-
-        if control_angle >= 180:
-            control_angle = -180 + abs(control_angle) % 180
-        elif control_angle <= -180:
-            control_angle = 180 - abs(control_angle) % 180
-
-        self.control_angle = control_angle
-        self.psi_desire    = psi_desire
-
-        # P 스케줄링
-        abs_e   = min(abs(control_angle), 90.0)
-        k_below = 6.0
-        k_above = 8.0
-
-        if abs_e <= 50.0:
-            p_mag = k_below * abs_e
-        else:
-            p_mag = 300.0 + k_above * (abs_e - 50.0)
-
-        cp_thrust = p_mag if control_angle >= 0 else -p_mag
-
-        yaw_rate  = self.r_ned
-        cd_thrust = self.kd_thruster * (-yaw_rate)
-
-        thrust_diff = cp_thrust + cd_thrust
-
-        base_thrust  = self.base_thrust
-        left_thrust  = 3000-(base_thrust + thrust_diff)
-        right_thrust = 3000-(base_thrust - thrust_diff)
-
-        self.thruster_p = max(min(left_thrust,  self.thrust_range[1]), self.thrust_range[0])
-        self.thruster_s = max(min(right_thrust, self.thrust_range[1]), self.thrust_range[0])
-
-        return self.thruster_p, self.thruster_s
-
-    def Avoidance_control(self, psi_ned, x_ned, y_ned):
-        non_cross_vector = self.delete_vector_inside_obstacle(
-            self.make_detecting_vector(psi_ned), psi_ned, x_ned, y_ned
-        )
-
-        if getattr(self, 'vector_blocked', False):  # vector_block
-            rospy.logwarn("Backward")
-
-            self.control_angle = degrees(self.target_angle)
-            self.psi_desire = self.target_heading
-            B_diff = 150
-            if -180 < self.control_angle <= 0:
-                self.thruster_p = 1600 - B_diff
-                self.thruster_s = 1600 + B_diff
-            elif 0 < self.control_angle < 180:
-                self.thruster_p = 1600 + B_diff
-                self.thruster_s = 1600 - B_diff
-            return self.thruster_p, self.thruster_s
-
-        # === 1) 목표 방위 계산 & 오차 정규화 ===
-        psi_desire = self.vector_choose(non_cross_vector, x_ned, y_ned)
-        control_angle = (psi_desire - degrees(psi_ned) + 180) % 360 - 180
-        if control_angle >= 180:
-            control_angle = -180 + abs(control_angle) % 180
-        elif control_angle <= -180:
-            control_angle = 180 - abs(control_angle) % 180
-
-        self.control_angle = control_angle
-        self.psi_desire = psi_desire
-
-        cp_thrust = self.kp_thruster * control_angle
-        yaw_rate = self.r_ned
-        cd_thrust = self.kd_thruster * (-yaw_rate)
-
-        thrust_diff = cp_thrust + cd_thrust
-
-        # 좌우 추력차 최대값 제한
-        thrust_diff = max(min(thrust_diff, 150.0), -150.0)
-
-        # === 4) 좌우 추력 산출 ===
-        base_thrust = self.base_thrust
-        left_thrust  = 3000 - (base_thrust + thrust_diff)
-        right_thrust = 3000 - (base_thrust - thrust_diff)
-
-        self.thruster_p = max(min(left_thrust,  self.thrust_range[1]), self.thrust_range[0])
-        self.thruster_s = max(min(right_thrust, self.thrust_range[1]), self.thrust_range[0])
-
-        return self.thruster_p, self.thruster_s
-
 
     def Hopping_control(self, psi_ned):
         psi_desire = self.target_heading
@@ -573,14 +361,14 @@ class SHIP:
         self.psi_desire = psi_desire
         self.control_angle_deg = control_angle_deg
 
-        if abs(control_angle_deg) > self.yaw_range/10:
+        if abs(control_angle_deg) > 10:
             Re_diff = 150
             if 180 >control_angle_deg >= 0:
-                self.thruster_p = 1500 - Re_diff # 아두이노 코드 ㅄ
-                self.thruster_s = 1500 + Re_diff
-            elif -180 < control_angle_deg < 0:
                 self.thruster_p = 1500 + Re_diff # 아두이노 코드 ㅄ
                 self.thruster_s = 1500 - Re_diff
+            elif -180 < control_angle_deg < 0:
+                self.thruster_p = 1500 - Re_diff # 아두이노 코드 ㅄ
+                self.thruster_s = 1500 + Re_diff
         else:
             cp_thrust = self.kp_thruster * control_angle_deg
             yaw_rate = self.r_ned
@@ -588,9 +376,9 @@ class SHIP:
 
             thrust_diff = cp_thrust + cd_thrust
 
-            base_thrust = self.base_thrust
-            left_thrust = 3000 - (base_thrust + thrust_diff)
-            right_thrust =3000 - (base_thrust - thrust_diff)
+            base_thrust = 1700
+            left_thrust = (base_thrust + thrust_diff)
+            right_thrust = (base_thrust - thrust_diff)
 
             self.thruster_p = max(min(left_thrust, self.thrust_range[1]), self.thrust_range[0])
             self.thruster_s = max(min(right_thrust, self.thrust_range[1]), self.thrust_range[0])
@@ -622,8 +410,8 @@ class SHIP:
 
         if not detected and not self.aline:  # 인식이 안되면 계속 왼쪽으로 회전
             rospy.loginfo("왼 회전 중")
-            self.thruster_p = 1480
-            self.thruster_s = 1520
+            self.thruster_p = 1400
+            self.thruster_s = 1600
             return True
 
         if detected:
@@ -640,10 +428,10 @@ class SHIP:
                     line_position = cropped_frame.shape[1] // 2  # 카메라 중앙선
                     error_x = center_x - line_position
 
-                    k_p = 0.03  # 고정값
+                    k_p = 2  # 고정값
 
-                    self.thruster_p = int(np.clip(1500 - k_p * error_x, 1350, 1650))
-                    self.thruster_s = int(np.clip(1500 - k_p * error_x, 1350, 1650))
+                    self.thruster_p = 1570 + int(np.clip(1500 - k_p * error_x, 1350, 1650))
+                    self.thruster_s = 1570 +int(np.clip(1500 - k_p * error_x, 1350, 1650))
             else:
                 if not self.aline:
                     rospy.loginfo("정렬완료. 앞으로 갈 준비 완료.")
@@ -695,7 +483,7 @@ class SHIP:
         # 헤딩 및 거리 정보
         print(f"{colored('현재 헤딩[psi_ned]', 'blue')}: {degrees(self.psi_ned):.2f}°")
         print(f"{colored('목표 헤딩[target_heading]', 'blue')}: {degrees(self.target_heading):.2f}°")
-        print(f"{colored('목표 각도[psi_diff]', 'yellow')}: {self.target_angle:.4f}°")
+        # print(f"{colored('목표 각도[psi_diff]', 'yellow')}: {self.target_angle:.4f}°")
         print(f"{colored('목표까지 거리[d_goal]', 'magenta')}: {self.d_goal:.3f} m")
 
         # 제어 상태
@@ -714,7 +502,7 @@ class SHIP:
                     print(f"{colored('최적벡터[psi_desire]', 'blue')}: {self.psi_desire:.2f}°")
                 if hasattr(self, 'vector_desired') and hasattr(self, 'control_angle'):
                     direction = "좌회전" if self.control_angle < 0 else "우회전"
-                    print(colored(f"선택된 벡터: {self.vector_desired:.2f}° {direction}", "green"))
+                    print(colored(f"선택된 벡터: {self.psi_desire:.2f}° {direction}", "green"))
                 
         elif self.control_mode == 'Hopping':
             if hasattr(self, 'control_angle_deg'):
@@ -733,29 +521,13 @@ def main():
     rospy.init_node("ship", anonymous=True)
     rate = rospy.Rate(10)
     ship = SHIP()
-    
+    check = False
+    aline = False
+    stop_area_threshold = 30000
     while not rospy.is_shutdown():
-        # ship.publish_tf(None)
-        # ship.publish_scanner_tf()
-        
-        # 웨이포인트 관리
-        try:
-            ship.d_goal = ship.wp_manager.cal_d_goal(ship.x_ned, ship.y_ned)
-            ship.WP_k = ship.wp_manager.manage(ship.x_ned, ship.y_ned)
-            
-            if len(ship.WP_k) < 2:
-                rospy.logwarn("웨이포인트가 부족합니다.")
-                rate.sleep()
-                continue
-        except Exception as e:
-            rospy.logerr(f"웨이포인트 관리 오류: {e}")
-            rate.sleep()
-            continue
-            
-        current_wp_num = ship.WP_k[1].num.data
-        
+        ship.about_assembly()        
         # === 변경된 분기: 1번=회피, 2번=호핑, 3번=도킹 ===
-        if current_wp_num == 3:
+        if ship.current_wp_num == 5:
             # 도킹 모드
             if ship.control_mode != "Docking":
                 ship.control_mode = "Docking"
@@ -765,31 +537,45 @@ def main():
                 rospy.loginfo("도킹 완료!")
                 break
 
-        elif current_wp_num == 2:
+        elif ship.current_wp_num == 4:
             # 호핑 모드
             if ship.control_mode != "Hopping":
                 ship.control_mode = "Hopping"
                 rospy.loginfo("Hopping_mode")
-            ship.Hopping_control(ship.psi_ned)
+            ship.hopping_run()
 
-        elif current_wp_num == 1:
+        elif ship.current_wp_num == 3:
+            # 호핑 모드
+            if ship.control_mode != "Hopping":
+                ship.control_mode = "Hopping"
+                rospy.loginfo("Hopping_mode")
+            ship.hopping_run()
+
+        elif ship.current_wp_num == 2:
+            # 호핑 모드
+            if ship.control_mode != "Hopping":
+                ship.control_mode = "Hopping"
+                rospy.loginfo("Hopping_mode")
+            ship.hopping_run()
+
+        elif ship.current_wp_num == 1:
             # 회피 모드
             if ship.control_mode != "Avoidance":
                 ship.control_mode = "Avoidance"
                 rospy.loginfo("Avoidance_mode")
-            ship.ship_run()
+            ship.Avoidance_run()
 
         else:
             # 정의되지 않은 번호는 기본 회피 모드로 처리(안전용)
             if ship.control_mode != "Avoidance":
                 ship.control_mode = "Avoidance"
                 rospy.loginfo("Avoidance_mode")
-            ship.ship_run()
+            ship.Avoidance_run()
         
         ship.control_publish()
         ship.print_state()
         rate.sleep()
-    
+
     # 정리
     if ship.cap is not None:
         ship.cap.release()

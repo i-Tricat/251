@@ -14,8 +14,8 @@ class StraightController:
         rospy.sleep(1)  # 퍼블리셔 초기화 대기
 
         self.rate = rospy.Rate(10)  # 10 Hz
-        self.thrust_value_p = 1600  # 직진용 PWM 값
-        self.thrust_value_s = 1600
+        self.thrust_value_p = 1400  # 직진용 PWM 값
+        self.thrust_value_s = 1400
         self.run()
 
     def run(self):

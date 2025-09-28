@@ -243,14 +243,21 @@ struct Printer< ::ublox_msgs::CfgINF_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgINF_<ContainerAllocator>& v)
   {
-    s << indent << "blocks[]" << std::endl;
+    if (false || !indent.empty())
+      s << std::endl;
+    s << indent << "blocks: ";
+    if (v.blocks.empty() || false)
+      s << "[";
     for (size_t i = 0; i < v.blocks.size(); ++i)
     {
-      s << indent << "  blocks[" << i << "]: ";
-      s << std::endl;
-      s << indent;
-      Printer< ::ublox_msgs::CfgINF_Block_<ContainerAllocator> >::stream(s, indent + "    ", v.blocks[i]);
+      if (false && i > 0)
+        s << ", ";
+      else if (!false)
+        s << std::endl << indent << "  -";
+      Printer< ::ublox_msgs::CfgINF_Block_<ContainerAllocator> >::stream(s, false ? std::string() : indent + "    ", v.blocks[i]);
     }
+    if (v.blocks.empty() || false)
+      s << "]";
   }
 };
 

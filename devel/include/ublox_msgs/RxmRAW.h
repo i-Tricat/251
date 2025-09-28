@@ -267,22 +267,37 @@ struct Printer< ::ublox_msgs::RxmRAW_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::RxmRAW_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "rcvTOW: ";
     Printer<int32_t>::stream(s, indent + "  ", v.rcvTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "week: ";
     Printer<int16_t>::stream(s, indent + "  ", v.week);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "numSV: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.numSV);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved1: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved1);
-    s << indent << "sv[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "sv: ";
+    if (v.sv.empty() || false)
+      s << "[";
     for (size_t i = 0; i < v.sv.size(); ++i)
     {
-      s << indent << "  sv[" << i << "]: ";
-      s << std::endl;
-      s << indent;
-      Printer< ::ublox_msgs::RxmRAW_SV_<ContainerAllocator> >::stream(s, indent + "    ", v.sv[i]);
+      if (false && i > 0)
+        s << ", ";
+      else if (!false)
+        s << std::endl << indent << "  -";
+      Printer< ::ublox_msgs::RxmRAW_SV_<ContainerAllocator> >::stream(s, false ? std::string() : indent + "    ", v.sv[i]);
     }
+    if (v.sv.empty() || false)
+      s << "]";
   }
 };
 

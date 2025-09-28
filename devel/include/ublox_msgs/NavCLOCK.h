@@ -240,14 +240,24 @@ struct Printer< ::ublox_msgs::NavCLOCK_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavCLOCK_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "clkB: ";
     Printer<int32_t>::stream(s, indent + "  ", v.clkB);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "clkD: ";
     Printer<int32_t>::stream(s, indent + "  ", v.clkD);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "tAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.tAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "fAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.fAcc);
   }

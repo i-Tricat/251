@@ -594,22 +594,40 @@ struct Printer< ::ublox_msgs::CfgPRT_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgPRT_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "portID: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.portID);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved0: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.reserved0);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "txReady: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.txReady);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "mode: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.mode);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "baudRate: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.baudRate);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "inProtoMask: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.inProtoMask);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "outProtoMask: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.outProtoMask);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "reserved1: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.reserved1);
   }

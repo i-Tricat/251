@@ -200,11 +200,13 @@ struct Printer< ::tricat_msgs::Obstacle_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::tricat_msgs::Obstacle_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "begin: ";
-    s << std::endl;
     Printer< ::geometry_msgs::Point_<ContainerAllocator> >::stream(s, indent + "  ", v.begin);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "end: ";
-    s << std::endl;
     Printer< ::geometry_msgs::Point_<ContainerAllocator> >::stream(s, indent + "  ", v.end);
   }
 };

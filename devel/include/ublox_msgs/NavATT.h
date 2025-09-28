@@ -280,26 +280,51 @@ struct Printer< ::ublox_msgs::NavATT_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavATT_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "version: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.version);
-    s << indent << "reserved0[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved0: ";
+    if (v.reserved0.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved0.size(); ++i)
     {
-      s << indent << "  reserved0[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved0[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved0[i]);
     }
+    if (v.reserved0.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "roll: ";
     Printer<int32_t>::stream(s, indent + "  ", v.roll);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pitch: ";
     Printer<int32_t>::stream(s, indent + "  ", v.pitch);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "heading: ";
     Printer<int32_t>::stream(s, indent + "  ", v.heading);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "accRoll: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.accRoll);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "accPitch: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.accPitch);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "accHeading: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.accHeading);
   }

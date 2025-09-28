@@ -241,26 +241,51 @@ struct Printer< ::ublox_msgs::MonVER_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::MonVER_<ContainerAllocator>& v)
   {
-    s << indent << "swVersion[]" << std::endl;
+    if (false || !indent.empty())
+      s << std::endl;
+    s << indent << "swVersion: ";
+    if (v.swVersion.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.swVersion.size(); ++i)
     {
-      s << indent << "  swVersion[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.swVersion[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.swVersion[i]);
     }
-    s << indent << "hwVersion[]" << std::endl;
+    if (v.swVersion.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "hwVersion: ";
+    if (v.hwVersion.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.hwVersion.size(); ++i)
     {
-      s << indent << "  hwVersion[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.hwVersion[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.hwVersion[i]);
     }
-    s << indent << "extension[]" << std::endl;
+    if (v.hwVersion.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "extension: ";
+    if (v.extension.empty() || false)
+      s << "[";
     for (size_t i = 0; i < v.extension.size(); ++i)
     {
-      s << indent << "  extension[" << i << "]: ";
-      s << std::endl;
-      s << indent;
-      Printer< ::ublox_msgs::MonVER_Extension_<ContainerAllocator> >::stream(s, indent + "    ", v.extension[i]);
+      if (false && i > 0)
+        s << ", ";
+      else if (!false)
+        s << std::endl << indent << "  -";
+      Printer< ::ublox_msgs::MonVER_Extension_<ContainerAllocator> >::stream(s, false ? std::string() : indent + "    ", v.extension[i]);
     }
+    if (v.extension.empty() || false)
+      s << "]";
   }
 };
 

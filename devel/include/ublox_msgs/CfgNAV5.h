@@ -198,9 +198,6 @@ struct CfgNAV5_
 #if defined(_WIN32) && defined(DYN_MODEL_WRIST_WATCH)
   #undef DYN_MODEL_WRIST_WATCH
 #endif
-#if defined(_WIN32) && defined(DYN_MODEL_BIKE)
-  #undef DYN_MODEL_BIKE
-#endif
 #if defined(_WIN32) && defined(FIX_MODE_2D_ONLY)
   #undef FIX_MODE_2D_ONLY
 #endif
@@ -245,7 +242,6 @@ struct CfgNAV5_
     DYN_MODEL_AIRBORNE_2G = 7u,
     DYN_MODEL_AIRBORNE_4G = 8u,
     DYN_MODEL_WRIST_WATCH = 9u,
-    DYN_MODEL_BIKE = 10u,
     FIX_MODE_2D_ONLY = 1u,
     FIX_MODE_3D_ONLY = 2u,
     FIX_MODE_AUTO = 3u,
@@ -267,8 +263,6 @@ typedef boost::shared_ptr< ::ublox_msgs::CfgNAV5 > CfgNAV5Ptr;
 typedef boost::shared_ptr< ::ublox_msgs::CfgNAV5 const> CfgNAV5ConstPtr;
 
 // constants requiring out of line definition
-
-   
 
    
 
@@ -414,12 +408,12 @@ struct MD5Sum< ::ublox_msgs::CfgNAV5_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "ac3dd34c30655c54e2d11a724de7dcd6";
+    return "30ca0eca946e4bd96bf9f8a145f7b72c";
   }
 
   static const char* value(const ::ublox_msgs::CfgNAV5_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xac3dd34c30655c54ULL;
-  static const uint64_t static_value2 = 0xe2d11a724de7dcd6ULL;
+  static const uint64_t static_value1 = 0x30ca0eca946e4bd9ULL;
+  static const uint64_t static_value2 = 0x6bf9f8a145f7b72cULL;
 };
 
 template<class ContainerAllocator>
@@ -467,7 +461,6 @@ struct Definition< ::ublox_msgs::CfgNAV5_<ContainerAllocator> >
 "uint8 DYN_MODEL_AIRBORNE_2G = 7     # Airborne with <2g Acceleration\n"
 "uint8 DYN_MODEL_AIRBORNE_4G = 8     # Airborne with <4g Acceleration\n"
 "uint8 DYN_MODEL_WRIST_WATCH = 9     # Wrist watch, protocol >= 18\n"
-"uint8 DYN_MODEL_BIKE = 10           # Bike, protocol >= 19.2\n"
 "\n"
 "uint8 fixMode           # Position Fixing Mode.\n"
 "uint8 FIX_MODE_2D_ONLY = 1          # 2D only\n"
@@ -560,52 +553,104 @@ struct Printer< ::ublox_msgs::CfgNAV5_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgNAV5_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "mask: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.mask);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "dynModel: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.dynModel);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "fixMode: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.fixMode);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "fixedAlt: ";
     Printer<int32_t>::stream(s, indent + "  ", v.fixedAlt);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "fixedAltVar: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.fixedAltVar);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "minElev: ";
     Printer<int8_t>::stream(s, indent + "  ", v.minElev);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "drLimit: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.drLimit);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pDop: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.pDop);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "tDop: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.tDop);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pAcc: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.pAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "tAcc: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.tAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "staticHoldThresh: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.staticHoldThresh);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "dgnssTimeOut: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.dgnssTimeOut);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cnoThreshNumSvs: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.cnoThreshNumSvs);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "cnoThresh: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.cnoThresh);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
+    if (v.reserved1.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "staticHoldMaxDist: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.staticHoldMaxDist);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "utcStandard: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.utcStandard);
-    s << indent << "reserved2[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved2: ";
+    if (v.reserved2.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved2.size(); ++i)
     {
-      s << indent << "  reserved2[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved2[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved2[i]);
     }
+    if (v.reserved2.empty() || true)
+      s << "]";
   }
 };
 

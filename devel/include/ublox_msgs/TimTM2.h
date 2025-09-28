@@ -342,24 +342,44 @@ struct Printer< ::ublox_msgs::TimTM2_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::TimTM2_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "ch: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.ch);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "risingEdgeCount: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.risingEdgeCount);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "wnR: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.wnR);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "wnF: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.wnF);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "towMsR: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.towMsR);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "towSubMsR: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.towSubMsR);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "towMsF: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.towMsF);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "towSubMsF: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.towSubMsF);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "accEst: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.accEst);
   }

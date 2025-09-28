@@ -220,17 +220,25 @@ struct Printer< ::tricat_msgs::ObstacleList_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::tricat_msgs::ObstacleList_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "lidar_header: ";
-    s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.lidar_header);
-    s << indent << "obstacle[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "obstacle: ";
+    if (v.obstacle.empty() || false)
+      s << "[";
     for (size_t i = 0; i < v.obstacle.size(); ++i)
     {
-      s << indent << "  obstacle[" << i << "]: ";
-      s << std::endl;
-      s << indent;
-      Printer< ::tricat_msgs::Obstacle_<ContainerAllocator> >::stream(s, indent + "    ", v.obstacle[i]);
+      if (false && i > 0)
+        s << ", ";
+      else if (!false)
+        s << std::endl << indent << "  -";
+      Printer< ::tricat_msgs::Obstacle_<ContainerAllocator> >::stream(s, false ? std::string() : indent + "    ", v.obstacle[i]);
     }
+    if (v.obstacle.empty() || false)
+      s << "]";
   }
 };
 

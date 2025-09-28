@@ -276,10 +276,16 @@ struct Printer< ::ublox_msgs::CfgRATE_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgRATE_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "measRate: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.measRate);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "navRate: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.navRate);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "timeRef: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.timeRef);
   }

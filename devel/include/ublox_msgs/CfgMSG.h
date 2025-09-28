@@ -225,10 +225,16 @@ struct Printer< ::ublox_msgs::CfgMSG_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgMSG_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "msgClass: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.msgClass);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "msgID: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.msgID);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "rate: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.rate);
   }

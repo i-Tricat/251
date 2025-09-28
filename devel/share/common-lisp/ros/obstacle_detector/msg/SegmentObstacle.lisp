@@ -61,10 +61,10 @@
   "37ecbf7e1053bae89f0770466b37c3c3")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<SegmentObstacle>)))
   "Returns full string definition for message of type '<SegmentObstacle>"
-  (cl:format cl:nil "geometry_msgs/Point first_point~%geometry_msgs/Point last_point~%~%~%================================================================================~%MSG: geometry_msgs/Point~%# This contains the position of a point in free space~%float64 x~%float64 y~%float64 z~%~%~%"))
+  (cl:format cl:nil "geometry_msgs/Point first_point  # First point of the segment [m]~%geometry_msgs/Point last_point   # Last point of the segment [m]~%~%================================================================================~%MSG: geometry_msgs/Point~%# This contains the position of a point in free space~%float64 x~%float64 y~%float64 z~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'SegmentObstacle)))
   "Returns full string definition for message of type 'SegmentObstacle"
-  (cl:format cl:nil "geometry_msgs/Point first_point~%geometry_msgs/Point last_point~%~%~%================================================================================~%MSG: geometry_msgs/Point~%# This contains the position of a point in free space~%float64 x~%float64 y~%float64 z~%~%~%"))
+  (cl:format cl:nil "geometry_msgs/Point first_point  # First point of the segment [m]~%geometry_msgs/Point last_point   # Last point of the segment [m]~%~%================================================================================~%MSG: geometry_msgs/Point~%# This contains the position of a point in free space~%float64 x~%float64 y~%float64 z~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <SegmentObstacle>))
   (cl:+ 0
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'first_point))

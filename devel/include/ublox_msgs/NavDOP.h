@@ -268,20 +268,36 @@ struct Printer< ::ublox_msgs::NavDOP_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavDOP_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "gDOP: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.gDOP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pDOP: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.pDOP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "tDOP: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.tDOP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "vDOP: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.vDOP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "hDOP: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.hDOP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "nDOP: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.nDOP);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "eDOP: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.eDOP);
   }

@@ -68,7 +68,7 @@ class CfgANT {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '3fb4e960ecb1d1999afa14ab38e0b768';
+    return '6c437e89b3ea397651d3a01434d681c7';
   }
 
   static messageDefinition() {
@@ -96,7 +96,7 @@ class CfgANT {
                                    # antenna supply
     uint16 PIN_OCD_MASK = 31744    # PIO-Pin used for detecting open/not connected 
                                    # antenna
-    uint16 PIN_RECONFIG = 32768    # if set to one, and this command is sent to the 
+    uint16 PIN_RECONFIG = 32678    # if set to one, and this command is sent to the 
                                    # receiver, the receiver will reconfigure the 
                                    # pins as specified.
     
@@ -139,7 +139,7 @@ CfgANT.Constants = {
   PIN_SWITCH_MASK: 31,
   PIN_SCD_MASK: 992,
   PIN_OCD_MASK: 31744,
-  PIN_RECONFIG: 32768,
+  PIN_RECONFIG: 32678,
 }
 
 module.exports = CfgANT;

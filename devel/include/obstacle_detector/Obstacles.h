@@ -137,12 +137,12 @@ struct MD5Sum< ::obstacle_detector::Obstacles_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "d1ad5dcfab44f5899cb5e192beb9c8f9";
+    return "043bbf49c7775f8111e850268dbcf2e3";
   }
 
   static const char* value(const ::obstacle_detector::Obstacles_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xd1ad5dcfab44f589ULL;
-  static const uint64_t static_value2 = 0x9cb5e192beb9c8f9ULL;
+  static const uint64_t static_value1 = 0x043bbf49c7775f81ULL;
+  static const uint64_t static_value2 = 0x11e850268dbcf2e3ULL;
 };
 
 template<class ContainerAllocator>
@@ -184,9 +184,8 @@ struct Definition< ::obstacle_detector::Obstacles_<ContainerAllocator> >
 "\n"
 "================================================================================\n"
 "MSG: obstacle_detector/SegmentObstacle\n"
-"geometry_msgs/Point first_point\n"
-"geometry_msgs/Point last_point\n"
-"\n"
+"geometry_msgs/Point first_point  # First point of the segment [m]\n"
+"geometry_msgs/Point last_point   # Last point of the segment [m]\n"
 "\n"
 "================================================================================\n"
 "MSG: geometry_msgs/Point\n"
@@ -197,9 +196,23 @@ struct Definition< ::obstacle_detector::Obstacles_<ContainerAllocator> >
 "\n"
 "================================================================================\n"
 "MSG: obstacle_detector/CircleObstacle\n"
-"geometry_msgs/Point center\n"
-"float64 radius\n"
+"geometry_msgs/Point center      # Central point [m]\n"
+"geometry_msgs/Vector3 velocity  # Linear velocity [m/s]\n"
+"float64 radius                  # Radius with added margin [m]\n"
+"float64 true_radius             # True measured radius [m]\n"
 "\n"
+"================================================================================\n"
+"MSG: geometry_msgs/Vector3\n"
+"# This represents a vector in free space. \n"
+"# It is only meant to represent a direction. Therefore, it does not\n"
+"# make sense to apply a translation to it (e.g., when applying a \n"
+"# generic rigid transformation to a Vector3, tf2 will only apply the\n"
+"# rotation). If you want your data to be translatable too, use the\n"
+"# geometry_msgs/Point message instead.\n"
+"\n"
+"float64 x\n"
+"float64 y\n"
+"float64 z\n"
 ;
   }
 
@@ -239,25 +252,40 @@ struct Printer< ::obstacle_detector::Obstacles_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::obstacle_detector::Obstacles_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "header: ";
-    s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-    s << indent << "segments[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "segments: ";
+    if (v.segments.empty() || false)
+      s << "[";
     for (size_t i = 0; i < v.segments.size(); ++i)
     {
-      s << indent << "  segments[" << i << "]: ";
-      s << std::endl;
-      s << indent;
-      Printer< ::obstacle_detector::SegmentObstacle_<ContainerAllocator> >::stream(s, indent + "    ", v.segments[i]);
+      if (false && i > 0)
+        s << ", ";
+      else if (!false)
+        s << std::endl << indent << "  -";
+      Printer< ::obstacle_detector::SegmentObstacle_<ContainerAllocator> >::stream(s, false ? std::string() : indent + "    ", v.segments[i]);
     }
-    s << indent << "circles[]" << std::endl;
+    if (v.segments.empty() || false)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "circles: ";
+    if (v.circles.empty() || false)
+      s << "[";
     for (size_t i = 0; i < v.circles.size(); ++i)
     {
-      s << indent << "  circles[" << i << "]: ";
-      s << std::endl;
-      s << indent;
-      Printer< ::obstacle_detector::CircleObstacle_<ContainerAllocator> >::stream(s, indent + "    ", v.circles[i]);
+      if (false && i > 0)
+        s << ", ";
+      else if (!false)
+        s << std::endl << indent << "  -";
+      Printer< ::obstacle_detector::CircleObstacle_<ContainerAllocator> >::stream(s, false ? std::string() : indent + "    ", v.circles[i]);
     }
+    if (v.circles.empty() || false)
+      s << "]";
   }
 };
 

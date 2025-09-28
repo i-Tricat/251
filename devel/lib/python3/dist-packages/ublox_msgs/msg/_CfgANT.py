@@ -8,7 +8,7 @@ import struct
 
 
 class CfgANT(genpy.Message):
-  _md5sum = "3fb4e960ecb1d1999afa14ab38e0b768"
+  _md5sum = "6c437e89b3ea397651d3a01434d681c7"
   _type = "ublox_msgs/CfgANT"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """# CFG-ANT (0x06 0x13)
@@ -33,7 +33,7 @@ uint16 PIN_SCD_MASK = 992      # PIO-Pin used for detecting a short in the
                                # antenna supply
 uint16 PIN_OCD_MASK = 31744    # PIO-Pin used for detecting open/not connected 
                                # antenna
-uint16 PIN_RECONFIG = 32768    # if set to one, and this command is sent to the 
+uint16 PIN_RECONFIG = 32678    # if set to one, and this command is sent to the 
                                # receiver, the receiver will reconfigure the 
                                # pins as specified.
 """
@@ -48,7 +48,7 @@ uint16 PIN_RECONFIG = 32768    # if set to one, and this command is sent to the
   PIN_SWITCH_MASK = 31
   PIN_SCD_MASK = 992
   PIN_OCD_MASK = 31744
-  PIN_RECONFIG = 32768
+  PIN_RECONFIG = 32678
 
   __slots__ = ['flags','pins']
   _slot_types = ['uint16','uint16']

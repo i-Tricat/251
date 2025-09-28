@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- Rosbag 파일을 이용한 더미 데이터 -->
+    <node pkg="rosbag" type="play" name="rosbag_sensor" args="-l /home/kkl/catkin_ws/hp.bag"/>
+
+    <!-- LiDAR data -->
+    <node pkg="obstacle_detector" type="obstacle_detector" name="obstacle_detector" output="screen">
+        <param name="world_frame"     type="string" value="map"/>
+        <!-- simple_avoid가 로컬 프레임을 쓰므로 스캐너 프레임은 base_link 권장 -->
+        <param name="scanner_frame"   type="string" value="base_link"/>
+
+        <param name="use_scan"            type="bool" value="true"/>
+        <param name="use_pcl"             type="bool" value="false"/>
+        <param name="transform_to_world"  type="bool" value="false"/>
+        <param name="use_split_and_merge" type="bool" value="false"/>
+
+        <param name="min_group_points"    value="3"/>
+        <param name="max_group_distance"  value="0.100"/>
+        <param name="distance_proportion" value="0.006136"/>
+        <param name="max_split_distance"  value="0.100"/>
+
+        <param name="max_merge_separation" value="0.200"/>
+        <param name="max_merge_spread"     value="0.070"/>
+        <param name="max_circle_radius"    value="0.300"/>
+        <param name="radius_enlargement"   value="0.050"/>
+
+        <param name="max_scanner_range"    value="5.0"/>
+        <param name="max_x_range"          value="2.0"/>
+        <param name="min_x_range"          value="-2.0"/>
+        <param name="max_y_range"          value="1.0"/>
+        <param name="min_y_range"          value="-1.0"/>
+    </node>
+    
+    <node pkg="obstacle_detector" type="obstacle_visualizer" name="obstacle_visualizer" output="screen"/>
+
+    <!-- GPS data (유지) -->
+    <node pkg="tricat_251" type="gnss_converter.py" name="gnss_converter" respawn="true" output="screen"/>
+    <node pkg="tricat_251" type="psi_converter.py" name="psi_converter" respawn="true"/>
+
+
+    <!-- Total (유지 필요 시) -->
+    <node pkg="tricat_251" type="sensor_total.py" name="sensor_total" args="Sensor_total" respawn="true"/> 
+    <node pkg="tricat_251" type="navigation.py" name="navigation"/>
+    <node pkg="tricat_251" type="guidance.py" name="guidance" output="screen"/>
+    <node pkg="tricat_251" type="actuator.py" name="actuator"/>
+    <node pkg="tricat_251" type="serial_node.py" name="ARDUINO" args="/dev/ttyARDUINO" respawn="true"/>
+
+    <!-- Parameters (유지) -->
+    <!-- <rosparam command="load" file="$(find tricat_251)/params/251_params.yaml"/> -->
+    <rosparam command="load" file="$(find tricat_251)/params/lidar_params.yaml"/>
+    <rosparam command="load" file="$(find tricat_251)/params/simple_avoid.yaml"/>
+
+    <!-- 추가: 간단 회피 노드(simple_avoid) -->
+    <node pkg="tricat_251" type="simple_avoid.py" name="simple_avoid" output="screen">
+        <param name="forward_axis_sign" value="1"/>
+
+        <param name="obs_range"      value="2.2"/>
+        <param name="obs_margin"     value="0.15"/>
+        <param name="max_angle_deg"  value="100.0"/>
+        <param name="pow_gain"       value="1.6"/>
+        <param name="steer_gain"     value="1.0"/>
+        <param name="forward_bias"   value="0.6"/>
+
+        <param name="base_thrust" value="1600"/>
+        <param name="diff_max"    value="350"/>
+        <param name="pwm_min"     value="900"/>
+        <param name="pwm_max"     value="2100"/>
+
+        <param name="rate" value="10"/>
+    </node>
+</launch>

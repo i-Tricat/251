@@ -67,7 +67,7 @@
 
 (defclass ublox_msgs::NavRELPOSNED
   :super ros::object
-  :slots (_version _reserved0 _refStationId _iTOW _relPosN _relPosE _relPosD _relPosHPN _relPosHPE _relPosHPD _reserved1 _accN _accE _accD _flags ))
+  :slots (_version _reserved0 _refStationId _iTow _relPosN _relPosE _relPosD _relPosLength _relPosHeading _reserved1 _relPosHPN _relPosHPE _relPosHPD _relPosHPLength _accN _accE _accD _accLength _accHeading _reserved2 _flags ))
 
 (defmethod ublox_msgs::NavRELPOSNED
   (:init
@@ -75,34 +75,46 @@
     ((:version __version) 0)
     ((:reserved0 __reserved0) 0)
     ((:refStationId __refStationId) 0)
-    ((:iTOW __iTOW) 0)
+    ((:iTow __iTow) 0)
     ((:relPosN __relPosN) 0)
     ((:relPosE __relPosE) 0)
     ((:relPosD __relPosD) 0)
+    ((:relPosLength __relPosLength) 0)
+    ((:relPosHeading __relPosHeading) 0)
+    ((:reserved1 __reserved1) 0)
     ((:relPosHPN __relPosHPN) 0)
     ((:relPosHPE __relPosHPE) 0)
     ((:relPosHPD __relPosHPD) 0)
-    ((:reserved1 __reserved1) 0)
+    ((:relPosHPLength __relPosHPLength) 0)
     ((:accN __accN) 0)
     ((:accE __accE) 0)
     ((:accD __accD) 0)
+    ((:accLength __accLength) 0)
+    ((:accHeading __accHeading) 0)
+    ((:reserved2 __reserved2) 0)
     ((:flags __flags) 0)
     )
    (send-super :init)
    (setq _version (round __version))
    (setq _reserved0 (round __reserved0))
    (setq _refStationId (round __refStationId))
-   (setq _iTOW (round __iTOW))
+   (setq _iTow (round __iTow))
    (setq _relPosN (round __relPosN))
    (setq _relPosE (round __relPosE))
    (setq _relPosD (round __relPosD))
+   (setq _relPosLength (round __relPosLength))
+   (setq _relPosHeading (round __relPosHeading))
+   (setq _reserved1 (round __reserved1))
    (setq _relPosHPN (round __relPosHPN))
    (setq _relPosHPE (round __relPosHPE))
    (setq _relPosHPD (round __relPosHPD))
-   (setq _reserved1 (round __reserved1))
+   (setq _relPosHPLength (round __relPosHPLength))
    (setq _accN (round __accN))
    (setq _accE (round __accE))
    (setq _accD (round __accD))
+   (setq _accLength (round __accLength))
+   (setq _accHeading (round __accHeading))
+   (setq _reserved2 (round __reserved2))
    (setq _flags (round __flags))
    self)
   (:version
@@ -114,9 +126,9 @@
   (:refStationId
    (&optional __refStationId)
    (if __refStationId (setq _refStationId __refStationId)) _refStationId)
-  (:iTOW
-   (&optional __iTOW)
-   (if __iTOW (setq _iTOW __iTOW)) _iTOW)
+  (:iTow
+   (&optional __iTow)
+   (if __iTow (setq _iTow __iTow)) _iTow)
   (:relPosN
    (&optional __relPosN)
    (if __relPosN (setq _relPosN __relPosN)) _relPosN)
@@ -126,6 +138,15 @@
   (:relPosD
    (&optional __relPosD)
    (if __relPosD (setq _relPosD __relPosD)) _relPosD)
+  (:relPosLength
+   (&optional __relPosLength)
+   (if __relPosLength (setq _relPosLength __relPosLength)) _relPosLength)
+  (:relPosHeading
+   (&optional __relPosHeading)
+   (if __relPosHeading (setq _relPosHeading __relPosHeading)) _relPosHeading)
+  (:reserved1
+   (&optional __reserved1)
+   (if __reserved1 (setq _reserved1 __reserved1)) _reserved1)
   (:relPosHPN
    (&optional __relPosHPN)
    (if __relPosHPN (setq _relPosHPN __relPosHPN)) _relPosHPN)
@@ -135,9 +156,9 @@
   (:relPosHPD
    (&optional __relPosHPD)
    (if __relPosHPD (setq _relPosHPD __relPosHPD)) _relPosHPD)
-  (:reserved1
-   (&optional __reserved1)
-   (if __reserved1 (setq _reserved1 __reserved1)) _reserved1)
+  (:relPosHPLength
+   (&optional __relPosHPLength)
+   (if __relPosHPLength (setq _relPosHPLength __relPosHPLength)) _relPosHPLength)
   (:accN
    (&optional __accN)
    (if __accN (setq _accN __accN)) _accN)
@@ -147,6 +168,15 @@
   (:accD
    (&optional __accD)
    (if __accD (setq _accD __accD)) _accD)
+  (:accLength
+   (&optional __accLength)
+   (if __accLength (setq _accLength __accLength)) _accLength)
+  (:accHeading
+   (&optional __accHeading)
+   (if __accHeading (setq _accHeading __accHeading)) _accHeading)
+  (:reserved2
+   (&optional __reserved2)
+   (if __reserved2 (setq _reserved2 __reserved2)) _reserved2)
   (:flags
    (&optional __flags)
    (if __flags (setq _flags __flags)) _flags)
@@ -159,7 +189,7 @@
     1
     ;; uint16 _refStationId
     2
-    ;; uint32 _iTOW
+    ;; uint32 _iTow
     4
     ;; int32 _relPosN
     4
@@ -167,19 +197,31 @@
     4
     ;; int32 _relPosD
     4
+    ;; int32 _relPosLength
+    4
+    ;; int32 _relPosHeading
+    4
+    ;; uint32 _reserved1
+    4
     ;; int8 _relPosHPN
     1
     ;; int8 _relPosHPE
     1
     ;; int8 _relPosHPD
     1
-    ;; uint8 _reserved1
+    ;; uint8 _relPosHPLength
     1
     ;; uint32 _accN
     4
     ;; uint32 _accE
     4
     ;; uint32 _accD
+    4
+    ;; uint32 _accLength
+    4
+    ;; uint32 _accHeading
+    4
+    ;; uint32 _reserved2
     4
     ;; uint32 _flags
     4
@@ -194,28 +236,40 @@
        (write-byte _reserved0 s)
      ;; uint16 _refStationId
        (write-word _refStationId s)
-     ;; uint32 _iTOW
-       (write-long _iTOW s)
+     ;; uint32 _iTow
+       (write-long _iTow s)
      ;; int32 _relPosN
        (write-long _relPosN s)
      ;; int32 _relPosE
        (write-long _relPosE s)
      ;; int32 _relPosD
        (write-long _relPosD s)
+     ;; int32 _relPosLength
+       (write-long _relPosLength s)
+     ;; int32 _relPosHeading
+       (write-long _relPosHeading s)
+     ;; uint32 _reserved1
+       (write-long _reserved1 s)
      ;; int8 _relPosHPN
        (write-byte _relPosHPN s)
      ;; int8 _relPosHPE
        (write-byte _relPosHPE s)
      ;; int8 _relPosHPD
        (write-byte _relPosHPD s)
-     ;; uint8 _reserved1
-       (write-byte _reserved1 s)
+     ;; uint8 _relPosHPLength
+       (write-byte _relPosHPLength s)
      ;; uint32 _accN
        (write-long _accN s)
      ;; uint32 _accE
        (write-long _accE s)
      ;; uint32 _accD
        (write-long _accD s)
+     ;; uint32 _accLength
+       (write-long _accLength s)
+     ;; uint32 _accHeading
+       (write-long _accHeading s)
+     ;; uint32 _reserved2
+       (write-long _reserved2 s)
      ;; uint32 _flags
        (write-long _flags s)
      ;;
@@ -228,14 +282,20 @@
      (setq _reserved0 (sys::peek buf ptr- :char)) (incf ptr- 1)
    ;; uint16 _refStationId
      (setq _refStationId (sys::peek buf ptr- :short)) (incf ptr- 2)
-   ;; uint32 _iTOW
-     (setq _iTOW (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; uint32 _iTow
+     (setq _iTow (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; int32 _relPosN
      (setq _relPosN (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; int32 _relPosE
      (setq _relPosE (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; int32 _relPosD
      (setq _relPosD (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; int32 _relPosLength
+     (setq _relPosLength (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; int32 _relPosHeading
+     (setq _relPosHeading (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; uint32 _reserved1
+     (setq _reserved1 (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; int8 _relPosHPN
      (setq _relPosHPN (sys::peek buf ptr- :char)) (incf ptr- 1)
      (if (> _relPosHPN 127) (setq _relPosHPN (- _relPosHPN 256)))
@@ -245,21 +305,27 @@
    ;; int8 _relPosHPD
      (setq _relPosHPD (sys::peek buf ptr- :char)) (incf ptr- 1)
      (if (> _relPosHPD 127) (setq _relPosHPD (- _relPosHPD 256)))
-   ;; uint8 _reserved1
-     (setq _reserved1 (sys::peek buf ptr- :char)) (incf ptr- 1)
+   ;; uint8 _relPosHPLength
+     (setq _relPosHPLength (sys::peek buf ptr- :char)) (incf ptr- 1)
    ;; uint32 _accN
      (setq _accN (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; uint32 _accE
      (setq _accE (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; uint32 _accD
      (setq _accD (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; uint32 _accLength
+     (setq _accLength (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; uint32 _accHeading
+     (setq _accHeading (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; uint32 _reserved2
+     (setq _reserved2 (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; uint32 _flags
      (setq _flags (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get ublox_msgs::NavRELPOSNED :md5sum-) "1b22df5b18240fc796963c10b1dfc88d")
+(setf (get ublox_msgs::NavRELPOSNED :md5sum-) "230f179ad5d03f7dffe9babdd98b23cc")
 (setf (get ublox_msgs::NavRELPOSNED :datatype-) "ublox_msgs/NavRELPOSNED")
 (setf (get ublox_msgs::NavRELPOSNED :definition-)
       "# NAV-RELPOSNED (0x01 0x3C)
@@ -273,7 +339,7 @@
 # defined at the reference station
 #
 # Supported on:
-#  - u-blox 8 / u-blox M8 from protocol version 20 up to version 23.01 (only
+#  - u-blox 9 with protocol version 27.1 (only
 #    with High Precision GNSS products)
 #
 
@@ -284,7 +350,7 @@ uint8 version                     # Message version (0x00 for this version)
 uint8 reserved0                   # Reserved
 uint16 refStationId               # Reference Station ID. Must be in the range 
                                   # 0..4095
-uint32 iTOW                       # GPS time of week of the navigation epoch 
+uint32 iTow                       # GPS time of week of the navigation epoch 
                                   # [ms]
 
 int32 relPosN                     # North component of relative position vector 
@@ -293,6 +359,13 @@ int32 relPosE                     # East component of relative position vector
                                   # [cm]
 int32 relPosD                     # Down component of relative position vector
                                   # [cm]
+int32 relPosLength
+
+int32 relPosHeading
+
+uint32 reserved1
+
+
 
 int8 relPosHPN                    # High-precision North component of relative
                                   # position vector. [0.1 mm]
@@ -313,7 +386,7 @@ int8 relPosHPD                    # High-precision Down component of relative
                                   # position vector, in units of cm, is given by
                                   # relPosD + (relPosHPD * 1e-2)
 
-uint8 reserved1                   # Reserved
+uint8 relPosHPLength
 
 uint32 accN                       # Accuracy of relative position North 
                                   # component [0.1 mm]
@@ -321,6 +394,12 @@ uint32 accE                       # Accuracy of relative position East component
                                   # [0.1 mm]
 uint32 accD                       # Accuracy of relative position Down component
                                   # [0.1 mm]
+
+uint32 accLength
+
+uint32 accHeading
+
+uint32 reserved2
 
 uint32 flags
 uint32 FLAGS_GNSS_FIX_OK = 1      # A valid fix (i.e within DOP & accuracy 
@@ -351,6 +430,6 @@ uint32 FLAGS_REF_OBS_MISS = 128   # Set if extrapolated reference observations
 
 
 
-(provide :ublox_msgs/NavRELPOSNED "1b22df5b18240fc796963c10b1dfc88d")
+(provide :ublox_msgs/NavRELPOSNED "230f179ad5d03f7dffe9babdd98b23cc")
 
 

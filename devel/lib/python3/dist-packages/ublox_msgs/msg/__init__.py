@@ -23,7 +23,6 @@ from ._CfgRST import *
 from ._CfgSBAS import *
 from ._CfgTMODE3 import *
 from ._CfgUSB import *
-from ._EsfALG import *
 from ._EsfINS import *
 from ._EsfMEAS import *
 from ._EsfRAW import *
@@ -43,14 +42,11 @@ from ._NavCLOCK import *
 from ._NavDGPS import *
 from ._NavDGPS_SV import *
 from ._NavDOP import *
-from ._NavHPPOSECEF import *
-from ._NavHPPOSLLH import *
 from ._NavPOSECEF import *
 from ._NavPOSLLH import *
 from ._NavPVT import *
 from ._NavPVT7 import *
 from ._NavRELPOSNED import *
-from ._NavRELPOSNED9 import *
 from ._NavSAT import *
 from ._NavSAT_SV import *
 from ._NavSBAS import *

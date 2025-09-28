@@ -44,7 +44,7 @@
 (defconstant ublox_msgs::CfgANT::*PIN_OCD_MASK* 31744)
 (intern "*PIN_RECONFIG*" (find-package "UBLOX_MSGS::CFGANT"))
 (shadow '*PIN_RECONFIG* (find-package "UBLOX_MSGS::CFGANT"))
-(defconstant ublox_msgs::CfgANT::*PIN_RECONFIG* 32768)
+(defconstant ublox_msgs::CfgANT::*PIN_RECONFIG* 32678)
 
 (defun ublox_msgs::CfgANT-to-symbol (const)
   (cond
@@ -58,7 +58,7 @@
         ((= const 31) 'ublox_msgs::CfgANT::*PIN_SWITCH_MASK*)
         ((= const 992) 'ublox_msgs::CfgANT::*PIN_SCD_MASK*)
         ((= const 31744) 'ublox_msgs::CfgANT::*PIN_OCD_MASK*)
-        ((= const 32768) 'ublox_msgs::CfgANT::*PIN_RECONFIG*)
+        ((= const 32678) 'ublox_msgs::CfgANT::*PIN_RECONFIG*)
         (t nil)))
 
 (defclass ublox_msgs::CfgANT
@@ -109,7 +109,7 @@
    self)
   )
 
-(setf (get ublox_msgs::CfgANT :md5sum-) "3fb4e960ecb1d1999afa14ab38e0b768")
+(setf (get ublox_msgs::CfgANT :md5sum-) "6c437e89b3ea397651d3a01434d681c7")
 (setf (get ublox_msgs::CfgANT :datatype-) "ublox_msgs/CfgANT")
 (setf (get ublox_msgs::CfgANT :definition-)
       "# CFG-ANT (0x06 0x13)
@@ -134,7 +134,7 @@ uint16 PIN_SCD_MASK = 992      # PIO-Pin used for detecting a short in the
                                # antenna supply
 uint16 PIN_OCD_MASK = 31744    # PIO-Pin used for detecting open/not connected 
                                # antenna
-uint16 PIN_RECONFIG = 32768    # if set to one, and this command is sent to the 
+uint16 PIN_RECONFIG = 32678    # if set to one, and this command is sent to the 
                                # receiver, the receiver will reconfigure the 
                                # pins as specified.
 
@@ -142,6 +142,6 @@ uint16 PIN_RECONFIG = 32768    # if set to one, and this command is sent to the
 
 
 
-(provide :ublox_msgs/CfgANT "3fb4e960ecb1d1999afa14ab38e0b768")
+(provide :ublox_msgs/CfgANT "6c437e89b3ea397651d3a01434d681c7")
 
 

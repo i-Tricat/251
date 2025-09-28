@@ -16,6 +16,7 @@
 #include <ros/message_operations.h>
 
 #include <geometry_msgs/Point.h>
+#include <geometry_msgs/Vector3.h>
 
 namespace obstacle_detector
 {
@@ -26,11 +27,15 @@ struct CircleObstacle_
 
   CircleObstacle_()
     : center()
-    , radius(0.0)  {
+    , velocity()
+    , radius(0.0)
+    , true_radius(0.0)  {
     }
   CircleObstacle_(const ContainerAllocator& _alloc)
     : center(_alloc)
-    , radius(0.0)  {
+    , velocity(_alloc)
+    , radius(0.0)
+    , true_radius(0.0)  {
   (void)_alloc;
     }
 
@@ -39,8 +44,14 @@ struct CircleObstacle_
    typedef  ::geometry_msgs::Point_<ContainerAllocator>  _center_type;
   _center_type center;
 
+   typedef  ::geometry_msgs::Vector3_<ContainerAllocator>  _velocity_type;
+  _velocity_type velocity;
+
    typedef double _radius_type;
   _radius_type radius;
+
+   typedef double _true_radius_type;
+  _true_radius_type true_radius;
 
 
 
@@ -72,7 +83,9 @@ template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::obstacle_detector::CircleObstacle_<ContainerAllocator1> & lhs, const ::obstacle_detector::CircleObstacle_<ContainerAllocator2> & rhs)
 {
   return lhs.center == rhs.center &&
-    lhs.radius == rhs.radius;
+    lhs.velocity == rhs.velocity &&
+    lhs.radius == rhs.radius &&
+    lhs.true_radius == rhs.true_radius;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -129,12 +142,12 @@ struct MD5Sum< ::obstacle_detector::CircleObstacle_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "ab296cd39c1a1fa7dd67209d6a4767e1";
+    return "d23cb7e768ed09971078d4cccc3808a9";
   }
 
   static const char* value(const ::obstacle_detector::CircleObstacle_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xab296cd39c1a1fa7ULL;
-  static const uint64_t static_value2 = 0xdd67209d6a4767e1ULL;
+  static const uint64_t static_value1 = 0xd23cb7e768ed0997ULL;
+  static const uint64_t static_value2 = 0x1078d4cccc3808a9ULL;
 };
 
 template<class ContainerAllocator>
@@ -153,13 +166,27 @@ struct Definition< ::obstacle_detector::CircleObstacle_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "geometry_msgs/Point center\n"
-"float64 radius\n"
-"\n"
+    return "geometry_msgs/Point center      # Central point [m]\n"
+"geometry_msgs/Vector3 velocity  # Linear velocity [m/s]\n"
+"float64 radius                  # Radius with added margin [m]\n"
+"float64 true_radius             # True measured radius [m]\n"
 "\n"
 "================================================================================\n"
 "MSG: geometry_msgs/Point\n"
 "# This contains the position of a point in free space\n"
+"float64 x\n"
+"float64 y\n"
+"float64 z\n"
+"\n"
+"================================================================================\n"
+"MSG: geometry_msgs/Vector3\n"
+"# This represents a vector in free space. \n"
+"# It is only meant to represent a direction. Therefore, it does not\n"
+"# make sense to apply a translation to it (e.g., when applying a \n"
+"# generic rigid transformation to a Vector3, tf2 will only apply the\n"
+"# rotation). If you want your data to be translatable too, use the\n"
+"# geometry_msgs/Point message instead.\n"
+"\n"
 "float64 x\n"
 "float64 y\n"
 "float64 z\n"
@@ -182,7 +209,9 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.center);
+      stream.next(m.velocity);
       stream.next(m.radius);
+      stream.next(m.true_radius);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -201,11 +230,22 @@ struct Printer< ::obstacle_detector::CircleObstacle_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::obstacle_detector::CircleObstacle_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "center: ";
-    s << std::endl;
     Printer< ::geometry_msgs::Point_<ContainerAllocator> >::stream(s, indent + "  ", v.center);
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "velocity: ";
+    Printer< ::geometry_msgs::Vector3_<ContainerAllocator> >::stream(s, indent + "  ", v.velocity);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "radius: ";
     Printer<double>::stream(s, indent + "  ", v.radius);
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "true_radius: ";
+    Printer<double>::stream(s, indent + "  ", v.true_radius);
   }
 };
 

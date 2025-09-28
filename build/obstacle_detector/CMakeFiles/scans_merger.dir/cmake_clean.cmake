@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/i-tricat241/catkin_ws/devel/lib/obstacle_detector/scans_merger"
-  "/home/i-tricat241/catkin_ws/devel/lib/obstacle_detector/scans_merger.pdb"
+  "/home/i-tricat241/catkin_ws/devel/lib/libscans_merger.pdb"
+  "/home/i-tricat241/catkin_ws/devel/lib/libscans_merger.so"
   "CMakeFiles/scans_merger.dir/src/scans_merger.cpp.o"
 )
 

@@ -211,15 +211,25 @@ struct Printer< ::rtcm_msgs::Message_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::rtcm_msgs::Message_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "header: ";
-    s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-    s << indent << "message[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "message: ";
+    if (v.message.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.message.size(); ++i)
     {
-      s << indent << "  message[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.message[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.message[i]);
     }
+    if (v.message.empty() || true)
+      s << "]";
   }
 };
 

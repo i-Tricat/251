@@ -672,72 +672,143 @@ struct Printer< ::ublox_msgs::NavPVT_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::NavPVT_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "iTOW: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.iTOW);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "year: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.year);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "month: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.month);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "day: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.day);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "hour: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.hour);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "min: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.min);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sec: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.sec);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "valid: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.valid);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "tAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.tAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "nano: ";
     Printer<int32_t>::stream(s, indent + "  ", v.nano);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "fixType: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.fixType);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flags2: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.flags2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "numSV: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.numSV);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "lon: ";
     Printer<int32_t>::stream(s, indent + "  ", v.lon);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "lat: ";
     Printer<int32_t>::stream(s, indent + "  ", v.lat);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "height: ";
     Printer<int32_t>::stream(s, indent + "  ", v.height);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "hMSL: ";
     Printer<int32_t>::stream(s, indent + "  ", v.hMSL);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "hAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.hAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "vAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.vAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "velN: ";
     Printer<int32_t>::stream(s, indent + "  ", v.velN);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "velE: ";
     Printer<int32_t>::stream(s, indent + "  ", v.velE);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "velD: ";
     Printer<int32_t>::stream(s, indent + "  ", v.velD);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "gSpeed: ";
     Printer<int32_t>::stream(s, indent + "  ", v.gSpeed);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "heading: ";
     Printer<int32_t>::stream(s, indent + "  ", v.heading);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.sAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "headAcc: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.headAcc);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "pDOP: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.pDOP);
-    s << indent << "reserved1[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "reserved1: ";
+    if (v.reserved1.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.reserved1.size(); ++i)
     {
-      s << indent << "  reserved1[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.reserved1[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.reserved1[i]);
     }
+    if (v.reserved1.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "headVeh: ";
     Printer<int32_t>::stream(s, indent + "  ", v.headVeh);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "magDec: ";
     Printer<int16_t>::stream(s, indent + "  ", v.magDec);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "magAcc: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.magAcc);
   }

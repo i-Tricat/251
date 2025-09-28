@@ -75,9 +75,6 @@
 (intern "*DYN_MODEL_WRIST_WATCH*" (find-package "UBLOX_MSGS::CFGNAV5"))
 (shadow '*DYN_MODEL_WRIST_WATCH* (find-package "UBLOX_MSGS::CFGNAV5"))
 (defconstant ublox_msgs::CfgNAV5::*DYN_MODEL_WRIST_WATCH* 9)
-(intern "*DYN_MODEL_BIKE*" (find-package "UBLOX_MSGS::CFGNAV5"))
-(shadow '*DYN_MODEL_BIKE* (find-package "UBLOX_MSGS::CFGNAV5"))
-(defconstant ublox_msgs::CfgNAV5::*DYN_MODEL_BIKE* 10)
 (intern "*FIX_MODE_2D_ONLY*" (find-package "UBLOX_MSGS::CFGNAV5"))
 (shadow '*FIX_MODE_2D_ONLY* (find-package "UBLOX_MSGS::CFGNAV5"))
 (defconstant ublox_msgs::CfgNAV5::*FIX_MODE_2D_ONLY* 1)
@@ -123,7 +120,6 @@
         ((= const 7) 'ublox_msgs::CfgNAV5::*DYN_MODEL_AIRBORNE_2G*)
         ((= const 8) 'ublox_msgs::CfgNAV5::*DYN_MODEL_AIRBORNE_4G*)
         ((= const 9) 'ublox_msgs::CfgNAV5::*DYN_MODEL_WRIST_WATCH*)
-        ((= const 10) 'ublox_msgs::CfgNAV5::*DYN_MODEL_BIKE*)
         ((= const 1) 'ublox_msgs::CfgNAV5::*FIX_MODE_2D_ONLY*)
         ((= const 2) 'ublox_msgs::CfgNAV5::*FIX_MODE_3D_ONLY*)
         ((= const 3) 'ublox_msgs::CfgNAV5::*FIX_MODE_AUTO*)
@@ -371,7 +367,7 @@
    self)
   )
 
-(setf (get ublox_msgs::CfgNAV5 :md5sum-) "ac3dd34c30655c54e2d11a724de7dcd6")
+(setf (get ublox_msgs::CfgNAV5 :md5sum-) "30ca0eca946e4bd96bf9f8a145f7b72c")
 (setf (get ublox_msgs::CfgNAV5 :datatype-) "ublox_msgs/CfgNAV5")
 (setf (get ublox_msgs::CfgNAV5 :definition-)
       "# CFG-NAV5 (0x06 0x24)
@@ -403,7 +399,6 @@ uint8 DYN_MODEL_AIRBORNE_1G = 6     # Airborne with <1g Acceleration
 uint8 DYN_MODEL_AIRBORNE_2G = 7     # Airborne with <2g Acceleration
 uint8 DYN_MODEL_AIRBORNE_4G = 8     # Airborne with <4g Acceleration
 uint8 DYN_MODEL_WRIST_WATCH = 9     # Wrist watch, protocol >= 18
-uint8 DYN_MODEL_BIKE = 10           # Bike, protocol >= 19.2
 
 uint8 fixMode           # Position Fixing Mode.
 uint8 FIX_MODE_2D_ONLY = 1          # 2D only
@@ -445,6 +440,6 @@ uint8[5] reserved2      # Reserved
 
 
 
-(provide :ublox_msgs/CfgNAV5 "ac3dd34c30655c54e2d11a724de7dcd6")
+(provide :ublox_msgs/CfgNAV5 "30ca0eca946e4bd96bf9f8a145f7b72c")
 
 

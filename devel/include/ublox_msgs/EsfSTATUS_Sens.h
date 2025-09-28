@@ -211,12 +211,20 @@ struct Printer< ::ublox_msgs::EsfSTATUS_Sens_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::EsfSTATUS_Sens_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "sensStatus1: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.sensStatus1);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "sensStatus2: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.sensStatus2);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "freq: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.freq);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "faults: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.faults);
   }

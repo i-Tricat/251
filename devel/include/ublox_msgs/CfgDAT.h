@@ -320,30 +320,59 @@ struct Printer< ::ublox_msgs::CfgDAT_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::ublox_msgs::CfgDAT_<ContainerAllocator>& v)
   {
+    if (false || !indent.empty())
+      s << std::endl;
     s << indent << "datumNum: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.datumNum);
-    s << indent << "datumName[]" << std::endl;
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "datumName: ";
+    if (v.datumName.empty() || true)
+      s << "[";
     for (size_t i = 0; i < v.datumName.size(); ++i)
     {
-      s << indent << "  datumName[" << i << "]: ";
-      Printer<uint8_t>::stream(s, indent + "  ", v.datumName[i]);
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<uint8_t>::stream(s, true ? std::string() : indent + "    ", v.datumName[i]);
     }
+    if (v.datumName.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "majA: ";
     Printer<double>::stream(s, indent + "  ", v.majA);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "flat: ";
     Printer<double>::stream(s, indent + "  ", v.flat);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "dX: ";
     Printer<float>::stream(s, indent + "  ", v.dX);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "dY: ";
     Printer<float>::stream(s, indent + "  ", v.dY);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "dZ: ";
     Printer<float>::stream(s, indent + "  ", v.dZ);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "rotX: ";
     Printer<float>::stream(s, indent + "  ", v.rotX);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "rotY: ";
     Printer<float>::stream(s, indent + "  ", v.rotY);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "rotZ: ";
     Printer<float>::stream(s, indent + "  ", v.rotZ);
+    if (true || !indent.empty())
+      s << std::endl;
     s << indent << "scale: ";
     Printer<float>::stream(s, indent + "  ", v.scale);
   }
