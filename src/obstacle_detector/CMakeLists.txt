@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
+cmake_policy(SET CMP0079 NEW)
 project(obstacle_detector)
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -fpermissive ${CMAKE_CXX_FLAGS} -Wfatal-errors\ ")
@@ -51,6 +52,7 @@ target_link_libraries(obstacle_tracker_node obstacle_tracker)
 
 add_executable(obstacle_publisher_node src/nodes/obstacle_publisher_node.cpp)
 target_link_libraries(obstacle_publisher_node obstacle_publisher)
+
 
 #
 # Build nodelets

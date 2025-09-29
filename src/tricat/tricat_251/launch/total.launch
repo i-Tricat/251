@@ -5,7 +5,7 @@
 <launch>
 	<!-- LiDAR date -->
     <!-- Convert data: /obstacles  -->
-    <node pkg="obstacle_detector" type="obstacle_detector" name="obstacle_detector" output="screen">
+    <!-- <node pkg="obstacle_detector" type="obstacle_detector" name="obstacle_detector" output="screen">
 		<param name="world_frame"     type="string" value="map"/>
 		<param name="scanner_frame"   type="string" value="scanner"/>
 	
@@ -31,7 +31,7 @@
 		<param name="min_y_range"          value="-1.0"/>
   	</node>
     
-    <node pkg="obstacle_detector" type="obstacle_visualizer" name="obstacle_visualizer" output="screen"/>
+    <node pkg="obstacle_detector" type="obstacle_visualizer" name="obstacle_visualizer" output="screen"/> -->
     
 	<!-- GPS date -->
     <!-- Convert data: /position_ned -->

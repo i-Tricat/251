@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/i-tricat241/catkin_ws/build
 include tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_ObstacleList.dir/progress.make
 
 tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_ObstacleList:
-	cd /home/i-tricat241/catkin_ws/build/tricat/tricat_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tricat_msgs /home/i-tricat241/catkin_ws/src/tricat/tricat_msgs/msg/ObstacleList.msg geometry_msgs/Point:tricat_msgs/Obstacle:std_msgs/Header
+	cd /home/i-tricat241/catkin_ws/build/tricat/tricat_msgs && ../../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tricat_msgs /home/i-tricat241/catkin_ws/src/tricat/tricat_msgs/msg/ObstacleList.msg tricat_msgs/Obstacle:std_msgs/Header:geometry_msgs/Point
 
 _tricat_msgs_generate_messages_check_deps_ObstacleList: tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_ObstacleList
 _tricat_msgs_generate_messages_check_deps_ObstacleList: tricat/tricat_msgs/CMakeFiles/_tricat_msgs_generate_messages_check_deps_ObstacleList.dir/build.make
