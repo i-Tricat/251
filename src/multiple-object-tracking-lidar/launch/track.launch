@@ -1,0 +1,13 @@
+<launch>
+  <!-- scan → pointcloud 변환 노드 -->
+  <node pkg="multi_object_tracking_lidar" type="S_to_P" name="scan_to_pc" output="screen">
+    <remap from="/scan" to="/scan"/> <!-- 라이다 토픽 명시 -->
+    <remap from="/bridge_pointcloud" to="/filtered_cloud"/> <!-- 변환 후 토픽 -->
+  </node>
+
+  <!-- Kalman Filter 기반 트래커 -->
+  <node name="kf_tracker_node" pkg="multi_object_tracking_lidar" type="kf_tracker" output="screen">
+    <remap from="/filtered_cloud" to="/filtered_cloud"/>
+  </node>
+</launch>
+
